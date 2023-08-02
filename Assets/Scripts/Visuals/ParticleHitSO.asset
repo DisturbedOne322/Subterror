@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc042589f8b87145b5c3ce6fc97f9f6, type: 3}
+  m_Name: ParticleHitSO
+  m_EditorClassIdentifier: 
+  layerMaskArray:
+  - serializedVersion: 2
+    m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 1024
+  - serializedVersion: 2
+    m_Bits: 2048
+  - serializedVersion: 2
+    m_Bits: 8192
+  - serializedVersion: 2
+    m_Bits: 16384
+  - serializedVersion: 2
+    m_Bits: 131072
+  - serializedVersion: 2
+    m_Bits: 262144
+  particleArray:
+  - {fileID: 7778632228144535385, guid: 81a5826256eaa4c4bb2e9b88159d904a, type: 3}
+  - {fileID: 1066320973440566859, guid: 25369dddf41a1664ba2a5a119a4a57ff, type: 3}
+  - {fileID: 7778632228144535385, guid: 958b8116edf2efd498f88643174fe05e, type: 3}
+  - {fileID: 7778632228144535385, guid: 958b8116edf2efd498f88643174fe05e, type: 3}
+  - {fileID: 1957680959169560507, guid: bd11e1dd4712c86499af42c62c0b9895, type: 3}
+  - {fileID: 1066320973440566859, guid: 25369dddf41a1664ba2a5a119a4a57ff, type: 3}
+  - {fileID: 7778632228144535385, guid: 958b8116edf2efd498f88643174fe05e, type: 3}

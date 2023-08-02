@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3705b19e2cec3845bf0f8a83efa9c09, type: 3}
+  m_Name: HellHoundAudioClipsSO
+  m_EditorClassIdentifier: 
+  EatingAudioClip: {fileID: 8300000, guid: eb754d58f042fb343aaf038d2f30bfc5, type: 3}
+  GrowlThenBarkAudioClip: {fileID: 8300000, guid: c42f46a2dba9d9f4f9166645539268e9, type: 3}
+  BarkAudioClipArray:
+  - {fileID: 8300000, guid: 23ae5489acb0a164dbbd8a634467fd84, type: 3}
+  - {fileID: 8300000, guid: 45b936b51f790ee4fae60e367271047d, type: 3}
+  - {fileID: 8300000, guid: a9b307b808dab4a4bbdcd51b47402eef, type: 3}
+  AttackAudioClipArray:
+  - {fileID: 8300000, guid: 30e1be05654f32d4fa84e0c22c27aed9, type: 3}
+  - {fileID: 8300000, guid: 207879f3a43a1224186e1a9c989a31f8, type: 3}

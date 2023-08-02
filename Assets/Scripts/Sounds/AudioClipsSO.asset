@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69145ba3ec7315044b8f8167054f5088, type: 3}
+  m_Name: AudioClipsSO
+  m_EditorClassIdentifier: 
+  shootSound: {fileID: 8300000, guid: 8e089a239d324c04486327da38508f16, type: 3}
+  reloadSound: {fileID: 8300000, guid: aea21823811dcb24db480e5f36be4af9, type: 3}
+  magInSound: {fileID: 8300000, guid: 548581a61809e2843b4496d1eb71e89b, type: 3}
+  magOutSound: {fileID: 8300000, guid: a035e964bc97b5a4fbef0cf02a8a3aa9, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: efb76b2f7854cd74e8be558d8aaea794, type: 3}
+  stepSound:
+  - {fileID: 8300000, guid: 9a2ab25910d02934fb2e250316737d3f, type: 3}
+  - {fileID: 8300000, guid: 85d6595756c2cf24ba728903ccfd9bed, type: 3}
+  - {fileID: 8300000, guid: 67b49e38df488d94583db9438339b9e2, type: 3}
+  - {fileID: 8300000, guid: 03ec33c7256179f4abafeef81276430f, type: 3}
+  - {fileID: 8300000, guid: 590116b81bf6d994397097470d5d45c5, type: 3}
+  - {fileID: 8300000, guid: 3ed0a8ab04976dc40be4ae15ce8f15e9, type: 3}
+  - {fileID: 8300000, guid: e7bb57ef33c0f0a4d9f36204e9bb6899, type: 3}
+  inhaleSound: {fileID: 8300000, guid: 865ad27faa3a3424c9f1ff61bf3de13d, type: 3}
+  exhaleSound: {fileID: 8300000, guid: 09abb93a0aa402443a5687fc222fb91c, type: 3}
+  getHurtSound:
+  - {fileID: 8300000, guid: 1e5e60ed4b62df949b02ca59d1212db5, type: 3}
+  - {fileID: 8300000, guid: 22a302301b5a9354f9dcac5719bf2eb7, type: 3}
+  - {fileID: 8300000, guid: eaa9963a0e666d340ab87337f672dac2, type: 3}
+  heartbeatSound: {fileID: 8300000, guid: 42e05fb2f3eacfc46b31b63b620ef490, type: 3}
+  deathSound: {fileID: 8300000, guid: 1431a70faf0e62847a332ae05252913f, type: 3}
+  boneCrackSound: {fileID: 8300000, guid: 9b3e6fdebb1c5e64c96849bd6787da6b, type: 3}
+  focusedLightStartup: {fileID: 8300000, guid: c272e439558875b48a9e33abb4dc36ac, type: 3}
