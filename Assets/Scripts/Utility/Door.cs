@@ -9,6 +9,10 @@ public class Door : MonoBehaviour
 
     [SerializeField]
     private AudioClip tryOpenDoorSound;
+
+    [SerializeField]
+    private AudioClip openDoorSound;
+
     private AudioSource audioSource;
 
     private bool inRange = false;
@@ -23,6 +27,15 @@ public class Door : MonoBehaviour
     {
         InputManager.Instance.OnInteract += Instance_OnInteract;
         isPlayerInRange.OnPlayerInRange += IsPlayerInRange_OnPlayerInRange;
+
+        MageBoss.OnFightFinished += MageBoss_OnFightFinished;
+    }
+
+    private bool finishGame = false;
+
+    private void MageBoss_OnFightFinished()
+    {
+        finishGame = true;
     }
 
     private void IsPlayerInRange_OnPlayerInRange(bool obj)
@@ -34,8 +47,17 @@ public class Door : MonoBehaviour
     {
         if(inRange && !inCD)
         {
-            audioSource.PlayOneShot(tryOpenDoorSound);
-            StartCoroutine(Cooldown());
+            if(!finishGame)
+            {
+                audioSource.PlayOneShot(tryOpenDoorSound);
+                StartCoroutine(Cooldown());
+            }
+            else
+            {
+                //load game scene with credits
+                audioSource.PlayOneShot(openDoorSound);
+                StartCoroutine(Cooldown());
+            }
         }
     }
 

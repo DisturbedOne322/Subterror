@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FlameballspawnManager : MonoBehaviour
 {
+    private Transform playerPos;
 
     private GameObject[] pool;
 
@@ -50,6 +51,7 @@ public class FlameballspawnManager : MonoBehaviour
 
     private void Start()
     {
+        playerPos = GameManager.Instance.GetPlayerReference().transform;
         colliderSizeX = flameballPrefab.GetComponent<BoxCollider2D>().size.x;
         flameballSpawnOffset = colliderSizeX * 4 + 0.25f;
         pool = new GameObject[20];
@@ -168,8 +170,10 @@ public class FlameballspawnManager : MonoBehaviour
 
     private float FindSpawnPosX()
     {
-        float pos = 0;
+        if (!CheckIsOccipied(playerPos.position.x))
+            return playerPos.position.x;
 
+        float pos = 0;
         do
         {
             pos = UnityEngine.Random.Range(leftBounds.position.x, rightBounds.position.x);
