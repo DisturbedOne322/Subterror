@@ -13,8 +13,6 @@ public class IsPlayerInRange : MonoBehaviour
     [SerializeField]
     private Transform point;
 
-    public float distance;
-
     public event Action<bool> OnPlayerInRange;
 
     // Start is called before the first frame update
@@ -32,7 +30,6 @@ public class IsPlayerInRange : MonoBehaviour
         while(true)
         {
             OnPlayerInRange?.Invoke(Vector2.Distance(point.position, player.transform.position) < desiredDistance);
-            distance = (Vector2.Distance(point.position, player.transform.position));
             yield return new WaitForSeconds(0.01f);
         }
     }

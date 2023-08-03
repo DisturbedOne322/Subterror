@@ -21,11 +21,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -88,7 +90,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
@@ -529,7 +530,6 @@ ScriptedImporter:
     - {x: 0, y: 13}
     - {x: 1, y: 17}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 112, y: 4}
     spritePosition: {x: 87, y: 48}
   - name: Tent4
@@ -842,7 +842,6 @@ ScriptedImporter:
     - {x: 0, y: 9}
     - {x: 5, y: 20}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 52, y: 98}
     spritePosition: {x: 30, y: 5}
   - name: Tent3
@@ -957,7 +956,6 @@ ScriptedImporter:
     - {x: 3, y: 4}
     - {x: 4, y: 5}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 52, y: 133}
     spritePosition: {x: 41, y: 21}
   - name: Tent1
@@ -1524,7 +1522,6 @@ ScriptedImporter:
     - {x: 6, y: 38}
     - {x: 8, y: 39}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 53, y: 157}
     spritePosition: {x: 47, y: 65}
   - name: Tent5
@@ -1641,7 +1638,6 @@ ScriptedImporter:
     - {x: 4, y: 5}
     - {x: 5, y: 6}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 52, y: 116}
     spritePosition: {x: 82, y: 69}
   - name: Tent7
@@ -1758,7 +1754,6 @@ ScriptedImporter:
     - {x: 4, y: 5}
     - {x: 5, y: 6}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 242}
     spritePosition: {x: 87, y: 18}
   - name: Tent8
@@ -1895,7 +1890,6 @@ ScriptedImporter:
     - {x: 5, y: 6}
     - {x: 6, y: 7}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 53, y: 177}
     spritePosition: {x: 98, y: 9}
   - name: Hair
@@ -2023,7 +2017,6 @@ ScriptedImporter:
     - {x: 5, y: 6}
     - {x: 6, y: 7}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 43, y: 206}
     spritePosition: {x: 57, y: 86}
   - name: Tent2
@@ -2160,7 +2153,6 @@ ScriptedImporter:
     - {x: 5, y: 6}
     - {x: 6, y: 7}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 43, y: 222}
     spritePosition: {x: 37, y: 48}
   - name: LeftUpperHand
@@ -2458,7 +2450,6 @@ ScriptedImporter:
     - {x: 18, y: 19}
     - {x: 19, y: 20}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 206}
     spritePosition: {x: 24, y: 57}
   - name: LeftBottomHand
@@ -2705,7 +2696,6 @@ ScriptedImporter:
     - {x: 15, y: 16}
     - {x: 16, y: 17}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 72, y: 32}
     spritePosition: {x: 30, y: 30}
   - name: RightBottomHand
@@ -2965,7 +2955,6 @@ ScriptedImporter:
     - {x: 17, y: 18}
     - {x: 18, y: 19}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 72, y: 4}
     spritePosition: {x: 78, y: 30}
   - name: Sword
@@ -3311,7 +3300,6 @@ ScriptedImporter:
     - {x: 24, y: 25}
     - {x: 25, y: 26}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 157}
     spritePosition: {x: 2, y: 31}
   - name: RightUppertHand
@@ -3677,7 +3665,6 @@ ScriptedImporter:
     - {x: 25, y: 26}
     - {x: 26, y: 27}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 98}
     spritePosition: {x: 82, y: 53}
   - name: Body
@@ -4955,7 +4942,6 @@ ScriptedImporter:
     - {x: 67, y: 68}
     - {x: 68, y: 69}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 38, y: 0}
   characterData:
@@ -5395,6 +5381,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -5402,10 +5389,12 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0
+    ignorePlatformSupport: 0
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -5417,6 +5406,7 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   - name: Standalone
     overridden: 0
+    ignorePlatformSupport: 0
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -5428,6 +5418,7 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   - name: Server
     overridden: 0
+    ignorePlatformSupport: 0
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -5447,6 +5438,8 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -5605,6 +5598,9 @@ ScriptedImporter:
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
   prefabAssetName: 
