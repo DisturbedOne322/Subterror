@@ -7,7 +7,7 @@ public class SavePointLight : MonoBehaviour
 {
     private CheckCanSaveGame checkCanSaveGame;
 
-    private Light2D light;
+    private Light2D light2D;
 
     private float defaultIntensity;
     private float offIntensity = 0;
@@ -20,8 +20,8 @@ public class SavePointLight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        light = GetComponent<Light2D>();    
-        defaultIntensity = light.intensity;
+        light2D = GetComponent<Light2D>();    
+        defaultIntensity = light2D.intensity;
         checkCanSaveGame = GetComponentInParent<CheckCanSaveGame>();
         checkCanSaveGame.CanSaveGame += CheckCanSaveGame_CanSaveGame;
     }
@@ -34,6 +34,6 @@ public class SavePointLight : MonoBehaviour
     private void Update()
     {
         float targetIntensity = lightsOn? defaultIntensity : offIntensity;
-        light.intensity = Mathf.SmoothDamp(light.intensity, targetIntensity, ref smDampVelocity, smDampTime);
+        light2D.intensity = Mathf.SmoothDamp(light2D.intensity, targetIntensity, ref smDampVelocity, smDampTime);
     }
 }

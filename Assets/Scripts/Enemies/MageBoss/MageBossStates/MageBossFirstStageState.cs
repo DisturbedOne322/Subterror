@@ -15,7 +15,6 @@ public class MageBossFirstStageState : MageBossBaseState
 
     private const string FLAMEBALL_ATTACK = "Flameball";
     private const string LASER_ATTACK = "Laser";
-    private string lastAttack;
     private string[] attackSet = new string[2];
 
 
@@ -45,7 +44,7 @@ public class MageBossFirstStageState : MageBossBaseState
 
     private State state;
 
-    public override void EnterState(MageBoss manager)
+    public override void EnterState(MageBoss manager, string lastAttack)
     {
         animator = manager.GetComponent<Animator>();
         animator.Play(MageBoss.APPEAR_ANIM);
@@ -61,6 +60,7 @@ public class MageBossFirstStageState : MageBossBaseState
         }
 
         state = State.Idle;
+        LastAttack = lastAttack;
     }
 
     private void Laser_OnAttackFinished(MageBoss manager)
@@ -144,7 +144,7 @@ public class MageBossFirstStageState : MageBossBaseState
         do
         {
             index = Random.Range(0, attackSet.Length);
-        } while (attackSet[index] == lastAttack);
+        } while (attackSet[index] == LastAttack);
         return attackSet[index];
     }
 
@@ -154,7 +154,7 @@ public class MageBossFirstStageState : MageBossBaseState
         manager.flameballspawnManager.InitializeFlameballAttackProperties(waveNumberTotal, spawnAmountTotal, spawnCDTotal,cdBetweenWaves, fallSpeed, scale, true, new Vector3(-1,0,0));
         manager.animator.Play(MageBoss.FLAMEBALL_ANIM);
         state = State.FlameballCast;
-        lastAttack = FLAMEBALL_ATTACK;
+        LastAttack = FLAMEBALL_ATTACK;
     }
 
     private void LaserCast(MageBoss manager)
@@ -162,6 +162,6 @@ public class MageBossFirstStageState : MageBossBaseState
         manager.PlayFlyUpSound();
         manager.animator.Play(MageBoss.LASER_PREPARE_ANIM);
         state = State.LaserPrepare;
-        lastAttack = LASER_ATTACK;
+        LastAttack = LASER_ATTACK;
     }
 }

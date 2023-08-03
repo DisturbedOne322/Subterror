@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnParticleOnObject : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem particleSystem;
+    private ParticleSystem particleSys;
 
     [SerializeField, Header("Must implement IParticleSpawnerCaller")]
     private GameObject go;
@@ -26,6 +26,6 @@ public class SpawnParticleOnObject : MonoBehaviour
 
     private void Caller_OnSpawnParticleAction()
     {
-        particleSystem.Play();
+        particleSys.Play();
     }
 }

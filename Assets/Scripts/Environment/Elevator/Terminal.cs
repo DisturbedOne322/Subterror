@@ -14,7 +14,7 @@ public class Terminal : MonoBehaviour
     private Elevator elevator;
 
     [SerializeField]
-    private Light2D light;
+    private Light2D light2D;
 
     private bool playerInRange;
 
@@ -44,7 +44,7 @@ public class Terminal : MonoBehaviour
 
     private void Elevator_OnArrived()
     {
-        light.intensity = 2;
+        light2D.intensity = 2;
         calledElevator = false;
     }
 
@@ -61,7 +61,7 @@ public class Terminal : MonoBehaviour
         {
             audioSource.PlayOneShot(buttonPress);
             calledElevator = true;
-            light.intensity = 5;
+            light2D.intensity = 5;
             OnCallElevator?.Invoke();
         }
     }

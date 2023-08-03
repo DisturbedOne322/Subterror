@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayDropSoundOnParticleCollision : MonoBehaviour
 {
-    private ParticleSystem particleSystem;
+    private ParticleSystem particleSys;
 
     [SerializeField]
     private AudioClip[] audioClips;
@@ -17,7 +17,7 @@ public class PlayDropSoundOnParticleCollision : MonoBehaviour
 
     private void Start()
     {
-        particleSystem = GetComponent<ParticleSystem>();
+        particleSys = GetComponent<ParticleSystem>();
         audioSource = GetComponent<AudioSource>();
         player = GameManager.Instance.GetPlayerReference();
     }

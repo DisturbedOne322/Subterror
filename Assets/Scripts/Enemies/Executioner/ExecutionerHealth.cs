@@ -11,7 +11,7 @@ public class ExecutionerHealth : MonoBehaviour, IDamagable
     [SerializeField]
     private int maxHealth;
 
-    private BoxCollider2D collider;
+    private BoxCollider2D boxCollider2D;
 
     private bool underLight = false;
 
@@ -25,7 +25,7 @@ public class ExecutionerHealth : MonoBehaviour, IDamagable
             healthPoint -= damage;
             if (healthPoint <= 0)
             {
-                collider.enabled = false;
+                boxCollider2D.enabled = false;
                 OnDeath?.Invoke();
             }
         }
@@ -35,8 +35,8 @@ public class ExecutionerHealth : MonoBehaviour, IDamagable
 
     private void OnEnable()
     {
-        collider = GetComponent<BoxCollider2D>();
-        collider.enabled = true;
+        boxCollider2D = GetComponent<BoxCollider2D>();
+        boxCollider2D.enabled = true;
         healthPoint = maxHealth;
     }
 

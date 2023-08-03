@@ -10,7 +10,7 @@ public class FlickeringLight : MonoBehaviour
     private float flickerTryDelay = 10f;
     private float restoreLightIntensitySpeed = 0.05f;
 
-    private Light2D light;
+    private Light2D light2D;
 
     private float delayBetweenRestoreLight = 5;
 
@@ -26,7 +26,7 @@ public class FlickeringLight : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        light = GetComponent<Light2D>();
+        light2D = GetComponent<Light2D>();
     }
 
     IEnumerator TryFlickerLight()
@@ -37,7 +37,7 @@ public class FlickeringLight : MonoBehaviour
             {
                 audioSource.Stop();
                 audioSource.PlayOneShot(flickerFadeOutSound);
-                light.intensity = 0;
+                light2D.intensity = 0;
                 StartCoroutine(DelayBetweenLightRestore(delayBetweenRestoreLight));
             }
             yield return new WaitForSeconds(flickerTryDelay);
@@ -56,7 +56,7 @@ public class FlickeringLight : MonoBehaviour
         audioSource.PlayOneShot(flickerFadeInSound);
         for (float i = 0; i <= 1; i += restoreLightIntensitySpeed)
         {
-            light.intensity = i;
+            light2D.intensity = i;
             yield return new WaitForSeconds(restoreLightIntensitySpeed);
         }
 

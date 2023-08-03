@@ -27,8 +27,6 @@ public class Elevator : MonoBehaviour
 
     private Vector3 destination;
 
-    private bool moving = false;
-
     [SerializeField]
     private EnemySpawnManager spawnManager;
 
@@ -128,6 +126,5 @@ public class Elevator : MonoBehaviour
         }
         player.transform.parent = null;
         OnArrived?.Invoke();
-        moving = false;
     }
 }

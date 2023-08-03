@@ -107,7 +107,7 @@ public class MageBoss : MonoBehaviour
             collidersArray[i].OnWeakPointBroken += MageBoss_OnWeakPointBroken;
         }
         SetNormalOutline();
-        currentState.EnterState(this);
+        currentState.EnterState(this, "None");
         audioSource.PlayOneShot(defeatAudioClip);
         currentState.OnCoreDestroyed += CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished += CurrentState_OnFightFinished;
@@ -169,7 +169,8 @@ public class MageBoss : MonoBehaviour
         currentState.OnCoreDestroyed -= CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished -= CurrentState_OnFightFinished;
         currentState = nextState;
-        currentState.EnterState(this);
+        string lastAttack = currentState.LastAttack;
+        currentState.EnterState(this, lastAttack);
         currentState.OnCoreDestroyed += CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished += CurrentState_OnFightFinished;
     }

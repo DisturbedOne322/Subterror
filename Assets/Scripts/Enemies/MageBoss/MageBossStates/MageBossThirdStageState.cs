@@ -18,7 +18,6 @@ public class MageBossThirdStageState : MageBossBaseState
     private const string FLAMEBALL_ATTACK = "Flameball";
     private const string LASER_ATTACK = "Laser";
     private const string EXCALIBUR_ATTACK = "Excalibur";
-    private string lastAttack;
     private string[] attackSet = new string[3];
 
     private MageBoss manager;
@@ -58,7 +57,7 @@ public class MageBossThirdStageState : MageBossBaseState
 
     private State state;
 
-    public override void EnterState(MageBoss manager)
+    public override void EnterState(MageBoss manager, string lastAttack)
     {
         this.manager = manager;
         manager.ResetColliders();
@@ -81,6 +80,7 @@ public class MageBossThirdStageState : MageBossBaseState
         }
 
         state = State.Idle;
+        LastAttack = lastAttack;
 
         manager.excaliburAttack.OnSwordAttackFinished += ExcaliburAttack_OnSwordRetured;
     }
@@ -179,7 +179,7 @@ public class MageBossThirdStageState : MageBossBaseState
         do
         {
             index = UnityEngine.Random.Range(0, attackSet.Length);
-        } while (attackSet[index] == lastAttack);
+        } while (attackSet[index] == LastAttack);
         return attackSet[index];
     }
 
@@ -195,7 +195,7 @@ public class MageBossThirdStageState : MageBossBaseState
         manager.StartCoroutine(SpawnExcalibur(manager));
         manager.animator.SetTrigger(MageBoss.EXCALIBUR_ATTACK_TRIGGER);
         state = State.ExcaliburCast;
-        lastAttack = EXCALIBUR_ATTACK;
+        LastAttack = EXCALIBUR_ATTACK;
 
         CreateMagicHole(5);
     }
@@ -214,7 +214,7 @@ public class MageBossThirdStageState : MageBossBaseState
         manager.flameballspawnManager.InitializeFlameballAttackProperties(waveNumberTotal, spawnAmountTotal, spawnCDTotal, cdBetweenWaves, fallSpeed, scale, true, new Vector3(-1, 0, 0));
         manager.animator.Play(MageBoss.FLAMEBALL_ANIM);
         state = State.FlameballCast;
-        lastAttack = FLAMEBALL_ATTACK;
+        LastAttack = FLAMEBALL_ATTACK;
 
         CreateMagicHole(9);
     }
@@ -224,7 +224,7 @@ public class MageBossThirdStageState : MageBossBaseState
         manager.PlayFlyUpSound();
         manager.animator.Play(MageBoss.LASER_PREPARE_ANIM);
         state = State.LaserPrepare;
-        lastAttack = LASER_ATTACK;
+        LastAttack = LASER_ATTACK;
         CreateMagicHole(10);
     }
 

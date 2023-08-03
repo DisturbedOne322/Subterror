@@ -146,7 +146,7 @@ public class FocusedHeadlight : MonoBehaviour
         if (focusedLightEnabled)
         {
             
-            hit = Physics2D.BoxCast(transform.position, new Vector2(boxLength, boxHeight), transform.rotation.z, Vector2.right, 0, ghostLayerMask);
+            hit = Physics2D.BoxCast(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, ghostLayerMask);
             if (hit)
             {
                 OnGhostFound?.Invoke();

@@ -10,7 +10,7 @@ public class Teleport : MonoBehaviour
     private Transform destination;
 
     [SerializeField]
-    private Camera camera;
+    private Camera myCamera;
 
     [SerializeField]
     private GameObject nextArea;
@@ -30,7 +30,7 @@ public class Teleport : MonoBehaviour
 
             Vector3 point = new Vector3(destination.position.x, player.transform.position.y + yOffset, 0);
             player.transform.position = point;
-            camera.transform.position = point;
+            myCamera.transform.position = point;
 
             Vector3 delta = point - initialPos;
             OnTeleportedPlayer?.Invoke(delta);

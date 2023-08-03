@@ -12,7 +12,6 @@ public class GhostVisuals : MonoBehaviour
     private readonly string DETECTED_ANIM = "DetectedPlayer";
     private readonly string DISAPPEAR_ANIM = "AttackFinished";
     private readonly string GET_DAMAGED_ANIM = "IsAttacked";
-    private readonly string DISAPPEAR_TRIGGER = "OnDisappear";
 
     private void Awake()
     {
