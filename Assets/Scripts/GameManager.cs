@@ -1,5 +1,4 @@
 using Cinemachine;
-using Dreamteck.Splines;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -160,10 +159,11 @@ public class GameManager : MonoBehaviour
                     weakPoint.GetDamage();
                 }
 
-                if(objectHit.TryGetComponent<SplineFollower>(out SplineFollower shield))
-                {
-                    particleSpawnerOnEnemyHit[i].transform.parent = shield.transform;
-                }
+                Debug.LogError("Spawn particles on shield hit");
+                //if(objectHit.TryGetComponent<SplineFollower>(out SplineFollower shield))
+                //{
+                //    particleSpawnerOnEnemyHit[i].transform.parent = shield.transform;
+                //}
 
                 //if the object hit is derived from enemy class
                 if (objectHit.TryGetComponent<Enemy>(out Enemy enemy))

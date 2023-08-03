@@ -1,6 +1,3 @@
-using Dreamteck.Splines;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LookAtPlayer : MonoBehaviour
@@ -39,6 +36,5 @@ public class LookAtPlayer : MonoBehaviour
         mult = lookTarget.position.x > transform.position.x ? 1 : -1;
 
         objectToRotate.right = Vector3.SmoothDamp(objectToRotate.right, (lookTarget.position + new Vector3(0, UnityEngine.Random.Range(-shakeAmount, shakeAmount),0) - transform.position) * mult, ref smDampVelocity, rotationSpeed);
-        //head.Rotate(0,0,1);
     }
 }
