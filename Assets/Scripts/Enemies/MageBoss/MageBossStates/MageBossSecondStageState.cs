@@ -26,7 +26,7 @@ public class MageBossSecondStageState : MageBossBaseState
     private float spawnCDTotal = 0.5f; // cd between each flameball
     private float cdBetweenWaves = 0.5f;
     private int waveNumberTotal = 3;
-    private int spawnAmountTotal = 7;
+    private int spawnAmountTotal = 4;
     private float fallSpeed = 15;
     private float scale = 1.5f;
 
@@ -67,7 +67,7 @@ public class MageBossSecondStageState : MageBossBaseState
         }
 
         state = State.Idle;
-        this.LastAttack = lastAttack;
+        LastAttack = lastAttack;
     }
 
     private void Laser_OnAttackFinished(MageBoss manager)

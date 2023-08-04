@@ -62,6 +62,7 @@ public class BGMusicManager : MonoBehaviour
     private IEnumerator PlayWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        Debug.Log(delay +"seconds passed");
         activeSource.volume = 0;
         activeSource.clip = postBossFightBGMusic;
         activeSource.Play();

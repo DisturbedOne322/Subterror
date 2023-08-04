@@ -8,6 +8,7 @@ public class Excalibur : MonoBehaviour
 {
     public event Action OnSwordAttackFinished;
 
+
     private const string GROUND_HIT_ANIM_TRIGGER = "GhoundHit";
     private const string DURATION_ENDED_TRIGGER = "DurationEnded";
 
@@ -153,6 +154,7 @@ public class Excalibur : MonoBehaviour
                     audioSource.Stop();
                     audioSource.PlayOneShot(returnSound);
                     returning = true;
+                    OnSwordAttackFinished?.Invoke();
                 }
             }
         }
@@ -226,11 +228,9 @@ public class Excalibur : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
-            OnSwordAttackFinished?.Invoke();
-
             RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position + circleCastOffset, circleCastRadius, Vector2.up);
             
-            foreach (var objectHit in hit)
+            foreach(var objectHit in hit)
             {
                 if (objectHit.collider.gameObject.CompareTag("Player"))
                 {
