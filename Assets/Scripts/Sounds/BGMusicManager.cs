@@ -46,6 +46,15 @@ public class BGMusicManager : MonoBehaviour
         MageBoss.OnFightFinished += MageBoss_OnFightFinished;
     }
 
+    private void OnDestroy()
+    {
+        enemySpawnManager.OnMiniBossFightStarted -= EnemySpawnManager_OnMiniBossFightStarted;
+        enemySpawnManager.OnBossFightFinished -= EnemySpawnManager_OnBossFightFinished;
+
+        InitiateBossfight.OnBossFightInitiated -= InitiateBossfight_OnBossFightInitiated;
+        MageBoss.OnFightFinished -= MageBoss_OnFightFinished;
+    }
+
     private void MageBoss_OnFightFinished()
     {
         StartCoroutine(PlayWithDelay(10));

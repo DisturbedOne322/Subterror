@@ -47,6 +47,8 @@ public class InputManager : MonoBehaviour
         return playerInputActions.Player.QTE.ReadValue<Vector2>();
     }
 
+    private PlayerHealth playerHealth;
+
     private void Start()
     {
         playerInputActions.Player.Focus.started += Focus_started;
@@ -57,7 +59,8 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Pause.performed += Pause_performed;
         playerInputActions.Player.Interact.performed += Interact_performed;
 
-        GameManager.Instance.GetPlayerReference().GetComponentInChildren<PlayerHealth>().OnDeath += InputManager_OnPlayerDied;
+        playerHealth = GameManager.Instance.GetPlayerReference().GetComponentInChildren<PlayerHealth>();
+        playerHealth.OnDeath += InputManager_OnPlayerDied;
         //GameManager.Instance.GetPlayerReference().OnPlayerRespawned += InputManager_OnPlayerRespawned;
     }
 
@@ -81,6 +84,8 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Headlight.performed -= Headlight_performed;
         playerInputActions.Player.Pause.performed -= Pause_performed;
         playerInputActions.Player.Interact.performed -= Interact_performed;
+
+        playerHealth.OnDeath -= InputManager_OnPlayerDied;
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

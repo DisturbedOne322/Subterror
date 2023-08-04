@@ -168,11 +168,25 @@ public class FlameballspawnManager : MonoBehaviour
         spawnedAmount++;      
     }
 
+    private bool canTrackPlayer = true;
+
+    private IEnumerator PlayerTrackCooldown()
+    {
+        canTrackPlayer = false;
+        yield return new WaitForSeconds(3);
+        canTrackPlayer = true;
+    }
 
     private float FindSpawnPosX()
     {
-        if (!CheckIsOccipied(playerPos.position.x))
-            return playerPos.position.x;
+        if (canTrackPlayer)
+        {
+            if (!CheckIsOccipied(playerPos.position.x))
+            {
+                StartCoroutine(PlayerTrackCooldown());
+                return playerPos.position.x;
+            }
+        }
 
         float pos = 0;
 
