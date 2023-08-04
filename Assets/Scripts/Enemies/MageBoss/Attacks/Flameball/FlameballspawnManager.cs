@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class FlameballspawnManager : MonoBehaviour
 {
+    private Transform playerPos;
 
     private GameObject[] pool;
 
@@ -58,6 +60,7 @@ public class FlameballspawnManager : MonoBehaviour
             pool[i] = Instantiate(flameballPrefab);
             pool[i].SetActive(false);
         }
+        playerPos = GameManager.Instance.GetPlayerReference().transform;
         mageBoss = GetComponent<MageBoss>();
         mageBoss.OnHPChanged += MageBoss_OnHPChanged;
     }
@@ -168,6 +171,9 @@ public class FlameballspawnManager : MonoBehaviour
 
     private float FindSpawnPosX()
     {
+        if (!CheckIsOccipied(playerPos.position.x))
+            return playerPos.position.x;
+
         float pos = 0;
 
         do

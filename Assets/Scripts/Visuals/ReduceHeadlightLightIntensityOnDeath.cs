@@ -22,12 +22,6 @@ public class ReduceHeadlightLightIntensityOnDeath : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (health == null)
-        {
-            Debug.Log(gameObject.name);
-            Debug.Log(gameObject.transform.parent.gameObject.name);
-            Debug.Log(gameObject.transform.parent.transform.parent.gameObject.name);
-        }
         health.OnDeath -= Health_OnDeath;
     }
 

@@ -168,8 +168,8 @@ public class MageBoss : MonoBehaviour
         OnStageChanged?.Invoke();
         currentState.OnCoreDestroyed -= CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished -= CurrentState_OnFightFinished;
-        currentState = nextState;
         string lastAttack = currentState.LastAttack;
+        currentState = nextState;
         currentState.EnterState(this, lastAttack);
         currentState.OnCoreDestroyed += CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished += CurrentState_OnFightFinished;

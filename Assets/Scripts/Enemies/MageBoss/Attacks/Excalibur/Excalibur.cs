@@ -154,7 +154,6 @@ public class Excalibur : MonoBehaviour
                     audioSource.Stop();
                     audioSource.PlayOneShot(returnSound);
                     returning = true;
-                    OnSwordAttackFinished?.Invoke();
                 }
             }
         }
@@ -228,6 +227,8 @@ public class Excalibur : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
+            OnSwordAttackFinished?.Invoke();
+
             RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position + circleCastOffset, circleCastRadius, Vector2.up);
             
             foreach(var objectHit in hit)

@@ -8,8 +8,8 @@ public class LookAtMouse : MonoBehaviour
     private Quaternion lastRotation;
     private Vector3 lastMousePosition;
 
-    private readonly float topLookAtAngleBound = 60;
-    private readonly float bottomLookAtAngleBound = -40f;
+    private readonly float topLookAtAngleBound = 70;
+    private readonly float bottomLookAtAngleBound = -50f;
 
     private readonly float returnToOriginalRotationSpeed = 2f;
 
