@@ -12,7 +12,7 @@ public class ShieldGoDownOnPlayerInRange : MonoBehaviour
     private float distance = 4;
 
     private float defaultSpeed;
-    private float descendSpeed = 6;
+    private float descendSpeed = 8;
 
     // Start is called before the first frame update
     void Start()
