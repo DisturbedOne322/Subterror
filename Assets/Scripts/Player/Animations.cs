@@ -36,6 +36,13 @@ public class Animations : MonoBehaviour
         QTE.instance.OnQTEEnd += Instance_OnQTEEnd;
 
         player.GetComponent<PlayerHealth>().OnDeath += Player_OnPlayerDied;
+        PlayerMovement.OnInCutscene += PlayerMovement_OnInCutscene;
+    }
+
+    private void PlayerMovement_OnInCutscene()
+    {
+        animator.enabled = false;
+        animator.enabled = true;
     }
 
     private void OnDestroy()
@@ -48,6 +55,7 @@ public class Animations : MonoBehaviour
         QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
 
         player.GetComponent<PlayerHealth>().OnDeath -= Player_OnPlayerDied;
+        PlayerMovement.OnInCutscene -= PlayerMovement_OnInCutscene;
     }
 
     private void Player_OnPlayerDied()

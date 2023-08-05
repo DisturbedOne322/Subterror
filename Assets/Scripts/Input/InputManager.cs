@@ -61,7 +61,14 @@ public class InputManager : MonoBehaviour
 
         playerHealth = GameManager.Instance.GetPlayerReference().GetComponentInChildren<PlayerHealth>();
         playerHealth.OnDeath += InputManager_OnPlayerDied;
+
+        PlayerMovement.OnInCutscene += PlayerMovement_OnInCutscene;
         //GameManager.Instance.GetPlayerReference().OnPlayerRespawned += InputManager_OnPlayerRespawned;
+    }
+
+    private void PlayerMovement_OnInCutscene()
+    {
+        playerInputActions.Player.Disable();
     }
 
     private void InputManager_OnPlayerDied()
@@ -86,6 +93,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Interact.performed -= Interact_performed;
 
         playerHealth.OnDeath -= InputManager_OnPlayerDied;
+        PlayerMovement.OnInCutscene -= PlayerMovement_OnInCutscene;
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

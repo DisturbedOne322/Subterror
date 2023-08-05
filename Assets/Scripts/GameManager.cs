@@ -1,6 +1,7 @@
 using Cinemachine;
 using System;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject boss;
+
+    [SerializeField]
+    private PlayableDirector cutscene;
 
     public bool gamePaused { get; private set; }
 
@@ -79,13 +83,18 @@ public class GameManager : MonoBehaviour
         {
             particleSpawnerOnEnemyHit[i] = Instantiate(particleHitSO.particleArray[i]);
         }
-
+        PlayerMovement.OnInCutscene += Player_OnInCutscene;
         InputManager.Instance.OnFocusActionStarted += Instance_OnFocusActionStarted;
         InputManager.Instance.OnFocusActionEnded += Instance_OnFocusActionEnded;
 
         PauseMenuManager.OnGamePaused += PauseMenuManager_OnGamePaused;
 
         InitiateBossfight.OnBossFightInitiated += InitiateBossfight_OnBossFightInitiated;
+    }
+
+    private void Player_OnInCutscene()
+    {
+       cutscene.Play();
     }
 
     private void OnDestroy()
@@ -98,6 +107,8 @@ public class GameManager : MonoBehaviour
         PauseMenuManager.OnGamePaused -= PauseMenuManager_OnGamePaused;
 
         InitiateBossfight.OnBossFightInitiated -= InitiateBossfight_OnBossFightInitiated;
+        PlayerMovement.OnInCutscene -= Player_OnInCutscene;
+
     }
 
     public void PauseMenuManager_OnGamePaused(bool paused)

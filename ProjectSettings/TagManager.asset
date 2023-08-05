@@ -14,6 +14,7 @@ TagManager:
   - TeleportDestination
   - Room
   - Teleport
+  - Endgame
   layers:
   - Default
   - TransparentFX

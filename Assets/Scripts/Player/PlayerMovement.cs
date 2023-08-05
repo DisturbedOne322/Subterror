@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action<StaminaState> OnStaminaStateChange;
     public event Action OnPlayerTeleported;
     public event Action OnPlayerTeleportedArrived;
+    public static event Action OnInCutscene;
     private Rigidbody2D rb2D;
 
     [SerializeField]
@@ -286,6 +287,10 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.CompareTag("Teleport"))
         {
             GetTeleported();
+        }
+        if(collision.gameObject.CompareTag("Endgame"))
+        {
+            OnInCutscene?.Invoke();
         }
     }
 

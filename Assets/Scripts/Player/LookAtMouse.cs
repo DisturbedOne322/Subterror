@@ -18,6 +18,7 @@ public class LookAtMouse : MonoBehaviour
     private bool focused;
 
     private bool playerDead = false;
+    private bool inCutscene = false;
 
     public bool Focused
     {
@@ -43,6 +44,12 @@ public class LookAtMouse : MonoBehaviour
         player = GameManager.Instance.GetPlayerReference();
         playerHealth = player.GetComponent<PlayerHealth>();
         playerHealth.OnDeath += Player_OnPlayerDied;
+        PlayerMovement.OnInCutscene += PlayerMovement_OnInCutscene;
+    }
+
+    private void PlayerMovement_OnInCutscene()
+    {
+        inCutscene = true;
     }
 
     private void Player_OnPlayerDied()
@@ -58,6 +65,7 @@ public class LookAtMouse : MonoBehaviour
             InputManager.Instance.OnFocusActionEnded -= InputManager_OnFocusActionEnded;
         }
         playerHealth.OnDeath -= Player_OnPlayerDied;
+        PlayerMovement.OnInCutscene -= PlayerMovement_OnInCutscene;
     }
 
     private void InputManager_OnFocusActionEnded()
@@ -72,6 +80,9 @@ public class LookAtMouse : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (inCutscene)
+            return;
+
         if (playerDead)
             return;
 
