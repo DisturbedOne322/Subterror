@@ -296,7 +296,7 @@ public class EnemySpawnManager : MonoBehaviour
         {
             GameObject exec = Instantiate(executionerPrefab, spawnPositions[i].position, Quaternion.identity);
             exec.GetComponent<ExecutionerHealth>().SetHealthTo1();
-            exec.GetComponent<ApproachPlayer>().SetSpeed(UnityEngine.Random.Range(0.15f, 0.25f));
+            exec.GetComponent<ExecutionerApproachPlayer>().SetSpeed(UnityEngine.Random.Range(0.15f, 0.25f));
             exec.GetComponent<DissolveOnDeath>().SetDissolveTicktime(0.015f);
 
             spawnedExecutioners.Add(exec);

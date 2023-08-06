@@ -16,8 +16,10 @@ public class PostProcessing : MonoBehaviour
 
     private bool playerAtLowHP = false;
     private float lowerBoundVigIntensity = 0.2f;
-    private float higherBoundVigIntensity = 0.5f;
+    private float higherBoundVigIntensity = 0.4f;
     private float intensityModifier = 0.5f;
+
+    private float vigChangeSpeedModifier = 0.7f;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +64,7 @@ public class PostProcessing : MonoBehaviour
             {
                 intensityModifier *= -1;
             }
-            vig.intensity.value += intensityModifier * Time.deltaTime;
+            vig.intensity.value += intensityModifier * Time.deltaTime * vigChangeSpeedModifier;
         }
     }
 }

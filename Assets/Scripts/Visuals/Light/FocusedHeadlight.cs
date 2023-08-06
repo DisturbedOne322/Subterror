@@ -10,7 +10,7 @@ public class FocusedHeadlight : MonoBehaviour
     [SerializeField]
     private Light2D focusedLight2D;
     private float defaultLightIntensity;
-    private readonly float focusedLightIntensity = 6f;
+    private readonly float focusedLightIntensity = 4f;
     private readonly float brokenLightIntensity = 0.3f;
 
     public static event Action OnGhostFound;

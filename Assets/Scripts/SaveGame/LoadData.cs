@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 
 public class LoadData : MonoBehaviour
 {
@@ -103,6 +104,11 @@ public class LoadData : MonoBehaviour
             player.transform.position = initialSpawnPoint.position;
         }
 
+    }
+
+    public void LoadEndGameScene()
+    {
+        Debug.Log("Load end game scene");
     }
 
     private void LoadSaveData()

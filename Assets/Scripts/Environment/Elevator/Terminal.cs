@@ -29,6 +29,8 @@ public class Terminal : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField]
     private AudioClip buttonPress;
+    [SerializeField]
+    private AudioClip buttonError;
 
     private void Awake()
     {
@@ -52,10 +54,17 @@ public class Terminal : MonoBehaviour
     {
 
         if (elevatorArrived)
+        {
+            TryPlayErrorSound();
             return;
+        }
 
         if (calledElevator)
+        {
+            TryPlayErrorSound();
             return;
+        }
+            
 
         if(playerInRange)
         {
@@ -64,6 +73,25 @@ public class Terminal : MonoBehaviour
             light2D.intensity = 5;
             OnCallElevator?.Invoke();
         }
+    }
+
+    private void TryPlayErrorSound()
+    {
+        if (!playerInRange)
+            return;
+        if (canPlayErrorSound)
+        {
+            audioSource.PlayOneShot(buttonError);
+            StartCoroutine(ButtonSoundCD());
+        }
+    }
+
+    private bool canPlayErrorSound = true;
+    private IEnumerator ButtonSoundCD()
+    {
+        canPlayErrorSound = false;
+        yield return new WaitForSeconds(2);
+        canPlayErrorSound = true;
     }
 
     private void IsPlayerInRange_OnPlayerInRange(bool obj)

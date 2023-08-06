@@ -14,18 +14,18 @@ public class SpawnParticleOnObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(go.TryGetComponent<IParticleSpawnerCaller>(out IParticleSpawnerCaller caller))
+        if(go.TryGetComponent(out IParticleSpawnerCaller caller))
             caller.OnSpawnParticleAction += Caller_OnSpawnParticleAction;
     }
 
     private void OnDestroy()
     {
-        if (go.TryGetComponent<IParticleSpawnerCaller>(out IParticleSpawnerCaller caller))
+        if (go.TryGetComponent(out IParticleSpawnerCaller caller))
             caller.OnSpawnParticleAction -= Caller_OnSpawnParticleAction;
     }
 
     private void Caller_OnSpawnParticleAction()
     {
-        particleSys.Play();
+        particleSys.Play(); 
     }
 }
