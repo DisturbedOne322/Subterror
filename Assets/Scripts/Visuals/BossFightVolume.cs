@@ -31,6 +31,12 @@ public class BossFightVolume : MonoBehaviour
         StartCoroutine(DecreaseWeight(timeToDecreaseWeight));
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnBossFightStarted -= Instance_OnBossFightStarted;
+        MageBoss.OnFightFinished -= MageBoss_OnFightFinished;
+    }
+
     private IEnumerator IncreaseWeight(float timeInSeconds)
     {
         while(volume.weight < 1)

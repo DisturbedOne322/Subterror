@@ -10,21 +10,20 @@ public class MagUI : MonoBehaviour
     private TextMeshProUGUI magazineBulletCountText;
     [SerializeField]
     private Image[] bulletImages;
-    private float bulletAlphaModifierSpeed = 0.05f;
-
-    private Shoot shoot;
+    private float bulletAlphaSpeedMultiplier = 4f;
 
     int bulletsShot = 0;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         Shoot.OnSuccessfulShoot += Shoot_OnSuccessfulShoot;
         Shoot.OnSuccessfulReload += Shoot_OnSuccessfulReload;
-        shoot = GameManager.Instance.GetPlayerReference().GetComponentInChildren<Shoot>();
-        magazineBulletCountText.text = GameManager.Instance.GetPlayerReference().GetComponentInChildren<Shoot>().currentBulletNum.ToString() + "/12";
-        bulletsShot = 12 - shoot.currentBulletNum;
+
+        int bullets = GameManager.Instance.GetPlayerReference().GetComponentInChildren<Shoot>().currentBulletNum;
+        magazineBulletCountText.text = bullets.ToString() + "/12";
+        bulletsShot = 12 - bullets;
         HideShotBulletsOnGameLoad();
     }
 
@@ -64,29 +63,34 @@ public class MagUI : MonoBehaviour
 
     IEnumerator HideBullet(int bulletImageIndex)
     {
-        for (float i = 1; i > 0; i -= 0.1f)
+        Color temp = bulletImages[bulletImageIndex].color;
+        for (float i = 1; i > 0; i -= Time.deltaTime * bulletAlphaSpeedMultiplier)
         {
-            Color temp = bulletImages[bulletImageIndex].color;
+            temp = bulletImages[bulletImageIndex].color;
             temp.a = i;
             bulletImages[bulletImageIndex].color = temp;
-            yield return new WaitForSeconds(bulletAlphaModifierSpeed);
+            yield return null;
         }
+        temp.a = 0;
+        bulletImages[bulletImageIndex].color = temp;
     }
 
     IEnumerator ShowBullet(int bulletImageIndex)
     {
-        for (float i = 0; i <= 1; i += 0.1f)
+        Color temp = bulletImages[bulletImageIndex].color;
+        for (float i = 0; i <= 1; i += Time.deltaTime * bulletAlphaSpeedMultiplier)
         {
-            Color temp = bulletImages[bulletImageIndex].color;
+            temp = bulletImages[bulletImageIndex].color;
             temp.a = i;
             bulletImages[bulletImageIndex].color = temp;
-            yield return new WaitForSeconds(bulletAlphaModifierSpeed);
+            yield return null;
         }
+        temp.a = 1;
+        bulletImages[bulletImageIndex].color = temp;
     }
 
     private void RepopulateMag(int magSize)
     {
-        //enable all the bullets that are left in the mag (reposition them to the bottom of mag)
         for (int i = 0; i < magSize - bulletsShot; i++)
         {
             Color temp = bulletImages[i].color;
@@ -98,5 +102,4 @@ public class MagUI : MonoBehaviour
             StartCoroutine(ShowBullet(i));
         }
     }
-
 }

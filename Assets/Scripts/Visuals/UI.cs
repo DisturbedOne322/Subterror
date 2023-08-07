@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-
-
     [SerializeField]
     private TextMeshProUGUI weaponJammedNotification;
     [SerializeField]
@@ -63,7 +61,7 @@ public class UI : MonoBehaviour
     private const string HEALTH_BAR_OUTLINE_THICKNESS = "_OutlineThickness";
     private float healthBarRestoreTime = 0;
     private const float damageHealthBarOutlineThickness = 7;
-    private const float defaultHealthBarOutlineThickness = 0;
+    private const float defaultHealthBarOutlineThickness = 2;
     #endregion
 
     #region Boss UI
@@ -166,6 +164,7 @@ public class UI : MonoBehaviour
     private void Player_OnHealthChanged(GameManager.PlayerHealthStatus hpStatus)
     {
         healthBarMaterial.SetFloat(HEALTH_BAR_OUTLINE_THICKNESS, damageHealthBarOutlineThickness);
+
         healthBarRestoreTime = 0f;
         switch (hpStatus)
         {

@@ -19,6 +19,7 @@ public class MageBossThirdStageState : MageBossBaseState
     private const string LASER_ATTACK = "Laser";
     private const string EXCALIBUR_ATTACK = "Excalibur";
     private string[] attackSet = new string[3];
+    private List<string> attackSequence = new List<string>();
 
     private MageBoss manager;
 
@@ -175,11 +176,27 @@ public class MageBossThirdStageState : MageBossBaseState
 
     private string GetRandomAttack()
     {
+        //if among the last 4 attacks 1 attack type didn't occur, do this attack
+        if(attackSequence.Count > 3)
+        {
+            for(int i = 0; i < attackSequence.Count; i++)
+            {
+                if (!attackSequence.Contains(attackSet[i]))
+                {
+                    attackSequence.Clear();
+                    return attackSet[i];
+                }
+            }
+            attackSequence.Clear();
+        }
+
+
         int index = -1;
         do
         {
             index = UnityEngine.Random.Range(0, attackSet.Length);
         } while (attackSet[index] == LastAttack);
+        attackSequence.Add(attackSet[index]);
         return attackSet[index];
     }
 
@@ -235,11 +252,9 @@ public class MageBossThirdStageState : MageBossBaseState
             magicHoleOnLastAttack = false;
             return;
         }
-        if (UnityEngine.Random.Range(0, 1f) > 0f)
-        {
-            magicHoleDuration = duration;
-            MagicHoleCast(manager); 
-            magicHoleOnLastAttack = true;
-        }
+        
+        magicHoleDuration = duration;
+        MagicHoleCast(manager); 
+        magicHoleOnLastAttack = true;     
     }
 }
