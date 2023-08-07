@@ -14,6 +14,8 @@ public class Shoot : MonoBehaviour
     private Transform playerPos;
 
     private PlayerMovement player;
+    [SerializeField]
+    private LayerMask playerLayerToIgnore;
 
     private bool isPlayerInQTE;
 

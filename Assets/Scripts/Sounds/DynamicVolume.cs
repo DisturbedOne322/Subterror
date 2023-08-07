@@ -7,6 +7,7 @@ public class DynamicVolume : MonoBehaviour
 {
     private PlayerMovement player;
     private AudioSource audioSource;
+    [SerializeField]
     private float maxDistance = 8f;
 
     // Start is called before the first frame update
@@ -19,6 +20,8 @@ public class DynamicVolume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioSource.volume = DynamicSoundVolume.GetDynamicVolume(maxDistance, Vector2.Distance(transform.position, player.transform.position));
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+        audioSource.enabled = distance < maxDistance;
+        audioSource.volume = DynamicSoundVolume.GetDynamicVolume(maxDistance, distance);
     }
 }

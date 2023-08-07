@@ -986,7 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0364d7163a7d5d44817252449a8425d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 4
 --- !u!114 &5039591172779345302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b36b687dfdc204e979fe2e9c10396d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDistanceInitial: 12
+  targetDistanceInitial: 10
   maxFollowDistance: 30
   maxTargetOffset: 3
   initialSpeed: 0.015

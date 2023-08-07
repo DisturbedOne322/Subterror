@@ -11,20 +11,26 @@ public class PlayDropSoundOnParticleCollision : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private PlayerMovement player;
-
-    private float maxDistanceSound = 20;
-
     private void Start()
     {
         particleSys = GetComponent<ParticleSystem>();
         audioSource = GetComponent<AudioSource>();
-        player = GameManager.Instance.GetPlayerReference();
+    }
+
+    private bool canPlay = true;
+    private IEnumerator Cooldown()
+    {
+        canPlay = false;
+        yield return new WaitForSeconds(1.5f);
+        canPlay = true;
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        audioSource.volume = DynamicSoundVolume.GetDynamicVolume(maxDistanceSound, Vector2.Distance(other.transform.position, player.transform.position));
-        audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+        if (audioSource.enabled && canPlay)
+        {
+            audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+            StartCoroutine(Cooldown());
+        }
     }
 }

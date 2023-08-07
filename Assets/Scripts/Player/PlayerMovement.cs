@@ -17,10 +17,13 @@ public class PlayerMovement : MonoBehaviour
     public event Action<bool> OnEnterExitSafeZone;
 
     [SerializeField]
-    private readonly float originalSpeed = 0.85f;
-    private float moveSpeed = 0.85f;
-    private readonly float sprintSpeed = 1.35f;
-    private readonly float backwardMoveSpeedMultiplier = 0.89f;
+    private float originalSpeed = 1.5f;
+    [SerializeField]
+    private float moveSpeed = 1.5f;
+    [SerializeField]
+    private float sprintSpeed = 1.3f;
+    [SerializeField]
+    private float backwardMoveSpeedMultiplier = 0.9f;
     private float slopeSpeedBonus;
 
     private bool onSlope = false;
@@ -46,9 +49,10 @@ public class PlayerMovement : MonoBehaviour
     private bool isSprinting = false;
     private bool isMoving = false;
     private bool canMove = true;
-
-    private readonly float jumpForce = 0.007f;
-    private readonly float standingJumpForce = 0.009f;
+    [SerializeField]
+    private float jumpForce = 0.0095f;
+    [SerializeField]
+    private float standingJumpForce = 0.012f;
 
     private CapsuleCollider2D capsuleCollider;
 
@@ -179,7 +183,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!canMove)       
+        isFalling = rb2D.velocity.y < -2f;
+        isGrounded = CheckIsGrounded();
+
+        if (isSprinting)
+            DepleteStamina();
+        if(IsGrounded)
+            RegenStamina();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!canMove)
             return;
 
         movementDirection = InputManager.Instance.GetMovementDirection();
@@ -191,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
             float moveSpeedMultiplier = (movementDirection > 0 && transform.localScale.x > 0)
                 || (movementDirection < 0 && transform.localScale.x < 0) ? 1 : backwardMoveSpeedMultiplier;
 
-            if(onSlope)
+            if (onSlope)
                 moveSpeedMultiplier += slopeSpeedBonus;
 
             if (!isGrounded)
@@ -200,13 +215,6 @@ public class PlayerMovement : MonoBehaviour
             rb2D.AddForce(new Vector2(movementDirection * moveSpeed * moveSpeedMultiplier * Time.deltaTime, 0));
             Idle.ReportAction();
         }
-        isFalling = rb2D.velocity.y < -2f;
-        isGrounded = CheckIsGrounded();
-
-        if (isSprinting)
-            DepleteStamina();
-        if(IsGrounded)
-            RegenStamina();
     }
 
     private void DepleteStamina()

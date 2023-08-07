@@ -30,7 +30,7 @@ public class IsPlayerInRange : MonoBehaviour
         while(true)
         {
             OnPlayerInRange?.Invoke(Vector2.Distance(point.position, player.transform.position) < desiredDistance);
-            yield return new WaitForSeconds(0.01f);
+            yield return delay;
         }
     }
 }

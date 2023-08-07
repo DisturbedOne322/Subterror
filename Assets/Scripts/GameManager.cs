@@ -24,12 +24,6 @@ public class GameManager : MonoBehaviour
     private PlayerMovement player;
 
     [SerializeField]
-    private Ghost ghost;
-
-    [SerializeField]
-    private Teleporter teleporter;
-
-    [SerializeField]
     private GameObject boss;
 
     [SerializeField]
@@ -128,15 +122,6 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
-    public Ghost GetGhostReference()
-    {
-        return ghost;
-    }
-
-    public Teleporter GetTeleporterReference()
-    {
-        return teleporter;
-    }
 
     private void Instance_OnFocusActionStarted()
     {

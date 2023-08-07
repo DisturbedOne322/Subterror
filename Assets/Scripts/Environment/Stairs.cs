@@ -6,7 +6,7 @@ public class Stairs : MonoBehaviour
 {
     private SurfaceEffector2D effector;
 
-    private float risingSpeed = 18;
+    private float risingSpeed = 30;
     private float descendSpeed = 0;
 
     private void Awake()

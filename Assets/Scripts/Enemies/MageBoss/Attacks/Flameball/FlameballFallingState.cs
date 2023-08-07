@@ -26,8 +26,6 @@ public class FlameballFallingState : FlameballBaseState
         manager.FallDown();
     }
 
-
-
     public override void OnTriggerStay2D(Flameball manager, Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
@@ -44,10 +42,14 @@ public class FlameballFallingState : FlameballBaseState
         {
             //spawn on the ground that was hit
             manager.audioSource.Stop();
-            manager.audioSource.PlayOneShot(
-                manager.fallSoundArray[
-                    UnityEngine.Random.Range(0, manager.fallSoundArray.Length)
-                    ]);
+            if (manager.audioSource.enabled)
+            {
+                manager.audioSource.PlayOneShot(
+                    manager.fallSoundArray[
+                        UnityEngine.Random.Range(0, manager.fallSoundArray.Length)
+                        ]);
+            }
+
             manager.transform.position = new Vector2(manager.transform.position.x, collision.gameObject.transform.position.y + puddleOffsetFromGround);
             manager.SwitchState(manager.puddleState);
             OnFlameballHitGround?.Invoke();

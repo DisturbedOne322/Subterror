@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player_Reload
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -408,7 +408,8 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
   m_ScaleCurves: []
   m_FloatCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -454,7 +455,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/Square
     classID: 1
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -482,7 +485,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/hand2
     classID: 1
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -546,6 +551,7 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/hand2
     classID: 212
     script: {fileID: 0}
+    flags: 16
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -561,6 +567,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 1969170715
       attribute: 1
@@ -568,6 +576,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 729951245
       attribute: 1
@@ -575,6 +585,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3269560632
       attribute: 1
@@ -582,6 +594,8 @@ AnimationClip:
       typeID: 4
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 1969170715
       attribute: 4
@@ -589,6 +603,8 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3726216019
       attribute: 4
@@ -596,6 +612,8 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3269560632
       attribute: 4
@@ -603,6 +621,8 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 1924674935
       attribute: 2086281974
@@ -610,6 +630,8 @@ AnimationClip:
       typeID: 1
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3110841497
       attribute: 2086281974
@@ -617,6 +639,8 @@ AnimationClip:
       typeID: 1
       customType: 0
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 3110841497
       attribute: 3762991556
@@ -624,6 +648,8 @@ AnimationClip:
       typeID: 212
       customType: 26
       isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -646,7 +672,8 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -692,7 +719,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -738,7 +767,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -784,7 +815,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -821,7 +854,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -858,7 +893,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -895,7 +932,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -941,7 +980,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -987,7 +1028,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1033,7 +1076,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1160,7 +1205,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1287,7 +1334,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1414,7 +1463,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1460,7 +1511,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/Square
     classID: 1
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1488,7 +1541,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/bone_4
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1516,7 +1571,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/bone_4
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1544,7 +1601,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/bone_4
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1599,7 +1658,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1654,7 +1715,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1709,7 +1772,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1782,7 +1847,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1855,7 +1922,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1928,7 +1997,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -1956,7 +2027,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/hand2
     classID: 1
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -2020,8 +2093,10 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/hand2
     classID: 212
     script: {fileID: 0}
+    flags: 16
   m_EulerEditorCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2031,7 +2106,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/bone_4
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2041,7 +2118,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/bone_4
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2051,7 +2130,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_3/bone_4
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2061,7 +2142,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2071,7 +2154,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2081,7 +2166,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_1/bone_2
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2091,7 +2178,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2101,7 +2190,9 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
-  - curve:
+    flags: 16
+  - serializedVersion: 2
+    curve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
@@ -2111,6 +2202,7 @@ AnimationClip:
     path: ArmsPivot/GameObject/Arms/arms/bone_5
     classID: 4
     script: {fileID: 0}
+    flags: 16
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:

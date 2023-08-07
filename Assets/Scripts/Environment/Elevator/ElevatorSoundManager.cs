@@ -49,11 +49,6 @@ public class ElevatorSoundManager : MonoBehaviour
         audioSource.PlayOneShot(breakSound);
     }
 
-    private void Update()
-    {
-        audioSource.volume = DynamicSoundVolume.GetDynamicVolume(100, Vector2.Distance(transform.position, player.transform.position));
-    }
-
     private void ElevatorSoundManager_OnDeparted()
     {
         audioSource.PlayOneShot(elevatorDepartedScreech);

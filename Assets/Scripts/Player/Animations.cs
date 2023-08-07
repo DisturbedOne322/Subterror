@@ -118,11 +118,14 @@ public class Animations : MonoBehaviour
         if(movement != 0) 
         {
             animator.SetBool(RUNNING_ANIMATION, true);
-            stepSoundTimer -= Time.deltaTime;
-            if(stepSoundTimer < 0)
+            if (player.IsGrounded)
             {
-                stepSoundTimer = stepSoundTimerTotal;
-                SoundManager.Instance.PlayStepsSound();
+                stepSoundTimer -= Time.deltaTime;
+                if (stepSoundTimer < 0)
+                {
+                    stepSoundTimer = stepSoundTimerTotal;
+                    SoundManager.Instance.PlayStepsSound();
+                }
             }
         }
         else

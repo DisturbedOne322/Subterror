@@ -95,17 +95,23 @@ public class Excalibur : MonoBehaviour
 
     private void MageBoss_OnFightFinished()
     {
-        if(!returning)
-        {
-            stayOnGroundDuration = 999;
-            animator.SetTrigger(DURATION_ENDED_TRIGGER);
-            StartCoroutine(Dissolve());
-        }
-        else
-        {
-            returning = false;
-            StartCoroutine(Dissolve());
-        }
+        returning = false;
+        transform.localScale = defaultScale;
+        transform.position = target.transform.position;
+        transform.rotation = target.transform.rotation;
+        //if(!returning)
+        //{
+        //    stayOnGroundDuration = 999;
+        //    animator.SetTrigger(DURATION_ENDED_TRIGGER);
+        //    StartCoroutine(Dissolve());
+        //}
+        //else
+        //{
+        //    returning = false;
+        //    transform.localScale = defaultScale;
+        //    transform.position = target.transform.position;
+        //    transform.rotation = target.transform.rotation;
+        //}
     }
 
     private IEnumerator Dissolve()

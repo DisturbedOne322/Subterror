@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class InputManager : MonoBehaviour
 {
@@ -99,6 +101,14 @@ public class InputManager : MonoBehaviour
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnInteract?.Invoke();
+    }
+
+    public void ClearLog()
+    {
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
     }
 
     private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
