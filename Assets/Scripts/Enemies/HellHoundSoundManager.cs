@@ -56,14 +56,14 @@ public class HellHoundSoundManager : MonoBehaviour
 
     private void PlayerDetection_OnPlayerInRange(PlayerMovement player)
     {
-        StartCoroutine(DelayAfterPlayerDetected());
+        StartCoroutine(PlayDelayedAfterPlayerDetected());
     }
 
-    private IEnumerator DelayAfterPlayerDetected()
+    private IEnumerator PlayDelayedAfterPlayerDetected()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(0, 0.25f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0, 0.5f));
 
-        audioSource.clip = hellHoundAudioClipsSO.GrowlThenBarkAudioClip;
+        audioSource.clip = hellHoundAudioClipsSO.GrowlThenBarkAudioClip[Random.Range(0, hellHoundAudioClipsSO.GrowlThenBarkAudioClip.Length)];
         audioSource.Play();
     }
 }

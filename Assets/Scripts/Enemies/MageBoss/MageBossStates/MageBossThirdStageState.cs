@@ -13,7 +13,7 @@ public class MageBossThirdStageState : MageBossBaseState
     private Animator animator;
 
     private float currentAttackCD = 4f;
-    private float cdBetweenAttacks = 3f;
+    private float cdBetweenAttacks = 3;
 
     private const string FLAMEBALL_ATTACK = "Flameball";
     private const string LASER_ATTACK = "Laser";
@@ -183,8 +183,10 @@ public class MageBossThirdStageState : MageBossBaseState
             {
                 if (!attackSequence.Contains(attackSet[i]))
                 {
+                    string attack = attackSet[i];
                     attackSequence.Clear();
-                    return attackSet[i];
+                    attackSequence.Add(attack);
+                    return attack;
                 }
             }
             attackSequence.Clear();

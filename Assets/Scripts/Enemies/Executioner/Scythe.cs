@@ -9,7 +9,7 @@ public class Scythe : MonoBehaviour
     private Rigidbody2D playerRb;
 
     private Vector2 throwbackVector;
-    private float throwbackForce = 0.01f;
+    private float throwbackForce = 0.005f;
 
     // Start is called before the first frame update
     void Start()

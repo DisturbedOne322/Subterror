@@ -101,6 +101,8 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller
         underLight = lastLightTime + shrinkDelay > Time.time;
 
         Vector2 spriteSize = spriteRenderer.bounds.size;
+        spriteSize.y *= 2;
+
         boxCollider2D.size = spriteSize;
         Vector2 newColliderPosition = new Vector2(0, spriteRenderer.gameObject.transform.localPosition.y);
         boxCollider2D.offset = newColliderPosition;
@@ -109,8 +111,6 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller
         {
             player.transform.position = playerHoldPoint.position;
         }
-
-        audioSource.volume = 1 - (Vector2.Distance(transform.position, player.transform.position) / maxVolumeDistance);
     }
 
     public void SwitchState(TentaclesBaseState newState)

@@ -55,8 +55,10 @@ public class GhostVisuals : MonoBehaviour
         }
     }
 
-    private void FocusedHeadlight_OnGhostFound()
+    private void FocusedHeadlight_OnGhostFound(Ghost ghost)
     {
+        if (ghost != this.ghost)
+            return;
         animator.SetBool(GET_DAMAGED_ANIM, true);
     }
     private void OnEnable()

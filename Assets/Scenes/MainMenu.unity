@@ -189,8 +189,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.69745, y: -1.8794001, z: 0}
-    m_Extent: {x: 3.61855, y: 3.1443, z: 0}
+    m_Center: {x: 3.69555, y: -1.8798001, z: 0}
+    m_Extent: {x: 3.62915, y: 3.1498, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -2729,8 +2729,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.13964999, y: -1.7311499, z: 0}
-    m_Extent: {x: 3.3589501, y: 2.96395, z: 0}
+    m_Center: {x: -0.1351999, y: -1.73075, z: 0}
+    m_Extent: {x: 3.3642, y: 2.9693499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3797,7 +3797,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 744626dcd74a82a4e8454e90cd1abb04, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -5213,7 +5213,6 @@ GameObject:
   - component: {fileID: 1114916752}
   - component: {fileID: 1114916751}
   - component: {fileID: 1114916750}
-  - component: {fileID: 1114916754}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5304,27 +5303,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!95 &1114916754
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114916749}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 93e796debcf3ded49b13b8c04d9a3624, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1134059950
 GameObject:
   m_ObjectHideFlags: 0
@@ -18984,8 +18962,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -13.991751, y: -1.7978001, z: 0}
-    m_Extent: {x: 4.11435, y: 2.9055, z: 0}
+    m_Center: {x: -13.99625, y: -1.7975, z: 0}
+    m_Extent: {x: 4.10795, y: 2.9071999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -19065,8 +19043,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.40040004, y: -1.7190499, z: 0}
-    m_Extent: {x: 3.3149, y: 2.97515, z: 0}
+    m_Center: {x: -0.3987, y: -1.7177, z: 0}
+    m_Extent: {x: 3.3106, y: 2.9782, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

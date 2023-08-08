@@ -30,6 +30,8 @@ public class HellHound : Enemy
 
     private bool hasAttackedRecently = false;
 
+    private bool isAlive = true;
+
     private PlayerMovement player;
     private PlayerHealth playerHealth;
     [SerializeField]
@@ -112,6 +114,9 @@ public class HellHound : Enemy
     }
     protected override void AttackPlayer()
     {
+        if (!isAlive)
+            return;
+
         if(attackCD < 0 && !hasAttackedRecently)
         {
             rb.AddForce(new Vector2(-transform.localScale.x, 0) * 20, ForceMode2D.Impulse);
@@ -130,6 +135,7 @@ public class HellHound : Enemy
         if (healthPoints <= 0)
         {
             dissolve.StartDissolving();
+            isAlive = false;
         }
 
         OnDamageTaken?.Invoke();

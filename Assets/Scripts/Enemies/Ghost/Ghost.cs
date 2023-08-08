@@ -58,8 +58,11 @@ public class Ghost : Enemy, IQTECaller
         FocusedHeadlight.OnGhostFound -= FocusedHeadlight_OnGhostFound;
     }
 
-    private void FocusedHeadlight_OnGhostFound()
+    private void FocusedHeadlight_OnGhostFound(Ghost ghost)
     {
+        if (ghost != this)
+            return;
+
         if (isDetected || isBurstAttacking)
             return;
 

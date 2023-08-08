@@ -11,17 +11,20 @@ public class SpawnParticleOnObject : MonoBehaviour
     [SerializeField, Header("Must implement IParticleSpawnerCaller")]
     private GameObject go;
 
+    private IParticleSpawnerCaller particleSpawnerCaller;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(go.TryGetComponent(out IParticleSpawnerCaller caller))
-            caller.OnSpawnParticleAction += Caller_OnSpawnParticleAction;
+        TryGetComponent(out IParticleSpawnerCaller particleSpawnerCaller);
+        if (particleSpawnerCaller!=null)
+            particleSpawnerCaller.OnSpawnParticleAction += Caller_OnSpawnParticleAction;
     }
 
     private void OnDestroy()
     {
-        if (go.TryGetComponent(out IParticleSpawnerCaller caller))
-            caller.OnSpawnParticleAction -= Caller_OnSpawnParticleAction;
+        if (particleSpawnerCaller != null)
+            particleSpawnerCaller.OnSpawnParticleAction -= Caller_OnSpawnParticleAction;
     }
 
     private void Caller_OnSpawnParticleAction()

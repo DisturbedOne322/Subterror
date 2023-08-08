@@ -34,7 +34,7 @@ public class EnemySpawnManager : MonoBehaviour
     public event Action OnBossFightFinished;
     #endregion
     #region Ghost
-    [Header("Ghost, must be only 1 in a map section")]
+    [Header("Ghost")]
 
     [SerializeField]
     private GameObject ghostPrefab;
@@ -99,21 +99,13 @@ public class EnemySpawnManager : MonoBehaviour
         SpawnEnemies(nextCheckpointID);
     }
 
-    //instead of respawning enemies, scene is reloaded
-    //spawn the enemies before the last checkpoint because otherwise player would be able to respawn at checkpoint without any threat
-    //private void LoadData_OnGameLoaded(int checkpointID)
-    //{
-    //    if (checkpointID == 0)
-    //        SpawnEnemies(0);
-    //}
-
     private void SpawnEnemies(int i)
     {
         SpawnHellHoundPack(checkpoints[i].GetComponentsInChildren<HellHoundParentObject>());
         SpawnAttackTentacles(checkpoints[i].GetComponentsInChildren<TentacleAttackParentObject>());
         SpawnIdleTentacles(checkpoints[i].GetComponentsInChildren<TentaclesIdleParentObject>());
         ListenToOnPlayerEnterExecutionerTriggers(checkpoints[i].GetComponentsInChildren<ExecutionerTriggerArea>(true));
-        SpawnGhost(checkpoints[i].GetComponentInChildren<GhostParentObject>());
+        SpawnGhost(checkpoints[i].GetComponentsInChildren<GhostParentObject>());
         SpawnTeleporter(checkpoints[i].GetComponentInChildren<TeleporterParentObject>());
         SpawnPlayerFakes(checkpoints[i].GetComponentsInChildren<PlayerFakeParentObject>());
     }
@@ -241,16 +233,16 @@ public class EnemySpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnGhost(GhostParentObject parent)
+    private void SpawnGhost(GhostParentObject[] parents)
     {
-        if (parent == null)
-            return;
+        foreach (GhostParentObject parent in parents)
+        {
+            GameObject ghost;
 
-        GameObject ghost;
-
-        ghost = Instantiate(ghostPrefab, Vector3.zero, Quaternion.identity);
-        ghost.transform.parent = parent.transform;
-        ghost.transform.position = parent.transform.position;
+            ghost = Instantiate(ghostPrefab, Vector3.zero, Quaternion.identity);
+            ghost.transform.parent = parent.transform;
+            ghost.transform.position = parent.transform.position;
+        }
     }
 
     private void SpawnTeleporter(TeleporterParentObject parent)

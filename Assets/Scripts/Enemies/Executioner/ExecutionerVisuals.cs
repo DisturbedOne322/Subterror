@@ -28,13 +28,24 @@ public class ExecutionerVisuals : MonoBehaviour
 
     private ExecutionerApproachPlayer approachPlayer;
 
+    private FocusedHeadlight focusedHeadlight;
 
     private void Start()
     {
-        GameManager.Instance.GetPlayerReference().GetComponentInChildren<FocusedHeadlight>().OnExecutionerFound += FocusedHeadlight_OnExecutionerFound;
+        focusedHeadlight = GameManager.Instance.GetPlayerReference().GetComponentInChildren<FocusedHeadlight>();
+        focusedHeadlight.OnExecutionerFound += FocusedHeadlight_OnExecutionerFound;
         approachPlayer = GetComponent<ExecutionerApproachPlayer>();
         approachPlayer.OnPlayerInRange += ApproachPlayer_OnPlayerInRange;
         animator = GetComponent<Animator>();
+    }
+
+    private void OnDestroy()
+    {
+        if (focusedHeadlight != null)
+        {
+            focusedHeadlight.OnExecutionerFound -= FocusedHeadlight_OnExecutionerFound;
+            approachPlayer.OnPlayerInRange -= ApproachPlayer_OnPlayerInRange;
+        }
     }
 
     private void ApproachPlayer_OnPlayerInRange(bool inRange)

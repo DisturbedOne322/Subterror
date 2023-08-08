@@ -93,6 +93,8 @@ public class MageBoss : MonoBehaviour
     private AudioClip getPulledByTeleporterSound;
     [SerializeField]
     private AudioClip goDownSound;
+    [SerializeField]
+    private AudioClip appearAudioClip;
 
     private void Awake()
     {
@@ -108,7 +110,7 @@ public class MageBoss : MonoBehaviour
         }
         SetNormalOutline();
         currentState.EnterState(this, "None");
-        audioSource.PlayOneShot(defeatAudioClip);
+        audioSource.PlayOneShot(appearAudioClip);
         currentState.OnCoreDestroyed += CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished += CurrentState_OnFightFinished;
     }
@@ -146,6 +148,11 @@ public class MageBoss : MonoBehaviour
         OnHPChanged?.Invoke(arg1,arg2);
     }
 
+    public void PlayDefeatAudioClip()
+    {
+        audioSource.PlayOneShot(defeatAudioClip);
+    }
+
     private void MageBoss_OnWeakPointBroken()
     {
         AnimatorClipInfo[] m_CurrentClipInfo = this.animator.GetCurrentAnimatorClipInfo(0);
@@ -178,6 +185,7 @@ public class MageBoss : MonoBehaviour
     public void EnableSecondStageArms()
     {
         audioSource.Play();
+        audioSource.PlayOneShot(appearAudioClip);
         laserArm.SetActive(true);
         laserLight.SetActive(true);
         wandArm.SetActive(true);
@@ -187,6 +195,7 @@ public class MageBoss : MonoBehaviour
     public void EnableThirdStageArms()
     {
         audioSource.Play();
+        audioSource.PlayOneShot(appearAudioClip);
         sword.SetActive(true);
         swordArm.SetActive(true);
         magicHoleArm.SetActive(true);

@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: HellHoundAudioClipsSO
   m_EditorClassIdentifier: 
   EatingAudioClip: {fileID: 8300000, guid: eb754d58f042fb343aaf038d2f30bfc5, type: 3}
-  GrowlThenBarkAudioClip: {fileID: 8300000, guid: c42f46a2dba9d9f4f9166645539268e9, type: 3}
+  GrowlThenBarkAudioClip:
+  - {fileID: 8300000, guid: 4ef13f905abf25c4084c9b4a4003e212, type: 3}
+  - {fileID: 8300000, guid: 30981a120fea95f4ab754e0e0a947680, type: 3}
+  - {fileID: 8300000, guid: 20d33fd00a6349442a0d6cdbb3445bf6, type: 3}
+  - {fileID: 8300000, guid: 341ce90f24799bd449a0b27604718c82, type: 3}
+  - {fileID: 8300000, guid: c42f46a2dba9d9f4f9166645539268e9, type: 3}
   BarkAudioClipArray:
   - {fileID: 8300000, guid: 23ae5489acb0a164dbbd8a634467fd84, type: 3}
   - {fileID: 8300000, guid: 45b936b51f790ee4fae60e367271047d, type: 3}

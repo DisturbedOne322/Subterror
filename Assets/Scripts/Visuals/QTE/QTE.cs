@@ -52,7 +52,7 @@ public class QTE : MonoBehaviour
     private float qteRoundTimer;
     private float qteRoundTimerTotal = 0.6f;
 
-    private int qteFailedDamage = 2;
+    private int qteFailedDamage = 1;
 
 
     private int buttonPressesToFinishSmashingQTE = 30;
@@ -123,32 +123,21 @@ public class QTE : MonoBehaviour
                 //if run out of time, get damaged, get to next round
                 if (qteRoundTimer < 0)
                 {
-                    RefreshQTE(randomKeyIndex);
-                    if (qteRoundsFinished < qteRounds)
-                    {
-                        StartQTERound();
-                        qteRoundsFinished++;
-                        RestartRoundTimer();
-                    }
-                    else
-                    {
-                        EndQTE();
-                    }
+                    StartNextQTERound();
                     OnQTERoundFailed?.Invoke(qteFailedDamage);
                 }
                 //if press key in time, get to next round
-                if (keyToVectorDict[randomKeyIndex] == InputManager.Instance.GetQTEActions())
+                Vector2 input = InputManager.Instance.GetQTEActions();
+                if(input != Vector2.zero)
                 {
-                    RefreshQTE(randomKeyIndex);
-                    if (qteRoundsFinished < qteRounds)
+                    if (keyToVectorDict[randomKeyIndex] == InputManager.Instance.GetQTEActions())
                     {
-                        StartQTERound();
-                        qteRoundsFinished++;
-                        RestartRoundTimer();
+                         StartNextQTERound();
                     }
                     else
                     {
-                        EndQTE();
+                         StartNextQTERound();
+                         OnQTERoundFailed?.Invoke(qteFailedDamage);
                     }
                 }
             }
@@ -209,6 +198,21 @@ public class QTE : MonoBehaviour
     {
         inputKeyImageArray[index].GetComponent<Animator>().SetBool(KEY_ANIMATION, false);
         inputKeyImageArray[index].color = originalKeyImageColor;
+    }
+
+    private void StartNextQTERound()
+    {
+        RefreshQTE(randomKeyIndex);
+        if (qteRoundsFinished < qteRounds)
+        {
+            StartQTERound();
+            qteRoundsFinished++;
+            RestartRoundTimer();
+        }
+        else
+        {
+            EndQTE();
+        }
     }
 
 

@@ -46,7 +46,10 @@ public class InputManager : MonoBehaviour
 
     public Vector2 GetQTEActions()
     {
-        return playerInputActions.Player.QTE.ReadValue<Vector2>();
+        if(playerInputActions.Player.QTE.WasPressedThisFrame())
+            return playerInputActions.Player.QTE.ReadValue<Vector2>();
+
+        return Vector2.zero;
     }
 
     private PlayerHealth playerHealth;
@@ -65,7 +68,6 @@ public class InputManager : MonoBehaviour
         playerHealth.OnDeath += InputManager_OnPlayerDied;
 
         PlayerMovement.OnInCutscene += PlayerMovement_OnInCutscene;
-        //GameManager.Instance.GetPlayerReference().OnPlayerRespawned += InputManager_OnPlayerRespawned;
     }
 
     private void PlayerMovement_OnInCutscene()
@@ -77,12 +79,6 @@ public class InputManager : MonoBehaviour
     {
         playerInputActions.Player.Disable();
     }
-
-    //private void InputManager_OnPlayerRespawned()
-    //{
-    //    playerInputActions.Player.Enable();
-    //}
-
 
     private void OnDestroy()
     {
@@ -101,14 +97,6 @@ public class InputManager : MonoBehaviour
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnInteract?.Invoke();
-    }
-
-    public void ClearLog()
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
     }
 
     private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -135,7 +123,6 @@ public class InputManager : MonoBehaviour
         if(playerInputActions.Player.Jump.triggered)
         {
             OnJumpAction?.Invoke();
-            Idle.ReportAction();
         }
         if(playerInputActions.Player.Shoot.triggered)
         {
@@ -145,7 +132,6 @@ public class InputManager : MonoBehaviour
         if(playerInputActions.Player.Reload.triggered)
         {
             OnReloadAction?.Invoke();
-            Idle.ReportAction();
         }
     }
 

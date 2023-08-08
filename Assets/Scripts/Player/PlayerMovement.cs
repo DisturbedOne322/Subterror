@@ -213,7 +213,6 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeedMultiplier /= Mathf.Max(0.75f, airTime * 10);
 
             rb2D.AddForce(new Vector2(movementDirection * moveSpeed * moveSpeedMultiplier * Time.deltaTime, 0));
-            Idle.ReportAction();
         }
     }
 

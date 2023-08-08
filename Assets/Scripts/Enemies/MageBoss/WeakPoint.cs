@@ -13,7 +13,7 @@ public class WeakPoint : MonoBehaviour
 
     private void Awake()
     {
-        health = 4;
+        health = 1; // 4;
     }
 
 
@@ -27,7 +27,7 @@ public class WeakPoint : MonoBehaviour
     {
         boxCollider.enabled = true;
         particleSys.Play();
-        health = 4;
+        health = 1; // 4
     }
 
     public void GetDamage()

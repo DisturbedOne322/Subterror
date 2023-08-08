@@ -10,22 +10,22 @@ public class WeaponRecoil : MonoBehaviour
     [SerializeField, Min(0)]
     private float recoilStrength;
 
+    private IShootableWeapon weapon;
+
 
     // Start is called before the first frame update
     void Start()
     {
-       if(go.TryGetComponent<IShootableWeapon>(out IShootableWeapon shootableWeapon))
-       {
-            shootableWeapon.OnShoot += ShootableWeapon_OnShoot;
-       }
+       TryGetComponent<IShootableWeapon>(out IShootableWeapon weapon);
+       if(weapon != null)
+           weapon.OnShoot += ShootableWeapon_OnShoot;
+       
     }
 
     private void OnDestroy()
     {
-        if (go.TryGetComponent<IShootableWeapon>(out IShootableWeapon shootableWeapon))
-        {
-            shootableWeapon.OnShoot -= ShootableWeapon_OnShoot;
-        }
+        if (weapon != null)
+            weapon.OnShoot -= ShootableWeapon_OnShoot;
     }
 
     private void ShootableWeapon_OnShoot()

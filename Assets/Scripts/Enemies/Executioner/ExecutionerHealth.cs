@@ -44,12 +44,18 @@ public class ExecutionerHealth : MonoBehaviour, IDamagable
     {
         healthPoint = 1;
     }
-
+    ExecutionerVisuals executionerVisuals;
     // Start is called before the first frame update
     void Start()
     {
-        ExecutionerVisuals executionerVisuals = GetComponent<ExecutionerVisuals>();
+        executionerVisuals = GetComponent<ExecutionerVisuals>();
         executionerVisuals.OnLighten += ExecutionerVisuals_OnLighten;
+    }
+
+    private void OnDestroy()
+    {
+        if(executionerVisuals != null)
+            executionerVisuals.OnLighten -= ExecutionerVisuals_OnLighten;
     }
 
     private void ExecutionerVisuals_OnLighten(bool obj)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HellHoundAudioClipsSO : ScriptableObject
 {
     public AudioClip EatingAudioClip;
-    public AudioClip GrowlThenBarkAudioClip;
+    public AudioClip[] GrowlThenBarkAudioClip;
     public AudioClip[] BarkAudioClipArray;
     public AudioClip[] AttackAudioClipArray;
 }

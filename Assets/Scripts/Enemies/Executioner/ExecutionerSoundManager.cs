@@ -25,6 +25,12 @@ public class ExecutionerSoundManager : MonoBehaviour
         health.OnDeath += Health_OnDeath;
     }
 
+    private void OnDestroy()
+    {
+        if(health != null)
+            health.OnDeath -= Health_OnDeath;
+    }
+
     private void Health_OnDeath()
     {
         StartCoroutine(DecreaseVolumeOnDeath());    
