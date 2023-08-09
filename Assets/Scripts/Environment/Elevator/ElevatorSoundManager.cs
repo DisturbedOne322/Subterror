@@ -23,18 +23,33 @@ public class ElevatorSoundManager : MonoBehaviour
     [SerializeField]
     private EnemySpawnManager enemySpawnManager;
 
+    private Elevator elevator;
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        GetComponent<Elevator>().OnArrived += ElevatorSoundManager_OnArrived;
-        GetComponent<Elevator>().OnDeparted += ElevatorSoundManager_OnDeparted;
+        elevator = GetComponent<Elevator>();
+        elevator.OnArrived += ElevatorSoundManager_OnArrived;
+        elevator.OnDeparted += ElevatorSoundManager_OnDeparted;
 
         player = GameManager.Instance.GetPlayerReference();
         if (enemySpawnManager != null)
         {
             enemySpawnManager.OnMiniBossFightStarted += EnemySpawnManager_OnBossFightStarted;
             enemySpawnManager.OnBossFightFinished += EnemySpawnManager_OnBossFightFinished;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        elevator.OnArrived -= ElevatorSoundManager_OnArrived;
+        elevator.OnDeparted -= ElevatorSoundManager_OnDeparted;
+
+        if (enemySpawnManager != null)
+        {
+            enemySpawnManager.OnMiniBossFightStarted -= EnemySpawnManager_OnBossFightStarted;
+            enemySpawnManager.OnBossFightFinished -= EnemySpawnManager_OnBossFightFinished;
         }
     }
 

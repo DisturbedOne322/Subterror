@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public event Action OnPlayerTeleported;
     public event Action OnPlayerTeleportedArrived;
     public static event Action OnInCutscene;
+    public event Action OnLanded;
+    public event Action OnInAir;
     private Rigidbody2D rb2D;
 
     [SerializeField]
@@ -267,6 +269,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!inAir)
         {
+            OnInAir?.Invoke();
             inAir = true;
 
             while (!isGrounded)
@@ -274,7 +277,7 @@ public class PlayerMovement : MonoBehaviour
                 airTime += Time.deltaTime;
                 yield return null;
             }
-
+            OnLanded?.Invoke();
             inAir = false;
             airTime = 0;
         }

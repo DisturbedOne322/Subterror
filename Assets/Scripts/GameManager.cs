@@ -86,11 +86,6 @@ public class GameManager : MonoBehaviour
         InitiateBossfight.OnBossFightInitiated += InitiateBossfight_OnBossFightInitiated;
     }
 
-    private void Player_OnInCutscene()
-    {
-       cutscene.Play();
-    }
-
     private void OnDestroy()
     {
         Shoot.OnBulletHit -= Shoot_OnBulletHit;
@@ -102,7 +97,11 @@ public class GameManager : MonoBehaviour
 
         InitiateBossfight.OnBossFightInitiated -= InitiateBossfight_OnBossFightInitiated;
         PlayerMovement.OnInCutscene -= Player_OnInCutscene;
+    }
 
+    private void Player_OnInCutscene()
+    {
+       cutscene.Play();
     }
 
     public void PauseMenuManager_OnGamePaused(bool paused)

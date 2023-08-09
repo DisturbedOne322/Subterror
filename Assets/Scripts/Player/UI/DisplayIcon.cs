@@ -22,6 +22,8 @@ public class DisplayIcon : MonoBehaviour
 
     private bool canDisplayIcon = true;
 
+    private SaveGame saveGame;
+
     private void Start()
     {
         iconRenderer = GetComponent<Image>();
@@ -29,10 +31,22 @@ public class DisplayIcon : MonoBehaviour
         playerInRange = GetComponentInParent<IsPlayerInRange>();
         playerInRange.OnPlayerInRange += PlayerInRange_OnPlayerInRange;
 
-        if (GetComponentInParent<SaveGame>() != null)
+        saveGame = GetComponentInParent<SaveGame>();
+
+        if (saveGame != null)
         {
             GetComponentInParent<SaveGame>().OnDisplayIcon += DisplayIcon_OnDisplayIcon;
-            GetComponentInParent<CheckCanSaveGame>().CanSaveGame += DisplayIcon_CanSaveGame; ;
+            GetComponentInParent<CheckCanSaveGame>().CanSaveGame += DisplayIcon_CanSaveGame;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        playerInRange.OnPlayerInRange -= PlayerInRange_OnPlayerInRange;
+        if (saveGame != null)
+        {
+            GetComponentInParent<SaveGame>().OnDisplayIcon += DisplayIcon_OnDisplayIcon;
+            GetComponentInParent<CheckCanSaveGame>().CanSaveGame += DisplayIcon_CanSaveGame;
         }
     }
 

@@ -10,12 +10,15 @@ public class Animations : MonoBehaviour
     private const string RELOAD_ANIMATION = "HasReloaded";
     private const string AIM_ANIMATION = "IsAiming";
     private const string DEATH_ANIM_TRIGGER = "OnDeath";
+    private const string AIR_ANIM_BOOL = "InAir";
+    private const string JUMP_ANIM_TRIGGER = "OnJumped";
 
     private float stepSoundTimer = 0.4f;
     private float stepSoundTimerTotal = 0.4f;
 
     private Animator animator;
     private PlayerMovement player;
+    private PlayerHealth playerHealth;
 
     private bool playerInQTE = false;
 
@@ -29,14 +32,47 @@ public class Animations : MonoBehaviour
     {
         InputManager.Instance.OnFocusActionEnded += Instance_OnFocusActionEnded;
         InputManager.Instance.OnFocusActionStarted += Instance_OnFocusActionStarted;
-        //InputManager.Instance.OnJumpAction += Instance_OnJumpAction;
+        InputManager.Instance.OnJumpAction += Instance_OnJumpAction;
         Shoot.OnSuccessfulReload += Shoot_OnSuccessfulReload;
 
         QTE.instance.OnQTEStart += QTE_OnQTEStart;
         QTE.instance.OnQTEEnd += Instance_OnQTEEnd;
 
-        player.GetComponent<PlayerHealth>().OnDeath += Player_OnPlayerDied;
+        playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth.OnDeath += Player_OnPlayerDied;
+        player.OnLanded += Player_OnLanded;
+        player.OnInAir += Player_OnInAir;
         PlayerMovement.OnInCutscene += PlayerMovement_OnInCutscene;
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Instance.OnFocusActionEnded -= Instance_OnFocusActionEnded;
+        InputManager.Instance.OnFocusActionStarted -= Instance_OnFocusActionStarted;
+        InputManager.Instance.OnJumpAction -= Instance_OnJumpAction;
+        Shoot.OnSuccessfulReload -= Shoot_OnSuccessfulReload;
+
+        QTE.instance.OnQTEStart -= QTE_OnQTEStart;
+        QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
+
+        playerHealth.OnDeath -= Player_OnPlayerDied;
+        player.OnLanded -= Player_OnLanded;
+        player.OnInAir -= Player_OnInAir;
+        PlayerMovement.OnInCutscene -= PlayerMovement_OnInCutscene;
+    }
+
+    private void Instance_OnJumpAction()
+    {
+        animator.SetTrigger(JUMP_ANIM_TRIGGER);
+    }
+
+    private void Player_OnInAir()
+    {
+        animator.SetBool(AIR_ANIM_BOOL, true);
+    }
+    private void Player_OnLanded()
+    {
+        animator.SetBool(AIR_ANIM_BOOL, false);
     }
 
     private void PlayerMovement_OnInCutscene()
@@ -45,18 +81,7 @@ public class Animations : MonoBehaviour
         animator.enabled = true;
     }
 
-    private void OnDestroy()
-    {
-        InputManager.Instance.OnFocusActionEnded -= Instance_OnFocusActionEnded;
-        InputManager.Instance.OnFocusActionStarted -= Instance_OnFocusActionStarted;
-        Shoot.OnSuccessfulReload -= Shoot_OnSuccessfulReload;
 
-        QTE.instance.OnQTEStart -= QTE_OnQTEStart;
-        QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
-
-        player.GetComponent<PlayerHealth>().OnDeath -= Player_OnPlayerDied;
-        PlayerMovement.OnInCutscene -= PlayerMovement_OnInCutscene;
-    }
 
     private void Player_OnPlayerDied()
     {

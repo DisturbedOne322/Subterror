@@ -44,6 +44,13 @@ public class Terminal : MonoBehaviour
         elevator.OnArrived += Elevator_OnArrived;
     }
 
+    private void OnDestroy()
+    {
+        isPlayerInRange.OnPlayerInRange -= IsPlayerInRange_OnPlayerInRange;
+        InputManager.Instance.OnInteract -= Instance_OnInteract;
+        elevator.OnArrived -= Elevator_OnArrived;
+    }
+
     private void Elevator_OnArrived()
     {
         light2D.intensity = 2;

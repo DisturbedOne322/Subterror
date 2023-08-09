@@ -49,6 +49,18 @@ public class Elevator : MonoBehaviour
         elevatorTerminal.OnInteract += ElevatorTerminal_OnInteract;
     }
 
+    private void OnDestroy()
+    {
+        terminalUpper.OnCallElevator -= TerminalUpper_OnCallElevator;
+        terminalButtom.OnCallElevator -= TerminalButtom_OnCallElevator;
+        if (spawnManager != null)
+        {
+            spawnManager.OnMiniBossFightStarted -= SpawnManager_OnBossFightStarted;
+            spawnManager.OnBossFightFinished -= SpawnManager_OnBossFightFinished;
+        }
+        elevatorTerminal.OnInteract -= ElevatorTerminal_OnInteract;
+    }
+
     private void ElevatorTerminal_OnInteract()
     {
         OnDeparted?.Invoke();
@@ -85,34 +97,6 @@ public class Elevator : MonoBehaviour
         StartCoroutine(CallElevator(startPoint.position));
         OnDeparted?.Invoke();
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    //if (moving)
-    //    //    return;
-    //    //if (!collision.gameObject.CompareTag("Player"))
-    //    //    return;
-
-    //    //moving = true;
-    //}
-
-    //private void OnTriggerEnter2D(Collision2D collision)
-    //{
-    //    if (moving)
-    //        return;
-
-    //    OnDeparted?.Invoke();
-
-    //    destination = Vector2.Distance(transform.position, startPoint.position) 
-    //        > Vector2.Distance(transform.position, endPoint.position) ? 
-    //        startPoint.position : endPoint.position;
-
-    //    StartCoroutine(CallElevator(destination));
-
-    //    player.transform.parent = this.transform;
-
-    //    moving = true;
-    //}
 
     private IEnumerator CallElevator(Vector3 destination)
     {

@@ -26,6 +26,11 @@ public class SavePointLight : MonoBehaviour
         checkCanSaveGame.CanSaveGame += CheckCanSaveGame_CanSaveGame;
     }
 
+    private void OnDestroy()
+    {
+        checkCanSaveGame.CanSaveGame -= CheckCanSaveGame_CanSaveGame;
+    }
+
     private void CheckCanSaveGame_CanSaveGame(bool canSave)
     {
         lightsOn = canSave;

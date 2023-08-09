@@ -22,6 +22,11 @@ public class ReduceGlobalLight : MonoBehaviour
         checkpoint.OnReduceNextAreaGlobalLight += Checkpoint_OnReduceNextAreaGlobalLight;
     }
 
+    private void OnDestroy()
+    {
+        checkpoint.OnReduceNextAreaGlobalLight -= Checkpoint_OnReduceNextAreaGlobalLight;
+    }
+
     private void Checkpoint_OnReduceNextAreaGlobalLight(int id)
     {
         StartCoroutine(ReduceGlobalLightIntensity(id));

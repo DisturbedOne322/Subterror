@@ -86,7 +86,8 @@ public class UI : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
 
         playerHealth.OnHealthChanged += Player_OnHealthChanged;
-        GameManager.Instance.GetPlayerReference().OnStaminaStateChange += Player_OnStaminaStateChange;
+        player = GameManager.Instance.GetPlayerReference();
+        player.OnStaminaStateChange += Player_OnStaminaStateChange;
         mageBoss.OnHPChanged += MageBoss_OnHPChanged;
         mageBoss.OnStageChanged += MageBoss_OnStageChanged;
         GameManager.Instance.OnBossFightStarted += Instance_OnBossFightStarted;
@@ -95,6 +96,19 @@ public class UI : MonoBehaviour
 
         saveGameIcon.gameObject.SetActive(false);
         saveGameBrush.gameObject.SetActive(false);
+    }
+
+
+    private void OnDestroy()
+    {
+        Shoot.OnWeaponJammed -= Shoot_OnWeaponJammed;
+        playerHealth.OnHealthChanged -= Player_OnHealthChanged;
+        player.OnStaminaStateChange -= Player_OnStaminaStateChange;
+        mageBoss.OnHPChanged -= MageBoss_OnHPChanged;
+        mageBoss.OnStageChanged -= MageBoss_OnStageChanged;
+        GameManager.Instance.OnBossFightStarted -= Instance_OnBossFightStarted;
+
+        SaveGame.OnGameSaved -= SaveGame_OnGameSaved;
     }
 
     private void SaveGame_OnGameSaved()
@@ -110,18 +124,6 @@ public class UI : MonoBehaviour
         img.gameObject.SetActive(true);
         yield return new WaitForSeconds(delay);
         img.gameObject.SetActive(false);
-    }
-
-    private void OnDestroy()
-    {     
-        Shoot.OnWeaponJammed -= Shoot_OnWeaponJammed;
-        playerHealth.OnHealthChanged -= Player_OnHealthChanged;
-        GameManager.Instance.GetPlayerReference().OnStaminaStateChange -= Player_OnStaminaStateChange;
-        mageBoss.OnHPChanged -= MageBoss_OnHPChanged;
-        mageBoss.OnStageChanged -= MageBoss_OnStageChanged;
-        GameManager.Instance.OnBossFightStarted -= Instance_OnBossFightStarted;
-
-        SaveGame.OnGameSaved -= SaveGame_OnGameSaved;
     }
 
     private void MageBoss_OnStageChanged()

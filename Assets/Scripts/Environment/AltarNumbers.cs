@@ -25,6 +25,12 @@ public class AltarNumbers : MonoBehaviour
         Teleport.OnTeleportedPlayer += Teleport_OnTeleportedPlayer;
     }
 
+    private void OnDestroy()
+    {
+        Teleport.OnTeleportedPlayer -= Teleport_OnTeleportedPlayer;
+    }
+
+
     private void Teleport_OnTeleportedPlayer(Vector3 temp)
     {
         if (i >= numberSprites.Length)

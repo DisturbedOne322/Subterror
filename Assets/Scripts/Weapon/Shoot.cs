@@ -61,16 +61,6 @@ public class Shoot : MonoBehaviour
         QTE.instance.OnQTEEnd += Instance_OnQTEEnd;
     }
 
-    private void SpawnManager_OnBossFightFinished()
-    {
-        gunJamProbability = 0.0075f;
-    }
-
-    private void SpawnManager_OnMiniBossFightStarted()
-    {
-        gunJamProbability = 0;
-    }
-
     private void OnDestroy()
     {
         InputManager.Instance.OnShootAction -= InputManager_OnShootAction;
@@ -80,6 +70,16 @@ public class Shoot : MonoBehaviour
 
         QTE.instance.OnQTEStart -= QTE_OnQTEStart;
         QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
+    }
+
+    private void SpawnManager_OnBossFightFinished()
+    {
+        gunJamProbability = 0.0075f;
+    }
+
+    private void SpawnManager_OnMiniBossFightStarted()
+    {
+        gunJamProbability = 0;
     }
 
     private void Instance_OnQTEEnd(IQTECaller caller)

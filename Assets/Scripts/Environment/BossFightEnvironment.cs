@@ -23,6 +23,11 @@ public class BossFightEnvironment : MonoBehaviour
         BossFightEnvironment go = GameObject.FindObjectOfType<BossFightEnvironment>();
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnBossFightStarted -= Instance_OnBossFightStarted;
+    }
+
     private void Instance_OnBossFightStarted()
     {
         outsideLight.intensity = 0;

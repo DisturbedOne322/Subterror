@@ -41,6 +41,15 @@ public class MapSpawner : MonoBehaviour
         };
     }
 
+    private void OnDestroy()
+    {
+        LoadData.Instance.OnGameLoaded -= Instance_OnGameLoaded;
+        for (int i = 0; i < mapCheckpoints.Length; i++)
+        {
+            mapCheckpoints[i].OnSpawnNextMapPart -= MapSpawner_OnSpawnNextMapPart;
+        }
+    }
+
     private void MapSpawner_OnSpawnNextMapPart(int nextMapPartId)
     {
         for(int i = 0; i < nextMapPartId - 1; i++)

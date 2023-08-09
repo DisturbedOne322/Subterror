@@ -70,16 +70,6 @@ public class InputManager : MonoBehaviour
         PlayerMovement.OnInCutscene += PlayerMovement_OnInCutscene;
     }
 
-    private void PlayerMovement_OnInCutscene()
-    {
-        playerInputActions.Player.Disable();
-    }
-
-    private void InputManager_OnPlayerDied()
-    {
-        playerInputActions.Player.Disable();
-    }
-
     private void OnDestroy()
     {
         playerInputActions.Player.Focus.started -= Focus_started;
@@ -92,6 +82,16 @@ public class InputManager : MonoBehaviour
 
         playerHealth.OnDeath -= InputManager_OnPlayerDied;
         PlayerMovement.OnInCutscene -= PlayerMovement_OnInCutscene;
+    }
+
+    private void PlayerMovement_OnInCutscene()
+    {
+        playerInputActions.Player.Disable();
+    }
+
+    private void InputManager_OnPlayerDied()
+    {
+        playerInputActions.Player.Disable();
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

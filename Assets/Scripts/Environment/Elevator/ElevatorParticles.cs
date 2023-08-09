@@ -8,12 +8,20 @@ public class ElevatorParticles : MonoBehaviour
     [SerializeField]
     private ParticleSystem[] sparkParticles;
 
+    private Elevator elevator;
+
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Elevator>().OnDeparted += ElevatorParticles_OnDeparted;
-        GetComponent<Elevator>().OnArrived += ElevatorParticles_OnArrived; ;
+        elevator = GetComponent<Elevator>();
+        elevator.OnDeparted += ElevatorParticles_OnDeparted;
+        elevator.OnArrived += ElevatorParticles_OnArrived;
+    }
 
+    private void OnDestroy()
+    {
+        elevator.OnDeparted -= ElevatorParticles_OnDeparted;
+        elevator.OnArrived -= ElevatorParticles_OnArrived;
     }
 
     private void ElevatorParticles_OnArrived()

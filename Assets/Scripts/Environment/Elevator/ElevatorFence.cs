@@ -25,6 +25,12 @@ public class ElevatorFence : MonoBehaviour
         elevator.OnDeparted += Elevator_OnDeparted;
     }
 
+    private void OnDestroy()
+    {
+        elevator.OnArrived -= Elevator_OnArrived;
+        elevator.OnDeparted -= Elevator_OnDeparted;
+    }
+
     private void Elevator_OnDeparted()
     {
         StopAllCoroutines();

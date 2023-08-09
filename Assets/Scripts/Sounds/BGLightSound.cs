@@ -22,6 +22,12 @@ public class BGLightSound : MonoBehaviour
         flickeringLight.OnRestore += FlickeringLight_OnRestore;
     }
 
+    private void OnDestroy()
+    {
+        flickeringLight.OnFlicker -= FlickeringLight_OnFlicker;
+        flickeringLight.OnRestore -= FlickeringLight_OnRestore;
+    }
+
     private void FlickeringLight_OnRestore()
     {
         if (!audioSource.enabled)

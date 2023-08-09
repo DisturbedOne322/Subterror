@@ -8,6 +8,7 @@ public class PlayerVisuals : MonoBehaviour
     private Transform pointingDirection;
 
     private PlayerMovement player;
+    private PlayerHealth playerHealth;
 
     public static float PlayerScale;
 
@@ -15,13 +16,13 @@ public class PlayerVisuals : MonoBehaviour
 
     private void Start()
     {
-        player = GetComponent<PlayerMovement>();
-        player.GetComponentInChildren<PlayerHealth>().OnDeath += Player_OnPlayerDied;
+        playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.OnDeath += Player_OnPlayerDied;
     }
 
     private void OnDestroy()
     {
-        player.GetComponentInChildren<PlayerHealth>().OnDeath -= Player_OnPlayerDied;
+        playerHealth.OnDeath -= Player_OnPlayerDied;
     }
 
     private void Player_OnPlayerDied()

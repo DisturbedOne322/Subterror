@@ -15,11 +15,20 @@ public class ElevatorLights : MonoBehaviour
     private float onIntensity = 30;
     private float offIntensity = 3;
 
+    private Elevator elevator;
+
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Elevator>().OnArrived += ElevatorLights_OnArrived;
-        GetComponent<Elevator>().OnDeparted += ElevatorLights_OnDeparted;
+        elevator = GetComponent<Elevator>();
+        elevator.OnArrived += ElevatorLights_OnArrived;
+        elevator.OnDeparted += ElevatorLights_OnDeparted;
+    }
+
+    private void OnDestroy()
+    {
+        elevator.OnArrived -= ElevatorLights_OnArrived;
+        elevator.OnDeparted -= ElevatorLights_OnDeparted;
     }
 
     private void ElevatorLights_OnDeparted()

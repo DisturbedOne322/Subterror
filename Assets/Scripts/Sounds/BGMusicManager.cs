@@ -48,6 +48,10 @@ public class BGMusicManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        for (int i = 0; i < checkpoints.Length; i++)
+        {
+            checkpoints[i].OnChangeBGMusic -= BGMusicManager_OnChangeBGMusic;
+        }
         enemySpawnManager.OnMiniBossFightStarted -= EnemySpawnManager_OnMiniBossFightStarted;
         enemySpawnManager.OnBossFightFinished -= EnemySpawnManager_OnBossFightFinished;
 

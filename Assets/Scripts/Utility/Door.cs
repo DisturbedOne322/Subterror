@@ -25,6 +25,12 @@ public class Door : MonoBehaviour
         isPlayerInRange.OnPlayerInRange += IsPlayerInRange_OnPlayerInRange;
     }
 
+    private void OnDestroy()
+    {
+        InputManager.Instance.OnInteract -= Instance_OnInteract;
+        isPlayerInRange.OnPlayerInRange -= IsPlayerInRange_OnPlayerInRange;
+    }
+
     private void IsPlayerInRange_OnPlayerInRange(bool obj)
     {
         inRange = obj;

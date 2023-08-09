@@ -21,7 +21,7 @@ public class PlayDropSoundOnParticleCollision : MonoBehaviour
     private IEnumerator Cooldown()
     {
         canPlay = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         canPlay = true;
     }
 

@@ -12,6 +12,11 @@ public class MiniBossFightEnableCollider : MonoBehaviour
         elevator.OnDeparted += Elevator_OnDeparted;
     }
 
+    private void OnDestroy()
+    {
+        elevator.OnDeparted -= Elevator_OnDeparted;
+    }
+
     private void Elevator_OnDeparted()
     {
         GetComponent<BoxCollider2D>().enabled = true;

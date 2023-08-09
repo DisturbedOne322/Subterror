@@ -33,6 +33,13 @@ public class SaveGame : MonoBehaviour
         checkCanSaveGame.CanSaveGame += CheckCanSaveGame_CanSaveGame;
     }
 
+    private void OnDestroy()
+    {
+        InputManager.Instance.OnInteract -= Instance_OnInteract;
+        isPlayerInRange.OnPlayerInRange -= IsPlayerInRange_OnPlayerInRange;
+        checkCanSaveGame.CanSaveGame -= CheckCanSaveGame_CanSaveGame;
+    }
+
     private void CheckCanSaveGame_CanSaveGame(bool canSave)
     {
         this.canSave = canSave;
