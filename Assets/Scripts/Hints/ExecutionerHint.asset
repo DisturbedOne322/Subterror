@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a38ac751099ee4b90a44ac5823cd90, type: 3}
   m_Name: ExecutionerHint
   m_EditorClassIdentifier: 
-  FontSize: 50
+  FontSize: 70
   Text: That who cannot be seen...\n..must be put on light...
   FontColor: {r: 0, g: 0, b: 0, a: 1}

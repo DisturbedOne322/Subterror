@@ -28,9 +28,12 @@ public class Hint : MonoBehaviour
 
     private void OnDestroy()
     {
-        isPlayerInRange.OnPlayerInRange -= PlayerInRange_OnPlayerInRange;
+        if(isPlayerInRange != null)
+        {
+            isPlayerInRange.OnPlayerInRange -= PlayerInRange_OnPlayerInRange;
 
-        InputManager.Instance.OnInteract -= Instance_OnInteract;
+            InputManager.Instance.OnInteract -= Instance_OnInteract;
+        }
     }
 
     private void Instance_OnInteract()

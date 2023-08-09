@@ -55,15 +55,22 @@ public class HintDisplay : MonoBehaviour
 
     private void Hint_OnDisplayHint(HintSO hint)
     {
-        hintHolder.SetActive(true);
+        if(!hintHolder.activeSelf)
+        {
+            hintHolder.SetActive(true);
 
-        audioSource.PlayOneShot(hintOpenAudioClip);
-        hintText.text = hint.Text.Replace("\\n", "\n");
-        hintText.color = hint.FontColor;
-        hintText.fontSize = hint.FontSize;
+            audioSource.PlayOneShot(hintOpenAudioClip);
+            hintText.text = hint.Text.Replace("\\n", "\n");
+            hintText.color = hint.FontColor;
+            hintText.fontSize = hint.FontSize;
 
-        StartCoroutine(ShowHint());
-
+            StartCoroutine(ShowHint());
+        }
+        else
+        {
+            CloseHint();
+            hintHolder.SetActive(false);
+        }
     }
 
     private IEnumerator ShowHint()
