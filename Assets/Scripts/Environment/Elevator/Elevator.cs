@@ -51,14 +51,18 @@ public class Elevator : MonoBehaviour
 
     private void OnDestroy()
     {
-        terminalUpper.OnCallElevator -= TerminalUpper_OnCallElevator;
-        terminalButtom.OnCallElevator -= TerminalButtom_OnCallElevator;
+        if(elevatorTerminal != null)
+        {
+            elevatorTerminal.OnInteract -= ElevatorTerminal_OnInteract;
+            terminalUpper.OnCallElevator -= TerminalUpper_OnCallElevator;
+            terminalButtom.OnCallElevator -= TerminalButtom_OnCallElevator;
+        }
+
         if (spawnManager != null)
         {
             spawnManager.OnMiniBossFightStarted -= SpawnManager_OnBossFightStarted;
             spawnManager.OnBossFightFinished -= SpawnManager_OnBossFightFinished;
         }
-        elevatorTerminal.OnInteract -= ElevatorTerminal_OnInteract;
     }
 
     private void ElevatorTerminal_OnInteract()

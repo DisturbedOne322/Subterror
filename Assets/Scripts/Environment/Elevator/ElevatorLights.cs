@@ -21,14 +21,20 @@ public class ElevatorLights : MonoBehaviour
     void Start()
     {
         elevator = GetComponent<Elevator>();
-        elevator.OnArrived += ElevatorLights_OnArrived;
-        elevator.OnDeparted += ElevatorLights_OnDeparted;
+        if (elevator != null)
+        {
+            elevator.OnArrived += ElevatorLights_OnArrived;
+            elevator.OnDeparted += ElevatorLights_OnDeparted;
+        }
     }
 
     private void OnDestroy()
     {
-        elevator.OnArrived -= ElevatorLights_OnArrived;
-        elevator.OnDeparted -= ElevatorLights_OnDeparted;
+        if (elevator != null)
+        {
+            elevator.OnArrived -= ElevatorLights_OnArrived;
+            elevator.OnDeparted -= ElevatorLights_OnDeparted;
+        }        
     }
 
     private void ElevatorLights_OnDeparted()

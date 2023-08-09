@@ -20,8 +20,11 @@ public class ElevatorParticles : MonoBehaviour
 
     private void OnDestroy()
     {
-        elevator.OnDeparted -= ElevatorParticles_OnDeparted;
-        elevator.OnArrived -= ElevatorParticles_OnArrived;
+        if(elevator != null )
+        {
+            elevator.OnDeparted -= ElevatorParticles_OnDeparted;
+            elevator.OnArrived -= ElevatorParticles_OnArrived;
+        }
     }
 
     private void ElevatorParticles_OnArrived()

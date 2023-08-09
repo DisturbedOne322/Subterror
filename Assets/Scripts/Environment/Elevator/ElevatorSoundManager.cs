@@ -43,8 +43,11 @@ public class ElevatorSoundManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        elevator.OnArrived -= ElevatorSoundManager_OnArrived;
-        elevator.OnDeparted -= ElevatorSoundManager_OnDeparted;
+        if(elevator != null)
+        {
+            elevator.OnArrived -= ElevatorSoundManager_OnArrived;
+            elevator.OnDeparted -= ElevatorSoundManager_OnDeparted;
+        }
 
         if (enemySpawnManager != null)
         {

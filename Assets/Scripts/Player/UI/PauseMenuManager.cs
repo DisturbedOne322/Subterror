@@ -14,7 +14,10 @@ public class PauseMenuManager : MonoBehaviour
     private GameObject pauseScreen;
 
     [SerializeField]
-    private GameObject optionsMenu;    
+    private GameObject optionsMenu;
+
+    [SerializeField]
+    private GameObject hintDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,11 @@ public class PauseMenuManager : MonoBehaviour
 
     public void PauseResumeGame()
     {
+        if(hintDisplay.activeSelf)
+        {
+            hintDisplay.SetActive(false);
+            return;
+        }
         if(optionsMenu.activeSelf)
         {
             optionsMenu.SetActive(false);

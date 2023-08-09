@@ -28,9 +28,12 @@ public class ElevatorTerminal : MonoBehaviour
 
     private void OnDestroy()
     {
-        isPlayerInRange.OnPlayerInRange -= IsPlayerInRange_OnPlayerInRange;
-        elevator.OnArrived -= Elevator_OnArrived;
-        InputManager.Instance.OnInteract -= Instance_OnInteract;
+        if(elevator != null)
+        {
+            isPlayerInRange.OnPlayerInRange -= IsPlayerInRange_OnPlayerInRange;
+            elevator.OnArrived -= Elevator_OnArrived;
+            InputManager.Instance.OnInteract -= Instance_OnInteract;
+        }
     }
 
     private void IsPlayerInRange_OnPlayerInRange(bool obj)

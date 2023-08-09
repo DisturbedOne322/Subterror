@@ -17,15 +17,20 @@ public class BGLightSound : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        flickeringLight = GetComponent<FlickeringLight>();
-        flickeringLight.OnFlicker += FlickeringLight_OnFlicker;
-        flickeringLight.OnRestore += FlickeringLight_OnRestore;
+        if (flickeringLight != null)
+        {
+            flickeringLight.OnFlicker += FlickeringLight_OnFlicker;
+            flickeringLight.OnRestore += FlickeringLight_OnRestore;
+        }
     }
 
     private void OnDestroy()
     {
-        flickeringLight.OnFlicker -= FlickeringLight_OnFlicker;
-        flickeringLight.OnRestore -= FlickeringLight_OnRestore;
+        if (flickeringLight != null)
+        {
+            flickeringLight.OnFlicker -= FlickeringLight_OnFlicker;
+            flickeringLight.OnRestore -= FlickeringLight_OnRestore;
+        }
     }
 
     private void FlickeringLight_OnRestore()
