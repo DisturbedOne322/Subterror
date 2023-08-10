@@ -15,6 +15,10 @@ public class Teleporter : MonoBehaviour
     [SerializeField]
     private Transform pullingHandPosition;
 
+    [SerializeField]
+    private Material teleporterMaterial;
+    private const string MATERIAL_ALPHA = "_Alpha";
+
     private float distanceToPlayer;
     private readonly float  distanceToPullPlayer = 6f;
     private readonly float distanceToTeleportPlayer = 0.8f;
@@ -37,6 +41,7 @@ public class Teleporter : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         currentPullingForce = initialPullingForce;
         pullingForceChangeTimer = pullingForceChangeTimerTotal;
+        teleporterMaterial.SetFloat(MATERIAL_ALPHA, 1);
     }
 
     // Update is called once per frame
@@ -59,8 +64,21 @@ public class Teleporter : MonoBehaviour
 
     private void StartPulling()
     {
+        StartCoroutine(DecreaseTextAlpha());  
         isPullingPlayer = true;
         lineRenderer.enabled = true;
+    }
+
+    private IEnumerator DecreaseTextAlpha()
+    {
+        float i = 1;
+        while(i > 0)
+        {
+            teleporterMaterial.SetFloat(MATERIAL_ALPHA, i);
+            i -= Time.deltaTime * 3;
+            yield return null;
+        }
+        teleporterMaterial.SetFloat(MATERIAL_ALPHA, 0);
     }
 
 
