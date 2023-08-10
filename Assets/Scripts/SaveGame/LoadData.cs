@@ -63,11 +63,13 @@ public class LoadData : MonoBehaviour
 
     private void Player_OnPlayerTeleportedArrived()
     {
+        loadScreenAnimator.ResetTrigger(LOAD_SCREEN_TRIGGER);
         loadScreenAnimator.SetTrigger(UNLOAD_SCREEN_TRIGGER);
     }
 
     private void Player_OnPlayerTeleported()
     {
+        loadScreenAnimator.ResetTrigger(UNLOAD_SCREEN_TRIGGER);
         loadScreenAnimator.SetTrigger(LOAD_SCREEN_TRIGGER);
     }
 
@@ -108,7 +110,7 @@ public class LoadData : MonoBehaviour
 
     public void LoadEndGameScene()
     {
-        Debug.Log("Load end game scene");
+        //
     }
 
     private void LoadSaveData()
@@ -123,7 +125,6 @@ public class LoadData : MonoBehaviour
         }
         catch
         {
-            Debug.LogError("Save does not exist");
             LastCheckpointID = 0;
         }
     }

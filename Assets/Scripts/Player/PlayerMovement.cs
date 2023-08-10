@@ -277,6 +277,10 @@ public class PlayerMovement : MonoBehaviour
                 airTime += Time.deltaTime;
                 yield return null;
             }
+
+
+            SoundManager.Instance.PlayLandingSound(Mathf.Clamp01(airTime / 2));
+
             OnLanded?.Invoke();
             inAir = false;
             airTime = 0;

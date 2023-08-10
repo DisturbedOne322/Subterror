@@ -26,7 +26,9 @@ public class SoundManager : MonoBehaviour
     private AudioClip saveGameAudio;
 
     [SerializeField]
-    private AudioClip bossFightDoorClose;
+    private AudioClip doorClose;
+    [SerializeField]
+    private AudioClip floorCracked;
 
     [SerializeField]
     private AudioClip[] headlightBrokenAudioClipArray;
@@ -61,7 +63,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBossFightCloseDoorSound()
     {
-        soundEffectsAudioSource.PlayOneShot(bossFightDoorClose);
+        soundEffectsAudioSource.PlayOneShot(doorClose);
+    }
+
+    public void PlayFloorCracked()
+    {
+        soundEffectsAudioSource.PlayOneShot(floorCracked);
     }
 
     private void QTE_OnQTEStart()
@@ -118,6 +125,11 @@ public class SoundManager : MonoBehaviour
             focusedLightAudioSource.Stop();
             focusedLightCoolingAudioSource.Play();
         }
+    }
+
+    public void PlayLandingSound(float volume)
+    {
+        soundEffectsAudioSource.PlayOneShot(audioClipsSO.landingSound, volume);
     }
 
     public void PlayNoAmmoSound()

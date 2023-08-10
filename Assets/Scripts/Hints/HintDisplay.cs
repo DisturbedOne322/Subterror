@@ -34,6 +34,13 @@ public class HintDisplay : MonoBehaviour
         InputManager.Instance.OnPauseAction += Instance_OnPauseAction;
     }
 
+    private void OnDestroy()
+    {
+        Hint.OnDisplayHint -= Hint_OnDisplayHint;
+        Hint.OnPlayerNotInRange -= Hint_OnPlayerNotInRange;
+        InputManager.Instance.OnPauseAction -= Instance_OnPauseAction;
+    }
+
     private void Instance_OnPauseAction()
     {
         CloseHint();

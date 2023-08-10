@@ -30,7 +30,7 @@ public class HellHound : Enemy
 
     private bool hasAttackedRecently = false;
 
-    private bool isAlive = true;
+    public bool isAlive = true;
 
     private PlayerMovement player;
     private PlayerHealth playerHealth;

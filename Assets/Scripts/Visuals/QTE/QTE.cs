@@ -117,7 +117,9 @@ public class QTE : MonoBehaviour
     {
         if(qtePlaying)
         {
-            if(type == QTE_TYPE.Reaction)
+            Vector2 input = InputManager.Instance.GetQTEActions();
+
+            if (type == QTE_TYPE.Reaction)
             {
                 qteRoundTimer -= Time.deltaTime;
                 //if run out of time, get damaged, get to next round
@@ -127,10 +129,9 @@ public class QTE : MonoBehaviour
                     OnQTERoundFailed?.Invoke(qteFailedDamage);
                 }
                 //if press key in time, get to next round
-                Vector2 input = InputManager.Instance.GetQTEActions();
                 if(input != Vector2.zero)
                 {
-                    if (keyToVectorDict[randomKeyIndex] == InputManager.Instance.GetQTEActions())
+                    if (keyToVectorDict[randomKeyIndex] == input)
                     {
                          StartNextQTERound();
                     }
@@ -143,7 +144,7 @@ public class QTE : MonoBehaviour
             }
             if (type == QTE_TYPE.SmashingButtons)
             {
-                if(keyToVectorDict[randomKeyIndex] == InputManager.Instance.GetQTEActions())
+                if(keyToVectorDict[randomKeyIndex] == input)
                 {
                     RefreshQTE(randomKeyIndex);
                     randomKeyIndex = GetNextSmashButtonIndex();

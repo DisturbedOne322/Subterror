@@ -64,7 +64,6 @@ public class Teleporter : MonoBehaviour
 
     private void StartPulling()
     {
-        StartCoroutine(DecreaseTextAlpha());  
         isPullingPlayer = true;
         lineRenderer.enabled = true;
     }
@@ -100,6 +99,7 @@ public class Teleporter : MonoBehaviour
 
         if (distanceToPlayer < distanceToTeleportPlayer)
         {
+            StartCoroutine(DecreaseTextAlpha());
             player.GetTeleported();
             OnDisappear?.Invoke();
             isPullingPlayer = false;

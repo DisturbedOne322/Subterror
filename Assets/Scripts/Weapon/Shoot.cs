@@ -15,7 +15,7 @@ public class Shoot : MonoBehaviour
 
     private PlayerMovement player;
     [SerializeField]
-    private LayerMask playerLayerToIgnore;
+    private LayerMask shootableLayerMasks;
 
     private bool isPlayerInQTE;
 
@@ -199,7 +199,7 @@ public class Shoot : MonoBehaviour
     private RaycastHit2D TryShootBullet()
     {
         Vector3 shootDirection = playerPos.localScale.x > 0 ? transform.right : transform.right * -1;
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(shootStartingPoint.position, shootDirection, shootDistance);
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(shootStartingPoint.position, shootDirection, shootDistance, shootableLayerMasks);
         if (raycastHit2D)
         {
             if (raycastHit2D.collider.gameObject.TryGetComponent<Teleporter>(out Teleporter teleporter))

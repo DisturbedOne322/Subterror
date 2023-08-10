@@ -11,7 +11,7 @@ public class Animations : MonoBehaviour
     private const string AIM_ANIMATION = "IsAiming";
     private const string DEATH_ANIM_TRIGGER = "OnDeath";
     private const string AIR_ANIM_BOOL = "InAir";
-    private const string JUMP_ANIM_TRIGGER = "OnJumped";
+    private const string JUMP_ANIM_BOOL = "HasJumped";
 
     private float stepSoundTimer = 0.4f;
     private float stepSoundTimerTotal = 0.4f;
@@ -63,7 +63,14 @@ public class Animations : MonoBehaviour
 
     private void Instance_OnJumpAction()
     {
-        animator.SetTrigger(JUMP_ANIM_TRIGGER);
+        animator.SetBool(JUMP_ANIM_BOOL, true);
+        StartCoroutine(ResetJumpAnim());
+    }
+
+    private IEnumerator ResetJumpAnim()
+    {
+        yield return new WaitForSeconds(0.1f);
+        animator.SetBool(JUMP_ANIM_BOOL, false);
     }
 
     private void Player_OnInAir()

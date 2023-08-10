@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Bits: 131072
   - serializedVersion: 2
     m_Bits: 262144
+  - serializedVersion: 2
+    m_Bits: 524288
+  - serializedVersion: 2
+    m_Bits: 2097152
   particleArray:
   - {fileID: 7778632228144535385, guid: 81a5826256eaa4c4bb2e9b88159d904a, type: 3}
   - {fileID: 1066320973440566859, guid: 25369dddf41a1664ba2a5a119a4a57ff, type: 3}
@@ -35,3 +39,5 @@ MonoBehaviour:
   - {fileID: 1957680959169560507, guid: bd11e1dd4712c86499af42c62c0b9895, type: 3}
   - {fileID: 1066320973440566859, guid: 25369dddf41a1664ba2a5a119a4a57ff, type: 3}
   - {fileID: 7778632228144535385, guid: 958b8116edf2efd498f88643174fe05e, type: 3}
+  - {fileID: 7778632228144535385, guid: 81a5826256eaa4c4bb2e9b88159d904a, type: 3}
+  - {fileID: 7778632228144535385, guid: ec4be28196f3ad1438e763da6155ab6f, type: 3}

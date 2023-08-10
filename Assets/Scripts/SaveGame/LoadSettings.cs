@@ -32,7 +32,6 @@ public class LoadSettings : MonoBehaviour
         }
         catch
         {
-            Debug.LogError("Settings save data does not exist");
             audioMixer.SetFloat(MASTER_VOLUME, 1);
             audioMixer.SetFloat(EFFECTS_VOLUME, 1);
             audioMixer.SetFloat(MUSIC_VOLUME, 1);

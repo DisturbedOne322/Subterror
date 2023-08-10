@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EatingAudioClip: {fileID: 8300000, guid: eb754d58f042fb343aaf038d2f30bfc5, type: 3}
   GrowlThenBarkAudioClip:
-  - {fileID: 8300000, guid: 4ef13f905abf25c4084c9b4a4003e212, type: 3}
-  - {fileID: 8300000, guid: 30981a120fea95f4ab754e0e0a947680, type: 3}
-  - {fileID: 8300000, guid: 20d33fd00a6349442a0d6cdbb3445bf6, type: 3}
-  - {fileID: 8300000, guid: 341ce90f24799bd449a0b27604718c82, type: 3}
   - {fileID: 8300000, guid: c42f46a2dba9d9f4f9166645539268e9, type: 3}
+  - {fileID: 8300000, guid: baf0775b58792d94b8d969de81cc5a23, type: 3}
+  - {fileID: 8300000, guid: d1a2ed1cb5d365d41b88515171201d9d, type: 3}
   BarkAudioClipArray:
+  - {fileID: 8300000, guid: a9b307b808dab4a4bbdcd51b47402eef, type: 3}
   - {fileID: 8300000, guid: 23ae5489acb0a164dbbd8a634467fd84, type: 3}
   - {fileID: 8300000, guid: 45b936b51f790ee4fae60e367271047d, type: 3}
-  - {fileID: 8300000, guid: a9b307b808dab4a4bbdcd51b47402eef, type: 3}
   AttackAudioClipArray:
   - {fileID: 8300000, guid: 30e1be05654f32d4fa84e0c22c27aed9, type: 3}
   - {fileID: 8300000, guid: 207879f3a43a1224186e1a9c989a31f8, type: 3}

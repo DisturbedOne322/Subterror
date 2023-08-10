@@ -47,7 +47,6 @@ public class StartNewGame : MonoBehaviour
         }
         catch
         {
-            Debug.LogError("Save does not exist");
             return false;
         }
     }
