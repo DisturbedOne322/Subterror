@@ -27,6 +27,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip doorClose;
+    [SerializeField] 
+    private AudioClip doorOpen;
     [SerializeField]
     private AudioClip floorCracked;
 
@@ -64,6 +66,11 @@ public class SoundManager : MonoBehaviour
     public void PlayBossFightCloseDoorSound()
     {
         soundEffectsAudioSource.PlayOneShot(doorClose);
+    }
+
+    public void PlayDoorOpenSound()
+    {
+        soundEffectsAudioSource.PlayOneShot(doorOpen);
     }
 
     public void PlayFloorCracked()

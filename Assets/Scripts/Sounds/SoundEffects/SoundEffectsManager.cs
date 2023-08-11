@@ -31,8 +31,20 @@ public class SoundEffectsManager : MonoBehaviour
         StartCoroutine(PlaySoundEffectWithRandomDelay(10));
     }
 
+    private void OnDestroy()
+    {
+        for (int i = 0; i < mapCheckpoints.Length; i++)
+        {
+            mapCheckpoints[i].OnSpawnNextMapPart -= SoundEffectsManager_OnSpawnNextMapPart;
+        }
+    }
+
     private void SoundEffectsManager_OnSpawnNextMapPart(int nextAreaID)
     {
+        if (nextAreaID == mapCheckpoints.Length)
+        {
+            StopAllCoroutines();
+        }
         lastMapID = currentAreaID;
         currentAreaID = nextAreaID;
     }
