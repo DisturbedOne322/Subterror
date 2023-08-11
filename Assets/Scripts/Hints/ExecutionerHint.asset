@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FontSize: 70
   Text: That who cannot be seen...\n..must be put on light...
-  FontColor: {r: 0, g: 0, b: 0, a: 1}
+  FontColor: {r: 1, g: 0.48083824, b: 0, a: 1}

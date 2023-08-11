@@ -32,6 +32,8 @@ public class Terminal : MonoBehaviour
     [SerializeField]
     private AudioClip buttonError;
 
+    private float originalDesiredDistance; 
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -39,6 +41,7 @@ public class Terminal : MonoBehaviour
     }
     private void Start()
     {
+        originalDesiredDistance = isPlayerInRange.desiredDistance;
         isPlayerInRange.OnPlayerInRange += IsPlayerInRange_OnPlayerInRange;
         InputManager.Instance.OnInteract += Instance_OnInteract;
         elevator.OnArrived += Elevator_OnArrived;
@@ -55,10 +58,16 @@ public class Terminal : MonoBehaviour
     {
         light2D.intensity = 2;
         calledElevator = false;
+        isPlayerInRange.desiredDistance = originalDesiredDistance;
     }
 
     private void Instance_OnInteract()
     {
+        if (elevator.onWay)
+        {
+            TryPlayErrorSound();
+            return;
+        }
 
         if (elevatorArrived)
         {
@@ -79,6 +88,7 @@ public class Terminal : MonoBehaviour
             calledElevator = true;
             light2D.intensity = 5;
             OnCallElevator?.Invoke();
+            isPlayerInRange.desiredDistance = -1;
         }
     }
 

@@ -10,6 +10,8 @@ public class Elevator : MonoBehaviour
     public event Action OnDeparted;
 
     private PlayerMovement player;
+    private Vector3 lastPosition;
+
 
     [SerializeField]
     private Terminal terminalUpper;
@@ -26,6 +28,8 @@ public class Elevator : MonoBehaviour
     private readonly float elevatorSmoothTime = 6;
 
     private Vector3 destination;
+
+    public bool onWay = false;
 
     [SerializeField]
     private EnemySpawnManager spawnManager;
@@ -47,6 +51,8 @@ public class Elevator : MonoBehaviour
 
         elevatorTerminal = GetComponentInChildren<ElevatorTerminal>();
         elevatorTerminal.OnInteract += ElevatorTerminal_OnInteract;
+
+        lastPosition = transform.position;
     }
 
     private void OnDestroy()
@@ -68,13 +74,12 @@ public class Elevator : MonoBehaviour
     private void ElevatorTerminal_OnInteract()
     {
         OnDeparted?.Invoke();
-
+        onWay = true;
         destination = Vector2.Distance(transform.position, startPoint.position)
             > Vector2.Distance(transform.position, endPoint.position) ?
             startPoint.position : endPoint.position;
 
         StartCoroutine(CallElevator(destination));
-
         player.transform.parent = this.transform;
     }
 
@@ -110,9 +115,11 @@ public class Elevator : MonoBehaviour
             Vector2 newPosition = transform.position;
             newPosition.y = Mathf.SmoothDamp(transform.position.y, destination.y, ref elevatorSmDampVelocity, elevatorSmoothTime);
             transform.position = newPosition;
+
             yield return null;
         }
         player.transform.parent = null;
         OnArrived?.Invoke();
+        onWay = false;
     }
 }

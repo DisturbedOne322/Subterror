@@ -15,4 +15,4 @@ MonoBehaviour:
   FontSize: 70
   Text: You should not trust \n everything you see \n Yet you should put your \n
     faith in the unseen.
-  FontColor: {r: 0, g: 0, b: 0, a: 1}
+  FontColor: {r: 0.200976, g: 0.46226418, b: 0, a: 1}
