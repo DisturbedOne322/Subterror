@@ -127,23 +127,24 @@ public class InputManager : MonoBehaviour
         if(playerInputActions.Player.Shoot.triggered)
         {
             OnShootAction?.Invoke();
-            Idle.ReportAction();
         }
         if(playerInputActions.Player.Reload.triggered)
         {
             OnReloadAction?.Invoke();
+        }
+        if (playerInputActions.Player.Focus.IsPressed())
+        {
+            Idle.ReportAction();
         }
     }
 
     private void Focus_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnFocusActionStarted?.Invoke();
-        Idle.ReportAction();
     }
 
     private void Focus_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnFocusActionEnded?.Invoke();
-        Idle.ReportAction();
     }
 }

@@ -15,8 +15,8 @@ MonoBehaviour:
   EatingAudioClip: {fileID: 8300000, guid: eb754d58f042fb343aaf038d2f30bfc5, type: 3}
   GrowlThenBarkAudioClip:
   - {fileID: 8300000, guid: c42f46a2dba9d9f4f9166645539268e9, type: 3}
-  - {fileID: 8300000, guid: baf0775b58792d94b8d969de81cc5a23, type: 3}
   - {fileID: 8300000, guid: d1a2ed1cb5d365d41b88515171201d9d, type: 3}
+  - {fileID: 8300000, guid: baf0775b58792d94b8d969de81cc5a23, type: 3}
   BarkAudioClipArray:
   - {fileID: 8300000, guid: a9b307b808dab4a4bbdcd51b47402eef, type: 3}
   - {fileID: 8300000, guid: 23ae5489acb0a164dbbd8a634467fd84, type: 3}

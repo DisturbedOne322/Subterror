@@ -85,7 +85,7 @@ public class HellHoundVisuals : MonoBehaviour
 
     private void Update()
     {
-        if(player!=null && playerFound && hellHound.isAlive)
+        if(player!=null && playerFound)
         {
             var scale = transform.localScale;
             scale.x = transform.position.x > player.transform.position.x? 5 : -5;

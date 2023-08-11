@@ -34,7 +34,7 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller
     public LayerMask playerLayer;
 
     private AudioSource audioSource;
-    private float maxVolumeDistance = 20f;
+
 
     [SerializeField]
     private AudioClip idleSound;

@@ -10,7 +10,7 @@ public static class Idle
         private set {}
     }
 
-    private static float idleTimer = 3;
+    private static float idleTimer = 1.5f;
     private static float lastInteractionTime;
 
     public static void ReportAction()

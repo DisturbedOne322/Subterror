@@ -8,8 +8,10 @@ public class LookAtMouse : MonoBehaviour
     private Quaternion lastRotation;
     private Vector3 lastMousePosition;
 
-    private readonly float topLookAtAngleBound = 70;
-    private readonly float bottomLookAtAngleBound = -50f;
+    [SerializeField]
+    private float topLookAtAngleBound = 70;
+    [SerializeField]
+    private float bottomLookAtAngleBound = -50f;
 
     private readonly float returnToOriginalRotationSpeed = 2f;
 
@@ -88,6 +90,14 @@ public class LookAtMouse : MonoBehaviour
 
         if (GameManager.Instance.gamePaused)
             return;
+
+
+        if (Input.mousePosition != lastMousePosition)
+        {
+            Idle.ReportAction();
+            lastRotation = transform.localRotation;
+        }
+
         if (Idle.IsIdle)
         {
             ReturnToOriginalPosition();
@@ -101,12 +111,6 @@ public class LookAtMouse : MonoBehaviour
     private void LookAt()
     {
         Vector2 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-
-        if (Input.mousePosition != lastMousePosition)
-        {
-            Idle.ReportAction();
-            lastRotation = transform.localRotation;
-        }
 
         float bottomMaxAngle = bottomLookAtAngleBound;
         float topMaxAngle = topLookAtAngleBound;

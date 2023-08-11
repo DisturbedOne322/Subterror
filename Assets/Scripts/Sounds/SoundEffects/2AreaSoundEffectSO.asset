@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add9910a1ea896242ba0d4bd0ab7966d, type: 3}
+  m_Name: 2AreaSoundEffectSO
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 0f5811648a6e3fb4aa6654ec7711ab42, type: 3}
+  - {fileID: 8300000, guid: 7dc9b286293fb414b890f0d95efc73c1, type: 3}
+  - {fileID: 8300000, guid: a3c1fd8a8e1591046862e2d2d33e82ec, type: 3}
+  - {fileID: 8300000, guid: cf4c9850fa8eac540b348a72fe11f51d, type: 3}
