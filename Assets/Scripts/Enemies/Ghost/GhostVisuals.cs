@@ -26,8 +26,9 @@ public class GhostVisuals : MonoBehaviour
         QTE.instance.OnQTEEnd += Instance_OnQTEEnd;
         ghost.OnAttack += Ghost_OnAttack;
         ghost.OnPlayerDetected += Ghost_OnPlayerDetected;
+        ghost.OnGhostSpotted += Ghost_OnGhostSpotted;
+        ghost.OnBurstAttack += Ghost_OnBurstAttack;
     }
-
 
     private void OnDestroy()
     {
@@ -35,7 +36,13 @@ public class GhostVisuals : MonoBehaviour
         QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
         ghost.OnAttack -= Ghost_OnAttack;
         ghost.OnPlayerDetected -= Ghost_OnPlayerDetected;
-        ghost.OnGhostSpotted += Ghost_OnGhostSpotted;
+        ghost.OnGhostSpotted -= Ghost_OnGhostSpotted;
+        ghost.OnBurstAttack -= Ghost_OnBurstAttack;
+    }
+
+    private void Ghost_OnBurstAttack()
+    {
+        animator.SetBool(ATTACK_ANIM, true);
     }
 
     private void Ghost_OnGhostSpotted()

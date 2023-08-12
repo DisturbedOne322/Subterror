@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private LayerMask groundLayerMask;
+    [SerializeField]
+    private LayerMask mudLayerMask;
 
     public event Action<bool> OnEnterExitSafeZone;
 
@@ -74,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
     {
         get { return isGrounded; }
     }
+
+    public bool inMud;
 
     float movementDirection;
     private bool inAnimation = false;
@@ -250,6 +255,8 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.BoxCast(capsuleCollider.bounds.center, new Vector2(1,2),0, Vector2.down, distanceToTheGround + 0.1f, groundLayerMask);
         if (rayHit)
         {
+            LayerMask layerMask = 1 << rayHit.collider.gameObject.layer;
+            inMud = layerMask == mudLayerMask;
             float angle = Mathf.Abs(rayHit.collider.gameObject.transform.rotation.eulerAngles.z);
             onSlope = angle != 0;
             slopeSpeedBonus = Vector2.Angle(rayHit.normal, transform.up) / 25;//Mathf.Abs(angle > 180 ? angle - 360: angle) / 25;

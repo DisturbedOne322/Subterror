@@ -41,6 +41,9 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller, IReactToLight
     [SerializeField]
     private AudioClip shrinkAndSpreadSound;
 
+    [SerializeField]
+    private AudioClip attackSound;
+
     public enum InitialState
     {
         attackState,
@@ -133,6 +136,11 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller, IReactToLight
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentState.OnCollisionEnter(this, collision);
+    }
+
+    public void PlayAttackSound()
+    {
+        audioSource.PlayOneShot(attackSound);
     }
 
     public void SetIdleSound()

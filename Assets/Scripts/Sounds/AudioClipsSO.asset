@@ -25,6 +25,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 590116b81bf6d994397097470d5d45c5, type: 3}
   - {fileID: 8300000, guid: 3ed0a8ab04976dc40be4ae15ce8f15e9, type: 3}
   - {fileID: 8300000, guid: e7bb57ef33c0f0a4d9f36204e9bb6899, type: 3}
+  stepMudSound:
+  - {fileID: 8300000, guid: d059e96306649454eb9d5dd20030f44a, type: 3}
+  - {fileID: 8300000, guid: 31e8f4ac28edce043ba8bd1d420c3c25, type: 3}
+  - {fileID: 8300000, guid: 2f3e0dc937286194cb5c3d39b6f96070, type: 3}
+  - {fileID: 8300000, guid: 5cdebac10a7bfc247a0978c3ce528e0c, type: 3}
+  - {fileID: 8300000, guid: 890080f33cb6f13499c6cb13b6c5d481, type: 3}
+  - {fileID: 8300000, guid: 6120bce0c176c7c43b54a8030041c52a, type: 3}
+  - {fileID: 8300000, guid: 7fe490a8a4b35814b916afd3211234d3, type: 3}
   inhaleSound: {fileID: 8300000, guid: 865ad27faa3a3424c9f1ff61bf3de13d, type: 3}
   exhaleSound: {fileID: 8300000, guid: 09abb93a0aa402443a5687fc222fb91c, type: 3}
   getHurtSound:

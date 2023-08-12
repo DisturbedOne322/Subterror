@@ -7,6 +7,9 @@ public class PlayerVisuals : MonoBehaviour
     [SerializeField]
     private Transform pointingDirection;
 
+    [SerializeField]
+    private ParticleSystem slidingOnMudParticles;
+
     private PlayerMovement player;
     private PlayerHealth playerHealth;
 
@@ -18,6 +21,7 @@ public class PlayerVisuals : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         playerHealth.OnDeath += Player_OnPlayerDied;
+        slidingOnMudParticles.Stop();
     }
 
     private void OnDestroy()
@@ -29,6 +33,16 @@ public class PlayerVisuals : MonoBehaviour
     {
         playerDead = true;
     }
+
+    public void PlayMudSlidingParticles()
+    {
+        slidingOnMudParticles.Play();
+    }
+    public void StopMudSlidingParticles()
+    {
+        slidingOnMudParticles.Stop();
+    }
+
 
     private void Update()
     {

@@ -156,7 +156,10 @@ public class Animations : MonoBehaviour
                 if (stepSoundTimer < 0)
                 {
                     stepSoundTimer = stepSoundTimerTotal;
-                    SoundManager.Instance.PlayStepsSound();
+                    if(player.inMud)
+                        SoundManager.Instance.PlayMudStepsSound();
+                    else
+                        SoundManager.Instance.PlayStepsSound();
                 }
             }
         }
@@ -164,7 +167,6 @@ public class Animations : MonoBehaviour
         {
             animator.SetBool(RUNNING_ANIMATION, false);
             stepSoundTimer = stepSoundTimerTotal;
-
         }
 
         animator.SetBool(FALLING_ANIMATION, player.IsFalling);

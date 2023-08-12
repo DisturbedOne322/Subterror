@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class HellHoundAudioClipsSO : ScriptableObject
 {
-    public AudioClip EatingAudioClip;
+    public AudioClip[] EatingAudioClips;
     public AudioClip[] GrowlThenBarkAudioClip;
     public AudioClip[] BarkAudioClipArray;
     public AudioClip[] AttackAudioClipArray;

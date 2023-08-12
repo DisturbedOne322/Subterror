@@ -148,6 +148,10 @@ public class SoundManager : MonoBehaviour
     {
         soundEffectsAudioSource.PlayOneShot(audioClipsSO.stepSound[Random.Range(0,audioClipsSO.stepSound.Length)]);
     }
+    public void PlayMudStepsSound()
+    {
+        soundEffectsAudioSource.PlayOneShot(audioClipsSO.stepMudSound[Random.Range(0, audioClipsSO.stepMudSound.Length)]);
+    }
 
     public void PlayBrokenHeadlightSound()
     {

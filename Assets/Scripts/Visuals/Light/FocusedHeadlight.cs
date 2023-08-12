@@ -125,6 +125,7 @@ public class FocusedHeadlight : MonoBehaviour
         focusedLightSpendRate = 0.15f;
         focusedLightEnabled = false;
         automaticLight = false;
+        SoundManager.Instance.PlayFocusedLightSound(focusedLightEnabled);
     }
 
     private void EnemySpawnManager_OnBossFightStarted()

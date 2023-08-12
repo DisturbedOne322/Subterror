@@ -21,8 +21,8 @@ public class MainMenuManager : MonoBehaviour
 
     private const string LOAD_SCREEN_TRIGGER = "OnLoad";
 
-    private readonly float playAnimDuration = 4;
-    private readonly float exitAnimDuration = 4;
+    private readonly float playAnimDuration = 3;
+    private readonly float exitAnimDuration = 3;
 
     public static bool playerActed { get; private set; }
 
@@ -44,14 +44,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPlayPressed()
     {
-        playerMainMenuAnimator.Play(PLAYER_PLAY_ANIM);
-        playerActed = true;
         StartCoroutine(PlayGame(playAnimDuration));
-        Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     private IEnumerator ExitGame(float delay)
     {
+        yield return new WaitForSeconds(0.5f);
         loadScreen.GetComponent<Animator>().SetTrigger(LOAD_SCREEN_TRIGGER);
         yield return new WaitForSeconds(delay);
         Application.Quit();
@@ -59,6 +58,12 @@ public class MainMenuManager : MonoBehaviour
 
     private IEnumerator PlayGame(float delay)
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        playerMainMenuAnimator.Play(PLAYER_PLAY_ANIM);
+        playerActed = true;
+
+        yield return new WaitForSeconds(2);
+
         loadScreen.GetComponent<Animator>().SetTrigger(LOAD_SCREEN_TRIGGER);
         yield return new WaitForSeconds(delay);
         LoadScene();

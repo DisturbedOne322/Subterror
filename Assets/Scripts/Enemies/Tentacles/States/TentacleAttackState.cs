@@ -26,10 +26,11 @@ public class TentacleAttackState : TentaclesBaseState
     public override void UpdateState(TentacleStateManager manager)
     {
         raycastHit2D = Physics2D.Raycast(manager.transform.position, Vector2.down, raycastLength, manager.playerLayer);
-        if (raycastHit2D)
+        if (raycastHit2D && !attacked)
         {
             manager.animator.enabled = true;
             attacked = true;
+            manager.PlayAttackSound();
         }
         if(attacked)
         {

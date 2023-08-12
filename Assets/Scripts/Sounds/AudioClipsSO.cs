@@ -10,6 +10,7 @@ public class AudioClipsSO : ScriptableObject
     public AudioClip magOutSound;
     public AudioClip noAmmoSound;
     public AudioClip[] stepSound;
+    public AudioClip[] stepMudSound;
     public AudioClip inhaleSound;
     public AudioClip exhaleSound;
     public AudioClip[] getHurtSound;

@@ -74,11 +74,12 @@ public class BGMusicManager : MonoBehaviour
 
     private IEnumerator PlayWithDelay(float delay)
     {
+        StartCoroutine(GraduallyDecreaseVolume(activeSource, delay));
+        activeSource = activeSource == audioSource1 ? audioSource2 : audioSource1;
         yield return new WaitForSeconds(delay);
-        activeSource.volume = 0;
         activeSource.clip = postBossFightBGMusic;
         activeSource.Play();
-        StartCoroutine(GraduallyIncreaseVolume(activeSource, 10));
+        StartCoroutine(GraduallyIncreaseVolume(activeSource, delay));
     }
 
     private void EnemySpawnManager_OnBossFightFinished()

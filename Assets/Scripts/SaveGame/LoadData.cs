@@ -30,8 +30,9 @@ public class LoadData : MonoBehaviour
 
     private int LastCheckpointID;
 
-    private int sceneID = 1;
-    private float sceneReloadDelay = 2.75f;
+    private int mainMenuSceneID = 0;
+    private int gameSceneID = 1;
+    private float sceneReloadDelay = 3.5f;
 
     private void Awake()
     {
@@ -63,26 +64,33 @@ public class LoadData : MonoBehaviour
 
     private void Player_OnPlayerTeleportedArrived()
     {
-        loadScreenAnimator.ResetTrigger(LOAD_SCREEN_TRIGGER);
+        ResetAnimTriggers();
         loadScreenAnimator.SetTrigger(UNLOAD_SCREEN_TRIGGER);
     }
 
     private void Player_OnPlayerTeleported()
     {
-        loadScreenAnimator.ResetTrigger(UNLOAD_SCREEN_TRIGGER);
+        ResetAnimTriggers();
         loadScreenAnimator.SetTrigger(LOAD_SCREEN_TRIGGER);
     }
 
     private void Player_OnPlayerDied()
     {
+        ResetAnimTriggers();
         loadScreenAnimator.SetTrigger(LOAD_SCREEN_TRIGGER);
         StartCoroutine(ReloadScene());
+    }
+
+    private void ResetAnimTriggers()
+    {
+        loadScreenAnimator.ResetTrigger(UNLOAD_SCREEN_TRIGGER);
+        loadScreenAnimator.ResetTrigger(LOAD_SCREEN_TRIGGER);
     }
 
     private IEnumerator ReloadScene()
     {
         yield return new WaitForSeconds(sceneReloadDelay);
-        SceneManager.LoadScene(sceneID);
+        SceneManager.LoadScene(gameSceneID);
     }
 
     private void LoadGame(PlayerMovement player)
@@ -110,7 +118,7 @@ public class LoadData : MonoBehaviour
 
     public void LoadEndGameScene()
     {
-        //
+        SceneManager.LoadScene(mainMenuSceneID);
     }
 
     private void LoadSaveData()

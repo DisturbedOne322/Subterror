@@ -160,6 +160,7 @@ MonoBehaviour:
     m_Bits: 512
   idleSound: {fileID: 8300000, guid: 54a08604e663f9e4693a89f5c68349b9, type: 3}
   shrinkAndSpreadSound: {fileID: 8300000, guid: efb87d4236d842f4ab8c23a04c1d3c2a, type: 3}
+  attackSound: {fileID: 8300000, guid: 4544dd573f438e646913c0619a7635cc, type: 3}
   initialState: 1
 --- !u!82 &139392234
 AudioSource:

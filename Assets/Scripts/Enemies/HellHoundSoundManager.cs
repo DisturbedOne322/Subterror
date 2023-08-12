@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class HellHoundSoundManager : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = hellHoundAudioClipsSO.EatingAudioClips[UnityEngine.Random.Range(0, hellHoundAudioClipsSO.EatingAudioClips.Length)];
     }
     // Start is called before the first frame update
     void Start()
@@ -41,12 +43,12 @@ public class HellHoundSoundManager : MonoBehaviour
 
     private void HellHound_OnSuccessfulHit()
     {
-        audioSource.PlayOneShot(hellHoundAudioClipsSO.AttackAudioClipArray[Random.Range(0, hellHoundAudioClipsSO.AttackAudioClipArray.Length)], audioSource.volume);
+        audioSource.PlayOneShot(hellHoundAudioClipsSO.AttackAudioClipArray[UnityEngine.Random.Range(0, hellHoundAudioClipsSO.AttackAudioClipArray.Length)], audioSource.volume);
     }
 
     private void HellHound_OnHellHoundAttack()
     {
-        audioSource.PlayOneShot(hellHoundAudioClipsSO.BarkAudioClipArray[Random.Range(0, hellHoundAudioClipsSO.BarkAudioClipArray.Length)], audioSource.volume);
+        audioSource.PlayOneShot(hellHoundAudioClipsSO.BarkAudioClipArray[UnityEngine.Random.Range(0, hellHoundAudioClipsSO.BarkAudioClipArray.Length)], audioSource.volume);
     }
 
     private void HellHound_OnAggressiveStateChange()
@@ -63,7 +65,7 @@ public class HellHoundSoundManager : MonoBehaviour
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, 0.5f));
 
-        audioSource.clip = hellHoundAudioClipsSO.GrowlThenBarkAudioClip[Random.Range(0, hellHoundAudioClipsSO.GrowlThenBarkAudioClip.Length)];
+        audioSource.clip = hellHoundAudioClipsSO.GrowlThenBarkAudioClip[UnityEngine.Random.Range(0, hellHoundAudioClipsSO.GrowlThenBarkAudioClip.Length)];
         audioSource.Play();
     }
 }

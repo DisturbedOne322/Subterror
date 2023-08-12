@@ -132,6 +132,11 @@ public class UI : MonoBehaviour
         bossHPBar.GetComponent<Animator>().SetTrigger(BOSS_FIGHT_STARTED_TRIGGER);
     }
 
+    public void EnableUIAnimator()
+    {
+        GetComponent<Animator>().enabled = true;
+    }
+
     private void Instance_OnBossFightStarted()
     {
         
