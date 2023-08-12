@@ -252,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float angle = Mathf.Abs(rayHit.collider.gameObject.transform.rotation.eulerAngles.z);
             onSlope = angle != 0;
-            slopeSpeedBonus = Mathf.Abs(angle > 180 ? angle - 360: angle) / 25;
+            slopeSpeedBonus = Vector2.Angle(rayHit.normal, transform.up) / 25;//Mathf.Abs(angle > 180 ? angle - 360: angle) / 25;
             return true;
         }
         else
