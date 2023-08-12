@@ -31,7 +31,7 @@ public class LoadData : MonoBehaviour
     private int LastCheckpointID;
 
     private int sceneID = 1;
-    private float sceneReloadDelay = 4;
+    private float sceneReloadDelay = 2.75f;
 
     private void Awake()
     {
