@@ -13,10 +13,11 @@ public class FocusedHeadlight : MonoBehaviour
     private readonly float focusedLightIntensity = 4f;
     private readonly float brokenLightIntensity = 0.3f;
 
-    public static event Action<Ghost> OnGhostFound;
-    public static event Action<TentacleStateManager> OnTentacleFound;
+    //public static event Action<Ghost> OnGhostFound;
+    //public static event Action<TentacleStateManager> OnTentacleFound;
+    //public event Action<ExecutionerVisuals> OnExecutionerFound;
 
-    public event Action<ExecutionerVisuals> OnExecutionerFound;
+    //public static event Action
 
     private float focusSpeed = 1;
     private float lightSmDampVelocity;
@@ -34,21 +35,14 @@ public class FocusedHeadlight : MonoBehaviour
 
 
     private readonly float brokenHeadlightProbability = 0.03f; 
+   
+    private RaycastHit2D[] reactToLighEnemiesHits;
 
-    private RaycastHit2D ghostHit;
-    private RaycastHit2D[] tentaclesHits;
-    private RaycastHit2D[] executionerHits;
     private readonly float boxLength = 10f;
     private readonly float boxHeight = 1.5f;
 
     [SerializeField]
-    private LayerMask ghostLayerMask;
-
-    [SerializeField]
-    private LayerMask tentacleLayerMask;
-
-    [SerializeField]
-    private LayerMask executionerLayerMask;
+    private LayerMask reactableToLightMask;
 
     private Vector2[] focusedHeadlightBoxPoints;
 
@@ -71,7 +65,7 @@ public class FocusedHeadlight : MonoBehaviour
         InvokeRepeating("TryToBrakeHeadlight", 0, 0.5f);
         currentFocusedLightCapacity = focusedLightCapacity;
         focusedHeadlightBoxPoints = new Vector2[3];
-
+        reactToLighEnemiesHits = new RaycastHit2D[10];
         enemySpawnManager.OnMiniBossFightStarted += EnemySpawnManager_OnBossFightStarted;
         enemySpawnManager.OnBossFightFinished += EnemySpawnManager_OnBossFightFinished;
 
@@ -145,24 +139,28 @@ public class FocusedHeadlight : MonoBehaviour
     {
         if (focusedLightEnabled)
         {
-            
-            ghostHit = Physics2D.BoxCast(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, ghostLayerMask);
-            if (ghostHit)
+            reactToLighEnemiesHits = Physics2D.BoxCastAll(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, reactableToLightMask);
+            for(int i = 0;i < reactToLighEnemiesHits.Length; i++)
             {
-                OnGhostFound?.Invoke(ghostHit.collider.gameObject.GetComponent<Ghost>());
+                reactToLighEnemiesHits[i].collider.gameObject.GetComponent<IReactToLight>().ReactToLight();
             }
+            //ghostHit = Physics2D.BoxCast(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, ghostLayerMask);
+            //if (ghostHit)
+            //{
+            //    OnGhostFound?.Invoke(ghostHit.collider.gameObject.GetComponent<Ghost>());
+            //}
 
-            tentaclesHits = Physics2D.BoxCastAll(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, tentacleLayerMask);
-            for(int i = 0; i <  tentaclesHits.Length; i++)
-            {
-                OnTentacleFound?.Invoke(tentaclesHits[i].collider.gameObject.GetComponent<TentacleStateManager>());
-            }
+            //tentaclesHits = Physics2D.BoxCastAll(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, tentacleLayerMask);
+            //for(int i = 0; i <  tentaclesHits.Length; i++)
+            //{
+            //    OnTentacleFound?.Invoke(tentaclesHits[i].collider.gameObject.GetComponent<TentacleStateManager>());
+            //}
 
-            executionerHits = Physics2D.BoxCastAll(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, executionerLayerMask);
-            for (int i = 0; i < executionerHits.Length; i++)
-            {
-                OnExecutionerFound?.Invoke(executionerHits[i].collider.gameObject.GetComponent<ExecutionerVisuals>());
-            }
+            //executionerHits = Physics2D.BoxCastAll(transform.position, new Vector2(boxLength, boxHeight), transform.parent.parent.rotation.eulerAngles.z, Vector2.right, 0, executionerLayerMask);
+            //for (int i = 0; i < executionerHits.Length; i++)
+            //{
+            //    OnExecutionerFound?.Invoke(executionerHits[i].collider.gameObject.GetComponent<ExecutionerVisuals>());
+            //}
         }
     }
     private void Instance_OnHeadlightAction()

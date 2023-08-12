@@ -5,7 +5,7 @@ using System.Data.SqlTypes;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Ghost : Enemy, IQTECaller
+public class Ghost : Enemy, IQTECaller, IReactToLight
 {
     public event Action OnAttack;
     public event Action OnGhostSpotted;
@@ -49,27 +49,24 @@ public class Ghost : Enemy, IQTECaller
         moveSpeed = 7f;
 
 
-        FocusedHeadlight.OnGhostFound += FocusedHeadlight_OnGhostFound;
+        //FocusedHeadlight.OnGhostFound += FocusedHeadlight_OnGhostFound;
         player = GameManager.Instance.GetPlayerReference();
     }
 
     private void OnDestroy()
     {
-        FocusedHeadlight.OnGhostFound -= FocusedHeadlight_OnGhostFound;
+        //FocusedHeadlight.OnGhostFound -= FocusedHeadlight_OnGhostFound;
     }
 
     private void FocusedHeadlight_OnGhostFound(Ghost ghost)
     {
-        if (ghost != this)
-            return;
+        //if (ghost != this)
+        //    return;
 
-        if (isDetected || isBurstAttacking)
-            return;
+        //if (isDetected || isBurstAttacking)
+        //    return;
 
-        moveToYCoord = transform.position.y + 10;
-        OnGhostSpotted?.Invoke();
-        isDetected = true;
-        ReactToLight();
+        //ReactToLight();
     }
 
     protected override void MoveToPlayer()
@@ -135,6 +132,11 @@ public class Ghost : Enemy, IQTECaller
     }
     public void ReactToLight()
     {
+        if (isDetected || isBurstAttacking)
+            return;
+        moveToYCoord = transform.position.y + 10;
+        OnGhostSpotted?.Invoke();
+        isDetected = true;
         attackParticle.Play();
     }
      

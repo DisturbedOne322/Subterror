@@ -22,7 +22,7 @@ public class GhostVisuals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FocusedHeadlight.OnGhostFound += FocusedHeadlight_OnGhostFound;
+        //FocusedHeadlight.OnGhostFound += FocusedHeadlight_OnGhostFound;
         QTE.instance.OnQTEEnd += Instance_OnQTEEnd;
         ghost.OnAttack += Ghost_OnAttack;
         ghost.OnPlayerDetected += Ghost_OnPlayerDetected;
@@ -31,10 +31,16 @@ public class GhostVisuals : MonoBehaviour
 
     private void OnDestroy()
     {
-        FocusedHeadlight.OnGhostFound -= FocusedHeadlight_OnGhostFound;
+        //FocusedHeadlight.OnGhostFound -= FocusedHeadlight_OnGhostFound;
         QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
         ghost.OnAttack -= Ghost_OnAttack;
         ghost.OnPlayerDetected -= Ghost_OnPlayerDetected;
+        ghost.OnGhostSpotted += Ghost_OnGhostSpotted;
+    }
+
+    private void Ghost_OnGhostSpotted()
+    {
+        animator.SetBool(GET_DAMAGED_ANIM, true);
     }
 
     private void Ghost_OnPlayerDetected()

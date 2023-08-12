@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TentacleStateManager : MonoBehaviour, IQTECaller
+public class TentacleStateManager : MonoBehaviour, IQTECaller, IReactToLight
 {
     public Animator animator;
     private BoxCollider2D boxCollider2D;
@@ -63,7 +63,7 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller
     // Start is called before the first frame update
     void Start()
     {
-        FocusedHeadlight.OnTentacleFound += FocusedHeadlight_OnTentacleFound;
+        //FocusedHeadlight.OnTentacleFound += FocusedHeadlight_OnTentacleFound;
         player = GameManager.Instance.GetPlayerReference();
         playerHealth = player.GetComponent<PlayerHealth>(); 
         QTE.instance.OnQTEEnd += Instance_OnQTEEnd;
@@ -71,8 +71,14 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller
 
     private void OnDestroy()
     {
-        FocusedHeadlight.OnTentacleFound -= FocusedHeadlight_OnTentacleFound;
+        //FocusedHeadlight.OnTentacleFound -= FocusedHeadlight_OnTentacleFound;
         QTE.instance.OnQTEEnd -= Instance_OnQTEEnd;
+    }
+
+    public void ReactToLight()
+    {
+        underLight = true;
+        lastLightTime = Time.time;
     }
 
     private void Instance_OnQTEEnd(IQTECaller caller)
@@ -85,14 +91,14 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller
         }
     }
 
-    private void FocusedHeadlight_OnTentacleFound(TentacleStateManager obj)
-    {
-        if (obj == this)
-        {
-            underLight = true;
-            lastLightTime = Time.time;
-        }
-    }
+    //private void FocusedHeadlight_OnTentacleFound(TentacleStateManager obj)
+    //{
+    //    if (obj == this)
+    //    {
+    //        underLight = true;
+    //        lastLightTime = Time.time;
+    //    }
+    //}
     
     // Update is called once per frame
     void Update()

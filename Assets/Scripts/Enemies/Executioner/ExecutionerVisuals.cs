@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExecutionerVisuals : MonoBehaviour
+public class ExecutionerVisuals : MonoBehaviour, IReactToLight
 {
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -28,12 +28,12 @@ public class ExecutionerVisuals : MonoBehaviour
 
     private ExecutionerApproachPlayer approachPlayer;
 
-    private FocusedHeadlight focusedHeadlight;
+    //private FocusedHeadlight focusedHeadlight;
 
     private void Start()
     {
-        focusedHeadlight = GameManager.Instance.GetPlayerReference().GetComponentInChildren<FocusedHeadlight>();
-        focusedHeadlight.OnExecutionerFound += FocusedHeadlight_OnExecutionerFound;
+        //focusedHeadlight = GameManager.Instance.GetPlayerReference().GetComponentInChildren<FocusedHeadlight>();
+        //focusedHeadlight.OnExecutionerFound += FocusedHeadlight_OnExecutionerFound;
         approachPlayer = GetComponent<ExecutionerApproachPlayer>();
         approachPlayer.OnPlayerInRange += ApproachPlayer_OnPlayerInRange;
         animator = GetComponent<Animator>();
@@ -41,9 +41,9 @@ public class ExecutionerVisuals : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (focusedHeadlight != null)
+        if (approachPlayer != null)
         {
-            focusedHeadlight.OnExecutionerFound -= FocusedHeadlight_OnExecutionerFound;
+            //focusedHeadlight.OnExecutionerFound -= FocusedHeadlight_OnExecutionerFound;
             approachPlayer.OnPlayerInRange -= ApproachPlayer_OnPlayerInRange;
         }
     }
@@ -56,11 +56,8 @@ public class ExecutionerVisuals : MonoBehaviour
         }
     }
 
-    private void FocusedHeadlight_OnExecutionerFound(ExecutionerVisuals obj)
+    public void ReactToLight()
     {
-        if (obj != this)
-            return;
-
         lastLightenTime = Time.time;
 
         if (underLight)
@@ -70,6 +67,21 @@ public class ExecutionerVisuals : MonoBehaviour
         StartCoroutine(IncreaseAlpha());
         OnLighten?.Invoke(true);
     }
+
+    //private void FocusedHeadlight_OnExecutionerFound(ExecutionerVisuals obj)
+    //{
+    //    if (obj != this)
+    //        return;
+
+    //    lastLightenTime = Time.time;
+
+    //    if (underLight)
+    //        return;
+
+    //    underLight = true;
+    //    StartCoroutine(IncreaseAlpha());
+    //    OnLighten?.Invoke(true);
+    //}
 
     private IEnumerator IncreaseAlpha()
     {
