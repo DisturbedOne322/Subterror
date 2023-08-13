@@ -11,6 +11,14 @@ public class CloseWindow : MonoBehaviour
         window.SetActive(false);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            window.SetActive(false);
+        }
+    }
+
     private void Instance_OnPauseAction()
     {
         OnButtonPress();

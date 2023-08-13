@@ -93,6 +93,33 @@ public class LoadData : MonoBehaviour
         SceneManager.LoadScene(gameSceneID);
     }
 
+    public void LoadMainMenuScene()
+    {
+        ResetAnimTriggers();
+        loadScreenAnimator.SetTrigger(LOAD_SCREEN_TRIGGER);
+        StartCoroutine(LoadSceneWithDelay(0, 2));
+    }
+
+    private IEnumerator LoadSceneWithDelay(int id, float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        SceneManager.LoadScene(id);
+    }
+
+    public void ExitGame()
+    {
+        ResetAnimTriggers();
+        loadScreenAnimator.SetTrigger(LOAD_SCREEN_TRIGGER);
+        StartCoroutine(ExitGameDelay());
+    }
+
+    private IEnumerator ExitGameDelay()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        Application.Quit();
+    }
+
+
     private void LoadGame(PlayerMovement player)
     {
         OnGameLoaded?.Invoke(LastCheckpointID);

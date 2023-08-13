@@ -56,6 +56,7 @@ public class EnemySpawnManager : MonoBehaviour
     private GameObject initiateBossFightTrigger;
 
     List<GameObject> spawnedExecutioners = new List<GameObject>();
+    List<int> noDelayExecutionerSpawnIDs;
 
     #region Checkpoints
     [SerializeField]
@@ -79,6 +80,8 @@ public class EnemySpawnManager : MonoBehaviour
         {
             checkpoints[i].OnSpawnNextAreaEnemies += EnemySpawnManager_OnSpawnNextAreaEnemies;
         }
+
+        noDelayExecutionerSpawnIDs = new List<int>() { 7, 8, 10, 11, 16, 17, 18, 27, 28};
     }
 
     private void OnDestroy()
@@ -283,7 +286,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     private IEnumerator SpawnExecutioners(Transform[] spawnPositions)
     {
-        float delayBetweenSpawns = 3.5f;
+        float delayBetweenSpawns = 3.3f;
         for (int i = 1; i < spawnPositions.Length; i++)
         {
             GameObject exec = Instantiate(executionerPrefab, spawnPositions[i].position, Quaternion.identity);
@@ -293,8 +296,12 @@ public class EnemySpawnManager : MonoBehaviour
 
             spawnedExecutioners.Add(exec);
 
-            delayBetweenSpawns -= 0.05f;
-            yield return new WaitForSeconds(delayBetweenSpawns);
+            delayBetweenSpawns -= 0.1f;       
+            if(noDelayExecutionerSpawnIDs.Contains(i))
+                yield return null;
+            else
+                yield return new WaitForSeconds(delayBetweenSpawns);
+
         }
 
         StartCoroutine(CheckPlayerFinishedBossFight());

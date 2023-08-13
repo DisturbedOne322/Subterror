@@ -17,8 +17,8 @@ public class HellHound : Enemy
 
     private float walkSpeed = 0.7f;
     private float runSpeed;
-    private float runSpeedMin = 5;
-    private float runSpeedMax = 7.5f;
+    private float runSpeedMin = 5.75f;
+    private float runSpeedMax = 8f;
     private float dyingSpeedMultiplier = 1f;
     private float attackCD = -1;
     private float attackCDTotal = 1.5f;

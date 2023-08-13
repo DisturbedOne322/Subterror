@@ -55,9 +55,4 @@ public class PauseMenuManager : MonoBehaviour
         pauseScreen.SetActive(!pauseScreen.activeSelf);
         OnGamePaused?.Invoke(pauseScreen.activeSelf);      
     }
-
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
 }

@@ -12,6 +12,12 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField]
     private GameObject optionsWindow;
+    [SerializeField]
+    private GameObject helpWindow;
+    [SerializeField]
+    private GameObject startNewGameWindow;
+    [SerializeField]
+    private GameObject errorWindow;
 
     [SerializeField]
     private Animator playerMainMenuAnimator;
@@ -77,5 +83,11 @@ public class MainMenuManager : MonoBehaviour
     public void OpenOptionsWindow()
     {
         optionsWindow.SetActive(true);
+        errorWindow.SetActive(false);
+        startNewGameWindow.SetActive(false);
+    }
+    public void OpenHelpWindow()
+    {
+        helpWindow.SetActive(true);
     }
 }

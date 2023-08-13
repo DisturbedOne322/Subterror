@@ -42,7 +42,7 @@ public class Shoot : MonoBehaviour
     private float reloadTimer = 2f;
     private float reloadTimerTotal = 2f;
 
-    private float gunJamProbability = 0.005f;
+    private float gunJamProbability = 0.002f;
     private bool isJammed = false;
 
     [SerializeField]
