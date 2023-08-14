@@ -13,6 +13,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private GameObject optionsWindow;
     [SerializeField]
+    private GameObject creditsWindow;
+    [SerializeField]
     private GameObject helpWindow;
     [SerializeField]
     private GameObject startNewGameWindow;
@@ -86,6 +88,12 @@ public class MainMenuManager : MonoBehaviour
         errorWindow.SetActive(false);
         startNewGameWindow.SetActive(false);
     }
+
+    public void OpenCreditsWindos()
+    {
+        creditsWindow.SetActive(true);
+    }
+
     public void OpenHelpWindow()
     {
         helpWindow.SetActive(true);
