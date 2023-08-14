@@ -110,7 +110,7 @@ public class EnemySpawnManager : MonoBehaviour
         ListenToOnPlayerEnterExecutionerTriggers(checkpoints[i].GetComponentsInChildren<ExecutionerTriggerArea>(true));
         SpawnGhost(checkpoints[i].GetComponentsInChildren<GhostParentObject>());
         SpawnTeleporter(checkpoints[i].GetComponentInChildren<TeleporterParentObject>());
-        SpawnPlayerFakes(checkpoints[i].GetComponentsInChildren<PlayerFakeParentObject>());
+        StartCoroutine(SpawnPlayerFakes(checkpoints[i].GetComponentsInChildren<PlayerFakeParentObject>()));
     }
 
     #region regular enemies spawn logic
@@ -258,16 +258,17 @@ public class EnemySpawnManager : MonoBehaviour
         teleporter.transform.position = parent.transform.position;
     }
 
-    private void SpawnPlayerFakes(PlayerFakeParentObject[] parent)
+    private IEnumerator SpawnPlayerFakes(PlayerFakeParentObject[] parent)
     {
-        if (parent == null)
-            return;
-
-        for(int i = 0;i < parent.Length;i++)
+        if (parent != null)
         {
-            GameObject temp = Instantiate(fakePrefab, parent[i].transform);
-            temp.SetActive(true);
-        }
+            for (int i = 0; i < parent.Length; i++)
+            {
+                GameObject temp = Instantiate(fakePrefab, parent[i].transform);
+                temp.SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }    
     }
     #endregion
 

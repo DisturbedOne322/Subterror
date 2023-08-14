@@ -9,9 +9,17 @@ public class Teleporter : MonoBehaviour
     public event Action OnAppear;
     public event Action OnDisappear;
 
+    public static event Action OnTeleporterImpulse;
+
+    private TeleporterSoundManager soundManager;
+
     private PlayerMovement player;
 
     private LineRenderer lineRenderer;
+
+    [SerializeField]
+    private Color lineColor;
+
     [SerializeField]
     private Transform pullingHandPosition;
 
@@ -20,28 +28,34 @@ public class Teleporter : MonoBehaviour
     private const string MATERIAL_ALPHA = "_Alpha";
 
     private float distanceToPlayer;
-    private readonly float  distanceToPullPlayer = 6f;
-    private readonly float distanceToTeleportPlayer = 0.8f;
+    private readonly float  distanceToPullPlayer = 8f;
+    private readonly float distanceToTeleportPlayer = 1.1f;
 
 
     //pull player when he is close
     private bool isPullingPlayer= false;
-    private readonly float initialPullingForce = 0.85f;
-    private readonly float pullingForceIncreasePerSecond = 0.85f;
+    private readonly float initialPullingForce = 0.75f;
+    private readonly float pullingForceIncreasePerSecond = 0.5f;
     private readonly float pullingForceChangeTimerTotal = 1f;
-    private float pullingForceChangeTimer;
+    private float pullingImpulseForceTimer = 0.5f;
 
 
-    private float currentPullingForce;
+    private float currentImpulseForce;
 
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = GetComponent<TeleporterSoundManager>();
         player = GameManager.Instance.GetPlayerReference();
         lineRenderer = GetComponent<LineRenderer>();
-        currentPullingForce = initialPullingForce;
-        pullingForceChangeTimer = pullingForceChangeTimerTotal;
+        currentImpulseForce = initialPullingForce;
+        pullingImpulseForceTimer = pullingForceChangeTimerTotal;
         teleporterMaterial.SetFloat(MATERIAL_ALPHA, 1);
+
+        Color temp = lineColor;
+        temp.a = 0;
+        lineRenderer.SetColors(temp, temp);
+
     }
 
     // Update is called once per frame
@@ -58,14 +72,13 @@ public class Teleporter : MonoBehaviour
         else
         {
             PullThePlayer();
-            DisplayLinkToPlayer();
+            SetLineRendererPosition();
         }
     }
 
     private void StartPulling()
     {
         isPullingPlayer = true;
-        lineRenderer.enabled = true;
     }
 
     private IEnumerator DecreaseTextAlpha()
@@ -85,17 +98,20 @@ public class Teleporter : MonoBehaviour
     {
         Vector3 pullDirection = transform.position - player.transform.position;
 
-        pullingForceChangeTimer -= Time.deltaTime;
+        pullingImpulseForceTimer -= Time.deltaTime;
 
-        if(pullingForceChangeTimer <= 0)
+        if(pullingImpulseForceTimer <= 0)
         {
-            pullingForceChangeTimer = pullingForceChangeTimerTotal;
-            currentPullingForce += pullingForceIncreasePerSecond;
+            pullingImpulseForceTimer = pullingForceChangeTimerTotal;
+            currentImpulseForce += pullingForceIncreasePerSecond;
+            player.GetComponent<Rigidbody2D>().AddForce(pullDirection.normalized * currentImpulseForce * Time.deltaTime, ForceMode2D.Impulse);
+            soundManager.PlayImpulseSound();
+            OnTeleporterImpulse?.Invoke();
+            StartCoroutine(DoImpulseAttack());
         }
 
-        player.GetComponent<Rigidbody2D>().AddForce(pullDirection.normalized * currentPullingForce * Time.deltaTime);
 
-        distanceToPlayer = Mathf.Abs(pullDirection.x);
+        distanceToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
 
         if (distanceToPlayer < distanceToTeleportPlayer)
         {
@@ -103,11 +119,28 @@ public class Teleporter : MonoBehaviour
             player.GetTeleported();
             OnDisappear?.Invoke();
             isPullingPlayer = false;
-            lineRenderer.enabled = false;
+            StopAllCoroutines();
+            Color temp = lineColor;
+            temp.a = 0;
+            lineRenderer.SetColors(temp, temp);
         }
     }
 
-    private void DisplayLinkToPlayer()
+    private IEnumerator DoImpulseAttack()
+    {
+        lineRenderer.SetColors(lineColor, lineColor);
+        Color temp = lineColor;
+        while(temp.a > 0)
+        {
+            temp.a -= Time.deltaTime;
+            lineRenderer.SetColors(temp, temp);
+            yield return null;
+        }
+        temp.a = 0;
+        lineRenderer.SetColors(temp, temp);
+    }
+
+    private void SetLineRendererPosition()
     {
         lineRenderer.SetPosition(0, pullingHandPosition.position);
         lineRenderer.SetPosition(1, player.transform.position);

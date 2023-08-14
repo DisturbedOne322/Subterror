@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f331467191ff44daa5337009c53ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineColor: {r: 0.061187267, g: 0.07721893, b: 0.23584908, a: 1}
   pullingHandPosition: {fileID: 914664254}
   teleporterMaterial: {fileID: 2100000, guid: 79413d550599abe4cbaa85239ec0a974, type: 2}
 --- !u!50 &1291178738
@@ -225,7 +226,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3288545796779587412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -291,9 +292,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 1}
-      key1: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.6039216}
-      key2: {r: 0, g: 0, b: 0, a: 0.41568628}
+      key0: {r: 0, g: 0, b: 0, a: 0}
+      key1: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 0.53333336}
       key3: {r: 0, g: 0, b: 0, a: 0.53333336}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -308,17 +309,17 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 1542
-      atime2: 54934
+      atime1: 65535
+      atime2: 65535
       atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 4
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 10
     alignment: 0
@@ -483,6 +484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53602f292224c4240b7a4e1b07deee60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClip1: {fileID: 8300000, guid: 6baf59e97b0e6a14ead7ce9b84b7569b, type: 3}
+  audioClip2: {fileID: 8300000, guid: a0a504cea63f0a84c80c63aac0b17bc3, type: 3}
 --- !u!114 &1377827631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +550,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: a7298f28eb0b2f14f8960b2cfc888d69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

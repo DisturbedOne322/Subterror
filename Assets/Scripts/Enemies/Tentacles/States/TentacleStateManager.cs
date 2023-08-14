@@ -110,7 +110,7 @@ public class TentacleStateManager : MonoBehaviour, IQTECaller, IReactToLight
         underLight = lastLightTime + shrinkDelay > Time.time;
 
         Vector2 spriteSize = spriteRenderer.bounds.size;
-        spriteSize.y *= 2;
+        spriteSize.y *= 1.25f;
 
         boxCollider2D.size = spriteSize;
         Vector2 newColliderPosition = new Vector2(0, spriteRenderer.gameObject.transform.localPosition.y);

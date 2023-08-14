@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MiniBossFight
   m_EditorClassIdentifier: 
   FontSize: 70
-  Text: When will someone finally \n fix that damn elevator??!!!
+  Text: <u>Manage your ammunition</u>
   FontColor: {r: 0, g: 0, b: 0, a: 1}

@@ -72,8 +72,14 @@ public class CameraShootShake : MonoBehaviour
         QTE.instance.OnQTEEnd += QTE_OnQTEEnd;
         FlameballFallingState.OnFlameballHitGround += FlameballFallingState_OnFlameballHitGround;
         Teleport.OnTeleportedPlayer += Teleport_OnTeleportedPlayer;
+        Teleporter.OnTeleporterImpulse += Teleporter_OnTeleporterImpulse;
 
         transform.position = player.transform.position;
+    }
+
+    private void Teleporter_OnTeleporterImpulse()
+    {
+        ShakeCamera(flameballHitGroundAmp, flameballHitGroundFreq, shakeTimerTotal);
     }
 
     private void Teleport_OnTeleportedPlayer(Vector3 delta)
@@ -97,6 +103,7 @@ public class CameraShootShake : MonoBehaviour
         QTE.instance.OnQTEEnd -= QTE_OnQTEEnd;
         FlameballFallingState.OnFlameballHitGround -= FlameballFallingState_OnFlameballHitGround;
         Teleport.OnTeleportedPlayer -= Teleport_OnTeleportedPlayer;
+        Teleporter.OnTeleporterImpulse -= Teleporter_OnTeleporterImpulse;
     }
 
     private void Player_OnPlayerTeleported()

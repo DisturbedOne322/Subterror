@@ -15,6 +15,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] 
     private AudioSource focusedLightCoolingAudioSource;
 
+    [SerializeField]
+    private AudioSource airTimeAudioSource;
+
 
     [SerializeField]
     private AudioClipsSO audioClipsSO;
@@ -169,5 +172,37 @@ public class SoundManager : MonoBehaviour
     public void PlayDeathSound()
     {
         soundEffectsAudioSource.PlayOneShot(audioClipsSO.deathSound);
+    }
+
+    private bool inAir = false;
+
+    public void PlayAirTimeSound()
+    {
+        StartCoroutine(IncreaseVolumeAfterDelay());
+    }
+    
+    private IEnumerator IncreaseVolumeAfterDelay()
+    {
+        if (!inAir)
+        {
+            inAir = true;   
+            yield return new WaitForSeconds(1.5f);
+            float volume = 0;
+            airTimeAudioSource.Play();
+            while (volume < 1)
+            {
+                volume += Time.deltaTime / 2;
+                airTimeAudioSource.volume = volume;
+                yield return null;
+            }
+        }
+    }
+
+    public void StopPlayingAirTime()
+    {
+        StopAllCoroutines();
+        airTimeAudioSource.Stop();
+        airTimeAudioSource.volume = 0;
+        inAir = false;
     }
 }

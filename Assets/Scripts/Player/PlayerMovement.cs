@@ -263,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             StartCoroutine(CalculateAirTime());
+            SoundManager.Instance.PlayAirTimeSound();
             return false;
         }
     }
@@ -283,7 +284,7 @@ public class PlayerMovement : MonoBehaviour
                 yield return null;
             }
 
-
+            SoundManager.Instance.StopPlayingAirTime();
             SoundManager.Instance.PlayLandingSound(Mathf.Clamp01(airTime / 2));
 
             OnLanded?.Invoke();

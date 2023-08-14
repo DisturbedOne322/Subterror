@@ -32,7 +32,7 @@ public class ReduceHeadlightLightIntensityOnDeath : MonoBehaviour
 
     private IEnumerator ReduceLightIntensity()
     {
-        while (focusedLight2D.intensity > 0)
+        while (light2D.intensity > 0)
         {
             light2D.intensity -= Time.deltaTime;
             if (focusedLight2D != null)
