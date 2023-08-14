@@ -10,6 +10,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private GameObject loadScreen;
 
+    public event Action OnExitScene;
+
     [SerializeField]
     private GameObject optionsWindow;
     [SerializeField]
@@ -44,6 +46,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnExitPressed()
     {
+        OnExitScene?.Invoke();
         playerMainMenuAnimator.Play(PLAYER_EXIT_ANIM);
         playerActed = true;
         StartCoroutine(ExitGame(exitAnimDuration));
@@ -52,6 +55,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPlayPressed()
     {
+        OnExitScene?.Invoke();
         StartCoroutine(PlayGame(playAnimDuration));
     }
 

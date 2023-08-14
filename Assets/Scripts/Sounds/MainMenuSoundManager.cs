@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class MainMenuSoundManager : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [SerializeField]
+    private MainMenuManager mainMenuManager;
+    [SerializeField]
+    private AudioSource effectsAudioSource;
+    [SerializeField]
+    private AudioSource musicAudioSource;
 
     public static MainMenuSoundManager Instance;
 
@@ -21,11 +26,10 @@ public class MainMenuSoundManager : MonoBehaviour
     private AudioClip creditsSignSound;
 
     private Dictionary<SoundType, float> soundTypeCooldownDict;
-    private float soundCD = 0.33f;
+    private float soundCD = 0.5f;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -42,6 +46,27 @@ public class MainMenuSoundManager : MonoBehaviour
             { SoundType.CreditsSign, 0 },
             { SoundType.NoSound, 0 },
         };
+    }
+
+    private void Start()
+    {
+        mainMenuManager.OnExitScene += MainMenuManager_OnExitScene;
+    }
+
+    private void MainMenuManager_OnExitScene()
+    {
+        StartCoroutine(DecreaseVolumeOnExitScene());   
+    }
+
+    private IEnumerator DecreaseVolumeOnExitScene()
+    {
+        float duration = 1;
+        while(duration > 0)
+        {
+            musicAudioSource.volume = duration;
+            duration -= Time.deltaTime / 4;
+            yield return null;
+        }
     }
 
     public enum SoundType
@@ -61,19 +86,19 @@ public class MainMenuSoundManager : MonoBehaviour
         switch (type)
         {
             case SoundType.WoodenDoor:
-                audioSource.PlayOneShot(woodenDoorOpenSound);
+                effectsAudioSource.PlayOneShot(woodenDoorOpenSound);
                 break;
             case SoundType.MetalDoor:
-                audioSource.PlayOneShot(metalDoorOpenSound);
+                effectsAudioSource.PlayOneShot(metalDoorOpenSound);
                 break;
             case SoundType.SettingsSign:
-                audioSource.PlayOneShot(settingsSignSound);
+                effectsAudioSource.PlayOneShot(settingsSignSound);
                 break;
             case SoundType.HelpSign:
-                audioSource.PlayOneShot(helpSignSound);
+                effectsAudioSource.PlayOneShot(helpSignSound);
                 break;
             case SoundType.CreditsSign:
-                audioSource.PlayOneShot(creditsSignSound);
+                effectsAudioSource.PlayOneShot(creditsSignSound);
                 break;
         }
         StartCoroutine(SoundCooldown(type));
