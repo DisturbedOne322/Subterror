@@ -42,5 +42,9 @@ public class Teleport : MonoBehaviour
             if(!dontDestroyParent)
                 gameObject.transform.parent.gameObject.SetActive(false);
         }
+        else
+        {
+            collision.gameObject.transform.position = destination.position;
+        }
     }
 }

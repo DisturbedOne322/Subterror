@@ -63,6 +63,9 @@ public class EnemySpawnManager : MonoBehaviour
     private Checkpoints[] checkpoints;
     #endregion
 
+
+    private WaitForSeconds spawnDelay = new WaitForSeconds(0.2f);
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -104,10 +107,10 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void SpawnEnemies(int i)
     {
-        SpawnHellHoundPack(checkpoints[i].GetComponentsInChildren<HellHoundParentObject>());
-        SpawnAttackTentacles(checkpoints[i].GetComponentsInChildren<TentacleAttackParentObject>());
-        SpawnIdleTentacles(checkpoints[i].GetComponentsInChildren<TentaclesIdleParentObject>());
-        ListenToOnPlayerEnterExecutionerTriggers(checkpoints[i].GetComponentsInChildren<ExecutionerTriggerArea>(true));
+        StartCoroutine(SpawnHellHoundPack(checkpoints[i].GetComponentsInChildren<HellHoundParentObject>(),i));
+        StartCoroutine(SpawnAttackTentacles(checkpoints[i].GetComponentsInChildren<TentacleAttackParentObject>()));
+        StartCoroutine(SpawnIdleTentacles(checkpoints[i].GetComponentsInChildren<TentaclesIdleParentObject>()));
+        ListenToOnPlayerEnterExecutionerTriggers(checkpoints[i].GetComponentsInChildren<ExecutionerTriggerArea>());
         SpawnGhost(checkpoints[i].GetComponentsInChildren<GhostParentObject>());
         SpawnTeleporter(checkpoints[i].GetComponentInChildren<TeleporterParentObject>());
         StartCoroutine(SpawnPlayerFakes(checkpoints[i].GetComponentsInChildren<PlayerFakeParentObject>()));
@@ -116,25 +119,24 @@ public class EnemySpawnManager : MonoBehaviour
     #region regular enemies spawn logic
     private void ListenToOnPlayerEnterExecutionerTriggers(ExecutionerTriggerArea[] exec)
     {
-        bool respawn = false;
-        for(int i = 0; i < exec.Length; i++)
+        ////bool respawn = false;
+        //for(int i = 0; i < exec.Length; i++)
+        //{
+        //    if (!exec[i].gameObject.activeSelf)
+        //    {
+        //        //respawn = true;
+        //        exec[i].gameObject.SetActive(true);
+        //    }
+
+        //}
+
+        //if (respawn)
+        //    return;
+
+        for (int i = 0; i < exec.Length; i++)
         {
-            if (!exec[i].gameObject.activeSelf)
-            {
-                respawn = true;
-                exec[i].gameObject.SetActive(true);
-            }
-
-        }
-
-        if (respawn)
-            return;
-
-        if (exec != null)
-        {
-            for(int i = 0; i < exec.Length;i++)
-                exec[i].OnPlayerEnteredTriggerArea += Exec_OnPlayerEnteredTriggerArea;
-        }
+            exec[i].OnPlayerEnteredTriggerArea += Exec_OnPlayerEnteredTriggerArea;
+        }     
     }
     private void Exec_OnPlayerEnteredTriggerArea(Transform parent)
     {
@@ -145,53 +147,59 @@ public class EnemySpawnManager : MonoBehaviour
 
     int lastRandomIndex = -1;
 
-    private void SpawnHellHoundPack(HellHoundParentObject[] parent)
+    private IEnumerator SpawnHellHoundPack(HellHoundParentObject[] parent, int id)
     {
-        if (parent == null)
-            return;
-
-        for(int i = 0; i < parent.Length;i++)
+        if (parent != null)
         {
-            int rand;
-            do
+
+            for (int i = 0; i < parent.Length; i++)
             {
-                rand = UnityEngine.Random.Range(0, corpsePrefabs.Length);
-            } while (rand == lastRandomIndex);
-
-            lastRandomIndex = rand;
-
-            GameObject corpse = Instantiate(corpsePrefabs[rand]
-                , new Vector3(0,0,0), Quaternion.identity);
-            corpse.transform.position = parent[i].transform.position;
-            corpse.transform.parent = parent[i].transform;
-
-            int numOfDogs = UnityEngine.Random.Range(2, 4);
-
-            int side = 1;
-
-            float[] occipiedPositions = new float[numOfDogs];
-            //too big spawn offset can cause infinite loop
-            float spawnOffset = 0.3f;
-
-            for (int j = 0; j < numOfDogs; j++)
-            {
-                float offset;
-                do
+                if (id < 6)
                 {
-                    offset = UnityEngine.Random.Range(-1.5f, -0.5f) * side;
-                } while (IsPositionOccupied(offset, occipiedPositions, spawnOffset));
+                    int rand;
+                    do
+                    {
+                        rand = UnityEngine.Random.Range(0, corpsePrefabs.Length);
+                    } while (rand == lastRandomIndex);
 
-                occipiedPositions[j] = offset;
+                    lastRandomIndex = rand;
+                    GameObject corpse = Instantiate(corpsePrefabs[rand]
+                    , new Vector3(0, 0, 0), Quaternion.identity);
+                    corpse.transform.position = parent[i].transform.position;
+                    corpse.transform.parent = parent[i].transform;
+                }
 
-                GameObject temp = Instantiate(hellHoundPrefab, parent[i].transform);
-                temp.transform.position += new Vector3(offset, 0, 0);
 
-                Vector3 scale = temp.transform.localScale;
-                scale.x *= side;
-                temp.transform.localScale = scale;
+                int numOfDogs = UnityEngine.Random.Range(2, 4);
 
-                side *= -1;
+                int side = 1;
+
+                float[] occipiedPositions = new float[numOfDogs];
+                //too big spawn offset can cause infinite loop
+                float spawnOffset = 0.3f;
+
+                for (int j = 0; j < numOfDogs; j++)
+                {
+                    float offset;
+                    do
+                    {
+                        offset = UnityEngine.Random.Range(-1.5f, -0.5f) * side;
+                    } while (IsPositionOccupied(offset, occipiedPositions, spawnOffset));
+
+                    occipiedPositions[j] = offset;
+
+                    GameObject temp = Instantiate(hellHoundPrefab, parent[i].transform);
+                    temp.transform.position += new Vector3(offset, 0, 0);
+
+                    Vector3 scale = temp.transform.localScale;
+                    scale.x *= side;
+                    temp.transform.localScale = scale;
+
+                    side *= -1;
+                }
             }
+
+            yield return spawnDelay;
         }
     }
 
@@ -208,31 +216,31 @@ public class EnemySpawnManager : MonoBehaviour
         return false;
     }
 
-    private void SpawnIdleTentacles(TentaclesIdleParentObject[] parent)
+    private IEnumerator SpawnIdleTentacles(TentaclesIdleParentObject[] parent)
     {
-        if(parent == null) 
-            return;
-
-
-        tentaclePrefab.GetComponent<TentacleStateManager>().initialState = TentacleStateManager.InitialState.idleState;
-
-        for (int i = 0; i < parent.Length; i++)
+        if (parent != null)
         {
-            Instantiate(tentaclePrefab, parent[i].transform);
-        }
+            tentaclePrefab.GetComponent<TentacleStateManager>().initialState = TentacleStateManager.InitialState.idleState;
 
+            for (int i = 0; i < parent.Length; i++)
+            {
+                Instantiate(tentaclePrefab, parent[i].transform);
+                yield return spawnDelay;
+            }
+        }
     }
 
-    private void SpawnAttackTentacles(TentacleAttackParentObject[] parent)
+    private IEnumerator SpawnAttackTentacles(TentacleAttackParentObject[] parent)
     {
-        if (parent == null)
-            return;
-
-        tentaclePrefab.GetComponent<TentacleStateManager>().initialState = TentacleStateManager.InitialState.attackState;
-
-        for (int i = 0; i < parent.Length; i++)
+        if (parent != null)
         {
-            Instantiate(tentaclePrefab, parent[i].transform);
+            tentaclePrefab.GetComponent<TentacleStateManager>().initialState = TentacleStateManager.InitialState.attackState;
+
+            for (int i = 0; i < parent.Length; i++)
+            {
+                Instantiate(tentaclePrefab, parent[i].transform);
+                yield return spawnDelay;
+            }
         }
     }
 
@@ -266,7 +274,7 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 GameObject temp = Instantiate(fakePrefab, parent[i].transform);
                 temp.SetActive(true);
-                yield return new WaitForSeconds(0.5f);
+                yield return spawnDelay;
             }
         }    
     }

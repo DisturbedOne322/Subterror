@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerFakeHint
   m_EditorClassIdentifier: 
   FontSize: 60
-  Text: THEY CAN GET YOU EVERYWHERE
+  Text: THEY CAN GET YOU <u>EVERYWHERE</u>
   FontColor: {r: 1, g: 0, b: 0, a: 1}

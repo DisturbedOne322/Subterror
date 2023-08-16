@@ -17,6 +17,8 @@ public class SoundEffectsManager : MonoBehaviour
     private int lastMapID;
     private int lastRandom;
 
+    private PlayerHealth player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,13 @@ public class SoundEffectsManager : MonoBehaviour
             mapCheckpoints[i].OnSpawnNextMapPart += SoundEffectsManager_OnSpawnNextMapPart;
         }
         StartCoroutine(PlaySoundEffectWithRandomDelay(10));
+        player = GameManager.Instance.GetPlayerReference().GetComponent<PlayerHealth>();
+        player.OnDeath += Player_OnDeath;
+    }
+
+    private void Player_OnDeath()
+    {
+        StartCoroutine(GraduallyDecreaseVolume(audioSource,3));
     }
 
     private void OnDestroy()
@@ -37,6 +46,8 @@ public class SoundEffectsManager : MonoBehaviour
         {
             mapCheckpoints[i].OnSpawnNextMapPart -= SoundEffectsManager_OnSpawnNextMapPart;
         }
+        player.OnDeath -= Player_OnDeath;
+
     }
 
     private void SoundEffectsManager_OnSpawnNextMapPart(int nextAreaID)
@@ -54,6 +65,15 @@ public class SoundEffectsManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         PlayRandomSound(currentAreaID);
         StartCoroutine(PlaySoundEffectWithRandomDelay(Random.Range(20,35)));
+    }
+
+    private IEnumerator GraduallyDecreaseVolume(AudioSource audioSource, float timeInSeconds)
+    {
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= Time.deltaTime / timeInSeconds;
+            yield return null;
+        }
     }
 
     private void PlayRandomSound(int currentAreaID)

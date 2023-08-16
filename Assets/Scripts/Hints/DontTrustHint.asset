@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FontSize: 70
   Text: You should not trust \n everything you see \n Yet you should put your \n
-    faith in the unseen.
+    faith in the <u>unseen</u>.
   FontColor: {r: 0.200976, g: 0.46226418, b: 0, a: 1}

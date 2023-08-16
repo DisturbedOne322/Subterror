@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ExecutionerHint
   m_EditorClassIdentifier: 
   FontSize: 70
-  Text: That who cannot be seen...\n..must be put on light...
+  Text: That who cannot be seen...\n..must be <u>put on light</u>...
   FontColor: {r: 1, g: 0.48083824, b: 0, a: 1}

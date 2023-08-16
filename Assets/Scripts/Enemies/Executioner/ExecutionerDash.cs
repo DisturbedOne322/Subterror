@@ -7,8 +7,16 @@ public class ExecutionerDash : MonoBehaviour
     [SerializeField]
     private float dashDistance;
 
+    private PlayerMovement player;
+
+    private void Start()
+    {
+        player = GameManager.Instance.GetPlayerReference();
+    }
+
     public void Dash()
     {
-        transform.Translate(new Vector2 (dashDistance * transform.localScale.x, 0));
+        Vector2 direction = player.transform.position - transform.position;
+        transform.Translate(direction.normalized * dashDistance);
     }
 }

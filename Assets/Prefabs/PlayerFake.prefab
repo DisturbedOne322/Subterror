@@ -388,19 +388,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6635067744205031045, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.0058999658
+      value: 0.002700001
       objectReference: {fileID: 0}
     - target: {fileID: 6635067744205031045, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.005099982
+      value: 0.00044998527
       objectReference: {fileID: 0}
     - target: {fileID: 6635067744205031045, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.0030999
+      value: 0.99810004
       objectReference: {fileID: 0}
     - target: {fileID: 6635067744205031045, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.0031999
+      value: 0.99475
       objectReference: {fileID: 0}
     - target: {fileID: 6635067744286494360, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -526,6 +526,10 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6635067745223172620, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6635067745223172621, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -588,19 +592,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6635067745392248074, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.0068499744
+      value: 0.00044998527
       objectReference: {fileID: 0}
     - target: {fileID: 6635067745392248074, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: -0.0020999908
+      value: 0.0018499792
       objectReference: {fileID: 0}
     - target: {fileID: 6635067745392248074, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 0.99654996
+      value: 0.99555004
       objectReference: {fileID: 0}
     - target: {fileID: 6635067745392248074, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 1.0022
+      value: 0.99994993
       objectReference: {fileID: 0}
     - target: {fileID: 6635067745462923283, guid: c53e6e8085720134bb9aa95cbcb271d2, type: 3}
       propertyPath: m_Layer

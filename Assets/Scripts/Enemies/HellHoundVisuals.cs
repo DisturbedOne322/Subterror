@@ -50,6 +50,15 @@ public class HellHoundVisuals : MonoBehaviour
             particleSpawnerOnPlayerHitWithClaw[i].gameObject.transform.SetParent(player.transform, false);
             particleSpawnerOnPlayerHitWithClaw[i].Stop();
         }
+
+        StartCoroutine(StartAnimationWithRandomDelay());
+    }
+
+    private IEnumerator StartAnimationWithRandomDelay()
+    {
+        animator.enabled = false;
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0, 1f));
+        animator.enabled = true;
     }
 
     private void OnDestroy()

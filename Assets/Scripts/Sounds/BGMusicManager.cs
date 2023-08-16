@@ -31,6 +31,9 @@ public class BGMusicManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip postBossFightBGMusic;
+
+    private PlayerHealth player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,14 @@ public class BGMusicManager : MonoBehaviour
 
         InitiateBossfight.OnBossFightInitiated += InitiateBossfight_OnBossFightInitiated;
         MageBoss.OnFightFinished += MageBoss_OnFightFinished;
+
+        player = GameManager.Instance.GetPlayerReference().GetComponent<PlayerHealth>();
+        player.OnDeath += Player_OnDeath;
+    }
+
+    private void Player_OnDeath()
+    {
+        StartCoroutine(GraduallyDecreaseVolume(activeSource, 4));
     }
 
     private void OnDestroy()
@@ -57,6 +68,7 @@ public class BGMusicManager : MonoBehaviour
 
         InitiateBossfight.OnBossFightInitiated -= InitiateBossfight_OnBossFightInitiated;
         MageBoss.OnFightFinished -= MageBoss_OnFightFinished;
+        player.OnDeath -= Player_OnDeath;
     }
 
     private void MageBoss_OnFightFinished()

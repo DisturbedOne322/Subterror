@@ -9,7 +9,7 @@ public class TentacleAttackState : TentaclesBaseState
     private const string PULL_SPEED = "SpeedRate";
 
     private bool attacked = false;
-    private float attackSpeed = 5f;
+    private float attackSpeed = 6.5f;
     private readonly float raycastLength = 10f;
     RaycastHit2D raycastHit2D;
 

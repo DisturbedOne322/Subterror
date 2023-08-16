@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Teleporter : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class Teleporter : MonoBehaviour
     private Color lineColor;
 
     [SerializeField]
+    private VisualEffect vfx;
+    private const string ATTRACTION_SPEED = "attractionSpeed";
+    private const string ATTRACTION_Force = "attractionForce";
+    [SerializeField]
+    private  float attractionPushSpeed = 1000;
+    [SerializeField]
+    private  float attractionPullSpeed = -1000;
+
+    [SerializeField]
     private Transform pullingHandPosition;
 
     [SerializeField]
@@ -37,7 +47,7 @@ public class Teleporter : MonoBehaviour
     private readonly float initialPullingForce = 0.75f;
     private readonly float pullingForceIncreasePerSecond = 0.5f;
     private readonly float pullingForceChangeTimerTotal = 1f;
-    private float pullingImpulseForceTimer = 0.5f;
+    private float pullingImpulseForceTimer = 0.75f;
 
 
     private float currentImpulseForce;
@@ -56,6 +66,7 @@ public class Teleporter : MonoBehaviour
         temp.a = 0;
         lineRenderer.SetColors(temp, temp);
 
+        vfx.enabled = false;
     }
 
     // Update is called once per frame
@@ -79,6 +90,7 @@ public class Teleporter : MonoBehaviour
     private void StartPulling()
     {
         isPullingPlayer = true;
+        vfx.enabled = true;
     }
 
     private IEnumerator DecreaseTextAlpha()
@@ -96,18 +108,14 @@ public class Teleporter : MonoBehaviour
 
     private void PullThePlayer()
     {
-        Vector3 pullDirection = transform.position - player.transform.position;
-
         pullingImpulseForceTimer -= Time.deltaTime;
 
         if(pullingImpulseForceTimer <= 0)
         {
+            StartCoroutine(DoImpulseAttack());
+            StartCoroutine(PullPlayer());
             pullingImpulseForceTimer = pullingForceChangeTimerTotal;
             currentImpulseForce += pullingForceIncreasePerSecond;
-            player.GetComponent<Rigidbody2D>().AddForce(pullDirection.normalized * currentImpulseForce * Time.deltaTime, ForceMode2D.Impulse);
-            soundManager.PlayImpulseSound();
-            OnTeleporterImpulse?.Invoke();
-            StartCoroutine(DoImpulseAttack());
         }
 
 
@@ -123,14 +131,16 @@ public class Teleporter : MonoBehaviour
             Color temp = lineColor;
             temp.a = 0;
             lineRenderer.SetColors(temp, temp);
+            vfx.enabled = false;
         }
     }
 
     private IEnumerator DoImpulseAttack()
     {
+        StartCoroutine(SetVFXProperties());
         lineRenderer.SetColors(lineColor, lineColor);
         Color temp = lineColor;
-        while(temp.a > 0)
+        while (temp.a > 0)
         {
             temp.a -= Time.deltaTime;
             lineRenderer.SetColors(temp, temp);
@@ -138,6 +148,22 @@ public class Teleporter : MonoBehaviour
         }
         temp.a = 0;
         lineRenderer.SetColors(temp, temp);
+    }
+
+    private IEnumerator PullPlayer()
+    {
+        yield return new WaitForSeconds(0.33f);
+        Vector3 pullDirection = transform.position - player.transform.position;
+        player.GetComponent<Rigidbody2D>().AddForce(pullDirection.normalized * currentImpulseForce * Time.deltaTime, ForceMode2D.Impulse);
+        soundManager.PlayImpulseSound();
+        OnTeleporterImpulse?.Invoke();
+    }
+
+    private IEnumerator SetVFXProperties()
+    {
+        vfx.SetFloat(ATTRACTION_SPEED, attractionPullSpeed);
+        yield return new WaitForSeconds(0.2f);
+        vfx.SetFloat(ATTRACTION_SPEED, attractionPushSpeed);
     }
 
     private void SetLineRendererPosition()
