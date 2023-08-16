@@ -26,12 +26,12 @@ public class MageBossThirdStageState : MageBossBaseState
     private float switchStateDelay = 7f;
 
     //flameball
-    private float spawnCDTotal = 0.75f; // cd between each flameball
-    private float cdBetweenWaves = 1f;
-    private int waveNumberTotal = 3;
-    private int spawnAmountTotal = 7;
-    private float fallSpeed = 17;
-    private float scale = 1.6f;
+    private float spawnCDTotal = 0.8f; // cd between each flameball
+    private float cdBetweenWaves = 1.25f;
+    private int waveNumberTotal = 4;
+    private int spawnAmountTotal = 5;
+    private float fallSpeed = 15;
+    private float scale = 1.5f;
 
     //laser
     private float laserAnimationDuration = 12;

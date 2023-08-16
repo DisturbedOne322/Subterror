@@ -22,9 +22,9 @@ public class MageBossFirstStageState : MageBossBaseState
     private float spawnCDTotal = 0.75f; // cd between each flameball
     private float cdBetweenWaves = 1f;
     private int waveNumberTotal = 1;
-    private int spawnAmountTotal = 15;
-    private float fallSpeed = 12;
-    private float scale = 1.1f;
+    private int spawnAmountTotal = 12;
+    private float fallSpeed = 11;
+    private float scale = 1f;
 
     //laser
     private float laserAnimationDuration = 7;
@@ -102,8 +102,7 @@ public class MageBossFirstStageState : MageBossBaseState
                 manager.flameballspawnManager.OnAttackFinished -= FlameballspawnManager_OnAttackFinished;
                 manager.laser.OnAttackFinished -= Laser_OnAttackFinished;
                 manager.SwitchState(manager.secondStageState);
-            }
-            
+            }      
             return;
         }
         currentAttackCD -= Time.deltaTime;
@@ -116,9 +115,9 @@ public class MageBossFirstStageState : MageBossBaseState
                     break;
                 case LASER_ATTACK:
                     LaserCast(manager);
-            break;
+                    break;
+            }
         }
-    }
         if (state == State.LaserPrepare)
         {
             AnimatorClipInfo[] m_CurrentClipInfo = this.animator.GetCurrentAnimatorClipInfo(0);

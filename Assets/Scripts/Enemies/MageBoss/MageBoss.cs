@@ -117,6 +117,10 @@ public class MageBoss : MonoBehaviour
 
     private void OnDestroy()
     {
+        for (int i = 0; i < collidersArray.Length; i++)
+        {
+            collidersArray[i].OnWeakPointBroken -= MageBoss_OnWeakPointBroken;
+        }
         currentState.OnCoreDestroyed -= CurrentState_OnCoreDestroyed;
         currentState.OnFightFinished -= CurrentState_OnFightFinished;
     }
