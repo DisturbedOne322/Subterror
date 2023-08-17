@@ -10,8 +10,9 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
     public event Action OnAttack;
     public event Action OnGhostSpotted;
     public event Action OnBurstAttack;
+    public static event Action<Transform> OnDangerTrackGhost;
     public event Action OnPlayerDetected;
-    public event Action OnBurstAttackEnd;
+    public static event Action OnStopDangerTrack;
 
     private BoxCollider2D boxCollider2D;
     private Rigidbody2D rb2D;
@@ -27,6 +28,8 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
 
     private PlayerMovement player;
 
+    private float burstAttackDurationTotal = 4;
+    private float burstAttackDuration = 4;
     //when attacked with light, move to Y, then at high speed burst to player pos.x with -1 to 1 range
     private float moveToYCoord;
     private readonly float burstSpeed = 13f;
@@ -48,25 +51,7 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
         healthPoints = 10;
         moveSpeed = 7f;
 
-
-        //FocusedHeadlight.OnGhostFound += FocusedHeadlight_OnGhostFound;
         player = GameManager.Instance.GetPlayerReference();
-    }
-
-    private void OnDestroy()
-    {
-        //FocusedHeadlight.OnGhostFound -= FocusedHeadlight_OnGhostFound;
-    }
-
-    private void FocusedHeadlight_OnGhostFound(Ghost ghost)
-    {
-        //if (ghost != this)
-        //    return;
-
-        //if (isDetected || isBurstAttacking)
-        //    return;
-
-        //ReactToLight();
     }
 
     protected override void MoveToPlayer()
@@ -92,6 +77,7 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
 
     private void BurstAttack()
     {
+        StartCoroutine(BurstAttackDuration());
         //reposition to random x pos from player in range
         Vector2 startPos = new Vector2();
 
@@ -106,6 +92,7 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
         transform.position = startPos;
 
         OnBurstAttack?.Invoke();
+        OnDangerTrackGhost?.Invoke(this.transform);
 
         Vector2 burstDirectionVector = player.transform.position - transform.position;
         burstDirectionVector.Normalize();
@@ -113,6 +100,14 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
         float angle = Vector3.SignedAngle(transform.up, burstDirectionVector, Vector3.forward);
         transform.Rotate(0,0,angle);
         rb2D.AddForce(burstDirectionVector * burstSpeed, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator BurstAttackDuration()
+    {
+        yield return new WaitForSeconds(3);
+        OnStopDangerTrack?.Invoke();
+        isBurstAttacking = false;
+        gameObject.SetActive(false);
     }
 
     protected override void AttackPlayer()
@@ -145,9 +140,6 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //to set active false the danger sign
-            OnBurstAttackEnd?.Invoke();
-
             transform.rotation = Quaternion.identity;
             rb2D.velocity = Vector2.zero;
             boxCollider2D.enabled = false;
@@ -158,7 +150,7 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
             {
                 OnPlayerDetected?.Invoke();
             }
-
+            OnStopDangerTrack?.Invoke();
             OnAttack?.Invoke();
             QTE.instance.StartQTE(this, QTE.QTE_TYPE.Reaction);
         }
@@ -166,7 +158,7 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
 
     private void Hide()
     {
-        OnBurstAttackEnd?.Invoke();
+        OnStopDangerTrack?.Invoke();
         gameObject.SetActive(false);
     }
 
@@ -175,5 +167,6 @@ public class Ghost : Enemy, IQTECaller, IReactToLight
         boxCollider2D.enabled = true;
         isDetected = false;
         isBurstAttacking = false;
+        burstAttackDuration = burstAttackDurationTotal;
     }
 }

@@ -8,7 +8,7 @@ public class BossFightVolume : MonoBehaviour
 {
     private Volume volume;
 
-    private float timeToIncreaseWeight = 150;
+    private float timeToIncreaseWeight = 200;
     private float timeToDecreaseWeight = 12;
 
     // Start is called before the first frame update

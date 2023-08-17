@@ -1,61 +1,54 @@
+using System.Collections;
 using UnityEngine;
 
 public class DangerSign : MonoBehaviour
 {
-    //private Animator animator;
+    [SerializeField]
+    private GameObject dangerSign;
 
-    //private readonly string IN_DANGER_ANIM = "IsInDanger";
+    private PlayerMovement player;
 
-    //[SerializeField]
-    //private GameObject dangerSign;
+    private bool isInDanger = false;
 
-    //private Ghost ghost;
-    //private PlayerMovement player;
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameManager.Instance.GetPlayerReference();
+        Ghost.OnDangerTrackGhost += Ghost_OnDangerTrackGhost;
+        Ghost.OnStopDangerTrack += Ghost_OnStopDangerTrack;
 
-    //private bool isInDanger = false;
+        dangerSign.SetActive(false);    
+    }
 
-    //private void Awake()
-    //{
-    //    animator = GetComponent<Animator>();
-    //}
+    private void Ghost_OnStopDangerTrack()
+    {
+        isInDanger = false;
+        dangerSign.SetActive(false);
+    }
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    ghost = GameManager.Instance.GetGhostReference();
-    //    player = GameManager.Instance.GetPlayerReference();
-    //    ghost.OnBurstAttack += Ghost_OnAttack;
-    //    ghost.OnBurstAttackEnd += Ghost_OnAttackEnd;
-    //}
+    private void Ghost_OnDangerTrackGhost(Transform obj)
+    {
+        dangerSign.SetActive(true);
+        isInDanger = true;
+        StartCoroutine(TrackGhost(obj));
+    }
 
-    //private void OnDestroy()
-    //{
-    //    ghost.OnBurstAttack -= Ghost_OnAttack;
-    //    ghost.OnBurstAttackEnd -= Ghost_OnAttackEnd;
-    //}
+    private void OnDestroy()
+    {
+        Ghost.OnDangerTrackGhost -= Ghost_OnDangerTrackGhost;
+        Ghost.OnStopDangerTrack -= Ghost_OnStopDangerTrack;
+    }
 
-    //private void Ghost_OnAttackEnd()
-    //{
-    //    isInDanger = false;
-    //    dangerSign.SetActive(false);
-    //    animator.SetBool(IN_DANGER_ANIM, false);
-    //}
 
-    //private void Ghost_OnAttack()
-    //{
-    //    isInDanger = true;
-    //    dangerSign.SetActive(true);
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if(isInDanger)
-    //    {
-    //        transform.position = player.transform.position;
-    //        Vector3 lookDirection = ghost.transform.position - transform.position;
-    //        float angle = Vector3.SignedAngle(transform.up, lookDirection.normalized, Vector3.forward);
-    //        transform.Rotate(0, 0, angle);
-    //    }
-    //}
+    private IEnumerator TrackGhost(Transform ghostTransform)
+    {
+        while (isInDanger)
+        {
+            dangerSign.transform.position = player.transform.position;
+            Vector3 lookDirection = ghostTransform.position - transform.position;
+            float angle = Vector3.SignedAngle(dangerSign.transform.up, lookDirection.normalized, Vector3.forward);
+            dangerSign.transform.Rotate(0, 0, angle);
+            yield return null;
+        }
+    }
 }

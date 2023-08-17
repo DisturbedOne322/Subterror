@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BossFight
   m_EditorClassIdentifier: 
   FontSize: 70
-  Text: You have the means \n to defend yourself, \n ?|??\?/???!
+  Text: You have the means \n to <u>defend</u> yourself, \n ?|??\?/???!
   FontColor: {r: 0, g: 0, b: 0, a: 1}

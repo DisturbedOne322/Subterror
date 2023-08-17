@@ -6,6 +6,9 @@ using UnityEngine;
 public class BossFightTeleportSound : MonoBehaviour
 {
     [SerializeField]
+    private GameObject teleport;
+
+    [SerializeField]
     private AudioClip[] audioClips;
     private string[] subs = new string[5];
 
@@ -25,6 +28,13 @@ public class BossFightTeleportSound : MonoBehaviour
         subs[2] = "Turn back...";
         subs[3] = "Remember what you came for...";
         subs[4] = "Please, fight...";
+
+        MageBoss.OnFightFinished += MageBoss_OnFightFinished;
+    }
+
+    private void MageBoss_OnFightFinished()
+    {
+        teleport.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
