@@ -10,6 +10,7 @@ public class Laser : MageBossBaseAttack
     public event Action<MageBoss> OnAttackFinished;
     [SerializeField]
     private LineRenderer lineRenderer;
+    public static event Action OnHeadlightHitLaser;
 
     private RaycastHit2D hit;
 
@@ -38,8 +39,6 @@ public class Laser : MageBossBaseAttack
     private AudioClip laserFalling;
     private float audioDelayDuration = 1.7f;
 
-    private bool attackFinished = true;
-
     private MageBoss caller;
 
     private float damageCD = 0f;
@@ -60,22 +59,6 @@ public class Laser : MageBossBaseAttack
     // Update is called once per frame
     void Update()
     {
-        damageCD -= Time.deltaTime;
-
-        if (attackFinished)
-            return;
-
-        duration -= Time.deltaTime;
-        if(duration < 0)
-        {
-            OnAttackFinished?.Invoke(caller);
-            attackFinished = true;
-            audioSource.Stop();
-            audioSource.PlayOneShot(laserFalling);
-        }
-        SetLaserPosition();
-        DamagePlayer();
-
     }
     private void OnEnable()
     {
@@ -144,6 +127,10 @@ public class Laser : MageBossBaseAttack
 
             lineRenderer.SetPosition(1, linePos2);
         }
+        else
+        {
+            OnHeadlightHitLaser?.Invoke();
+        }
     }
 
     private void DamagePlayer()
@@ -169,6 +156,22 @@ public class Laser : MageBossBaseAttack
 
         this.duration = duration;
         this.caller = caller;
-        attackFinished = false;
+
+        StartCoroutine(PerformLaserAttack(this.duration));
+    }
+
+    private IEnumerator PerformLaserAttack(float duration)
+    {
+        while(duration > 0)
+        {
+            damageCD -= Time.deltaTime;
+            SetLaserPosition();
+            DamagePlayer();
+            duration -= Time.deltaTime;
+            yield return null;
+        }
+        OnAttackFinished?.Invoke(caller);
+        audioSource.Stop();
+        audioSource.PlayOneShot(laserFalling);
     }
 }

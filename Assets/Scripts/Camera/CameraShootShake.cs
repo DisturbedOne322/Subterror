@@ -46,6 +46,8 @@ public class CameraShootShake : MonoBehaviour
     private PlayerHealth playerHealth;
     #endregion
 
+    private float headlightHitLaserAmp = 0.75f;
+    private float headlightHitLaserFreq = 3;
     /*
      * MAKE DIFFERENTY TIMERS
      */
@@ -73,8 +75,14 @@ public class CameraShootShake : MonoBehaviour
         FlameballFallingState.OnFlameballHitGround += FlameballFallingState_OnFlameballHitGround;
         Teleport.OnTeleportedPlayer += Teleport_OnTeleportedPlayer;
         Teleporter.OnTeleporterImpulse += Teleporter_OnTeleporterImpulse;
+        Laser.OnHeadlightHitLaser += Laser_OnHeadlightHitLaser;
 
         transform.position = player.transform.position;
+    }
+
+    private void Laser_OnHeadlightHitLaser()
+    {
+        ShakeCamera(headlightHitLaserAmp, headlightHitLaserFreq, shakeTimerTotal);
     }
 
     private void Teleporter_OnTeleporterImpulse()
@@ -104,6 +112,8 @@ public class CameraShootShake : MonoBehaviour
         FlameballFallingState.OnFlameballHitGround -= FlameballFallingState_OnFlameballHitGround;
         Teleport.OnTeleportedPlayer -= Teleport_OnTeleportedPlayer;
         Teleporter.OnTeleporterImpulse -= Teleporter_OnTeleporterImpulse;
+        Laser.OnHeadlightHitLaser -= Laser_OnHeadlightHitLaser;
+
     }
 
     private void Player_OnPlayerTeleported()

@@ -16102,6 +16102,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2400575882656077398, guid: 91fac2f3d57ca3e46bb4cb7abfdcdc96, type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400575882656077398, guid: 91fac2f3d57ca3e46bb4cb7abfdcdc96, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400575882656077398, guid: 91fac2f3d57ca3e46bb4cb7abfdcdc96, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400575882656077398, guid: 91fac2f3d57ca3e46bb4cb7abfdcdc96, type: 3}
+      propertyPath: ShapeModule.m_Position.x
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2400575882656077403, guid: 91fac2f3d57ca3e46bb4cb7abfdcdc96, type: 3}
       propertyPath: m_Layer
       value: 9

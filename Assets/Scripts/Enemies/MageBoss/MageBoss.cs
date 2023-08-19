@@ -128,6 +128,7 @@ public class MageBoss : MonoBehaviour
     private void CurrentState_OnFightFinished()
     {
         OnFightFinished?.Invoke();
+        sword.SetActive(true);
         audioSource.PlayOneShot(goDownSound);
     }
 
