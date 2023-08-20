@@ -24,8 +24,8 @@ public class MageBossSecondStageState : MageBossBaseState
 
     //flameball
     private float spawnCDTotal = 0.5f; // cd between each flameball
-    private float cdBetweenWaves = 0.5f;
-    private int waveNumberTotal = 3;
+    private float cdBetweenWaves = 1f;
+    private int waveNumberTotal = 2;
     private int spawnAmountTotal = 5;
     private float fallSpeed = 13;
     private float scale = 1.2f;

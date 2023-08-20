@@ -92,7 +92,6 @@ public class Excalibur : MonoBehaviour
     {
         MageBoss.OnFightFinished -= MageBoss_OnFightFinished;
     }
-
     private void MageBoss_OnFightFinished()
     {
         if (gameObject.activeSelf)
@@ -101,6 +100,7 @@ public class Excalibur : MonoBehaviour
             animator.SetTrigger(DURATION_ENDED_TRIGGER);
             floorCrack.GetComponent<Animator>().SetTrigger(CRACK_DISAPPEAR_ANIM_TRIGGER);
         }
+
     }
 
     private IEnumerator Dissolve()
@@ -152,7 +152,6 @@ public class Excalibur : MonoBehaviour
                 }
             }
         }
-
         if(returning)
         {
             ReturnToDefaultSize();
@@ -170,6 +169,7 @@ public class Excalibur : MonoBehaviour
         audioSource.PlayOneShot(fallingDownSound);
         defaultScale = transform.localScale;
         transform.localScale *= 2;
+        dissolveSwordMat.SetFloat(DISSOLVE_AMOUNT, 1);
     }
 
     private void ReturnToDefaultSize()

@@ -26,16 +26,16 @@ public class MageBossThirdStageState : MageBossBaseState
     private float switchStateDelay = 7f;
 
     //flameball
-    private float spawnCDTotal = 0.8f; // cd between each flameball
+    private float spawnCDTotal = 0.6f; // cd between each flameball
     private float cdBetweenWaves = 1.25f;
-    private int waveNumberTotal = 4;
-    private int spawnAmountTotal = 5;
+    private int waveNumberTotal = 3;
+    private int spawnAmountTotal = 4;
     private float fallSpeed = 15;
     private float scale = 1.5f;
 
     //laser
     private float laserAnimationDuration = 12;
-    private float laserThickness = 0.9f;
+    private float laserThickness = 0.85f;
 
     //excalibur
     private float excaliburSpawnDelay = 3f;
@@ -86,6 +86,7 @@ public class MageBossThirdStageState : MageBossBaseState
         manager.excaliburAttack.OnSwordAttackFinished += ExcaliburAttack_OnSwordRetured;
     }
 
+
     private void ExcaliburAttack_OnSwordRetured()
     {
         manager.SwordReturned();
@@ -124,19 +125,15 @@ public class MageBossThirdStageState : MageBossBaseState
         {
             if (finishedFight)
                 return;
-            switchStateDelay -= Time.deltaTime;
-            if (switchStateDelay <= 0)
-            {
-                manager.excaliburAttack.OnSwordAttackFinished -= ExcaliburAttack_OnSwordRetured;
-                manager.flameballspawnManager.OnAttackFinished -= FlameballspawnManager_OnAttackFinished;
-                manager.laser.OnAttackFinished -= Laser_OnAttackFinished;
+            manager.excaliburAttack.OnSwordAttackFinished -= ExcaliburAttack_OnSwordRetured;
+            manager.flameballspawnManager.OnAttackFinished -= FlameballspawnManager_OnAttackFinished;
+            manager.laser.OnAttackFinished -= Laser_OnAttackFinished;
 
-                for (int i = 0; i < manager.collidersArray.Length; i++)
-                {
-                    manager.collidersArray[i].OnWeakPointBroken -= MageBossFirstStageState_OnWeakPointBroken;
-                }
-                finishedFight = true;
+            for (int i = 0; i < manager.collidersArray.Length; i++)
+            {
+                manager.collidersArray[i].OnWeakPointBroken -= MageBossFirstStageState_OnWeakPointBroken;
             }
+            finishedFight = true;
             return;
         }
         currentAttackCD -= Time.deltaTime;
@@ -179,7 +176,7 @@ public class MageBossThirdStageState : MageBossBaseState
         //if among the last 4 attacks 1 attack type didn't occur, do this attack
         if(attackSequence.Count > 3)
         {
-            for(int i = 0; i < attackSequence.Count; i++)
+            for(int i = 0; i < attackSet.Length; i++)
             {
                 if (!attackSequence.Contains(attackSet[i]))
                 {

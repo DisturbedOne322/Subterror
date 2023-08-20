@@ -25,8 +25,8 @@ public class Laser : MageBossBaseAttack
     private PlayerMovement player;
     private PlayerHealth playerHealth;
 
-    private readonly float smoothDampTimeVertical = 0.5f;
-    private readonly float smoothDampTimeHorizontal = 1.2f;
+    private readonly float smoothDampTimeVertical = 0.45f;
+    private readonly float smoothDampTimeHorizontal = 0.9f;
     private float velocityHorizontal = 0;
     private float velocityVertical = 0;
 
