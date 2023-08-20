@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Excalibur : MonoBehaviour
 {
     public event Action OnSwordAttackFinished;
+    public event Action OnSwordReturned;
 
 
     private const string GROUND_HIT_ANIM_TRIGGER = "GhoundHit";
@@ -67,7 +69,6 @@ public class Excalibur : MonoBehaviour
     //max distance when explosion force has any impact
     private readonly float maxExplosionForceDistance = 15f;
 
-
     [SerializeField]
     private Material dissolveSwordMat;
 
@@ -77,7 +78,7 @@ public class Excalibur : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();       
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -159,6 +160,7 @@ public class Excalibur : MonoBehaviour
             AlignRotation();
             if (posAligned && angleAligned)
             {
+                OnSwordReturned?.Invoke();
                 gameObject.SetActive(false);
             }
         }
@@ -170,6 +172,7 @@ public class Excalibur : MonoBehaviour
         defaultScale = transform.localScale;
         transform.localScale *= 2;
         dissolveSwordMat.SetFloat(DISSOLVE_AMOUNT, 1);
+
     }
 
     private void ReturnToDefaultSize()

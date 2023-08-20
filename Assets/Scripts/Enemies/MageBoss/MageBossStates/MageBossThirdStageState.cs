@@ -63,6 +63,7 @@ public class MageBossThirdStageState : MageBossBaseState
         this.manager = manager;
         manager.ResetColliders();
         manager.EnableThirdStageArms();
+        manager.EnableSecondStageArms();
         animator = manager.GetComponent<Animator>();
         animator.Rebind();
         animator.Update(0);
@@ -83,13 +84,17 @@ public class MageBossThirdStageState : MageBossBaseState
         state = State.Idle;
         LastAttack = lastAttack;
 
-        manager.excaliburAttack.OnSwordAttackFinished += ExcaliburAttack_OnSwordRetured;
+        manager.excaliburAttack.OnSwordAttackFinished += ExcaliburAttack_OnSwordAttackFinished;
+        manager.excaliburAttack.OnSwordReturned += ExcaliburAttack_OnSwordReturned;
     }
 
-
-    private void ExcaliburAttack_OnSwordRetured()
+    private void ExcaliburAttack_OnSwordReturned()
     {
         manager.SwordReturned();
+    }
+
+    private void ExcaliburAttack_OnSwordAttackFinished()
+    {
         state = State.Idle;
         SetCDBetweenAttacks();
     }
@@ -125,7 +130,8 @@ public class MageBossThirdStageState : MageBossBaseState
         {
             if (finishedFight)
                 return;
-            manager.excaliburAttack.OnSwordAttackFinished -= ExcaliburAttack_OnSwordRetured;
+            manager.excaliburAttack.OnSwordAttackFinished -= ExcaliburAttack_OnSwordAttackFinished;
+            manager.excaliburAttack.OnSwordReturned -= ExcaliburAttack_OnSwordReturned;
             manager.flameballspawnManager.OnAttackFinished -= FlameballspawnManager_OnAttackFinished;
             manager.laser.OnAttackFinished -= Laser_OnAttackFinished;
 

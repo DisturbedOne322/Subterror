@@ -5149,7 +5149,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 7.383333
+  - time: 7.3
     functionName: DisableSelf
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -130,6 +130,14 @@ public class MageBoss : MonoBehaviour
         OnFightFinished?.Invoke();
         sword.SetActive(true);
         audioSource.PlayOneShot(goDownSound);
+        StartCoroutine(DisableSelfGuarantee());
+    }
+
+    private IEnumerator DisableSelfGuarantee()
+    {
+        yield return new WaitForSeconds(15);
+        Debug.Log("sdasdasdad");
+        gameObject.SetActive(false);
     }
 
     public void DisableSelf()

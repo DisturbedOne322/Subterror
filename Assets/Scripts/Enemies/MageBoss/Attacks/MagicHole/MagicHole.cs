@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,8 @@ public class MagicHole : MonoBehaviour
 
     private float pullingForce = 4.5f;
 
+    public static event Action OnPlayerSucked;
+
     private void Awake()
     {
         magicHoleVFX = GetComponent<VisualEffect>();
@@ -71,6 +74,7 @@ public class MagicHole : MonoBehaviour
                 StartCoroutine(CloseMagicHole());
                 return;
             }
+            OnPlayerSucked?.Invoke();
             Vector2 vectorFromPlayerToHole = (transform.position - player.transform.position).normalized;
             player.transform.Translate(vectorFromPlayerToHole * pullingForce * Time.deltaTime);
 

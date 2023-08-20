@@ -76,8 +76,15 @@ public class CameraShootShake : MonoBehaviour
         Teleport.OnTeleportedPlayer += Teleport_OnTeleportedPlayer;
         Teleporter.OnTeleporterImpulse += Teleporter_OnTeleporterImpulse;
         Laser.OnHeadlightHitLaser += Laser_OnHeadlightHitLaser;
+        MagicHole.OnPlayerSucked += MagicHole_OnPlayerSucked;
 
         transform.position = player.transform.position;
+    }
+
+    private void MagicHole_OnPlayerSucked()
+    {
+        ShakeCamera(headlightHitLaserAmp, headlightHitLaserFreq, shakeTimerTotal);
+
     }
 
     private void Laser_OnHeadlightHitLaser()
@@ -113,7 +120,7 @@ public class CameraShootShake : MonoBehaviour
         Teleport.OnTeleportedPlayer -= Teleport_OnTeleportedPlayer;
         Teleporter.OnTeleporterImpulse -= Teleporter_OnTeleporterImpulse;
         Laser.OnHeadlightHitLaser -= Laser_OnHeadlightHitLaser;
-
+        MagicHole.OnPlayerSucked -= MagicHole_OnPlayerSucked;
     }
 
     private void Player_OnPlayerTeleported()
