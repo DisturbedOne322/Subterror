@@ -16,3 +16,7 @@ A 2D platformer-shooter-horror game. Game was made using the Universal Render Pi
 
 WebGL Build [Link](https://www.newgrounds.com/portal/view/895881).
 
+![Alt text](Images/img1.png?raw=true "Title")
+![Alt text](Images/img2.png?raw=true "Title")
+![Alt text](Images/img3.png?raw=true "Title")
+![Alt text](Images/img4.png?raw=true "Title")
